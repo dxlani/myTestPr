@@ -38,7 +38,7 @@ module.exports = {
 
     // Config for our build files
     output: {
-        path: root('dist'),
+        path: path.resolve(__dirname,"dist/"),
         filename: '[name].bundle.js',
         sourceMapFilename: '[name].map',
         chunkFilename: '[id].chunk.js'
