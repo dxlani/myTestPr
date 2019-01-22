@@ -106,7 +106,7 @@ module.exports = {
     postcss: [autoprefixer], // <--- postcss
 
     plugins: [
-        // new CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
+        new CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
 
         // new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
         new webpack.HotModuleReplacementPlugin(),
