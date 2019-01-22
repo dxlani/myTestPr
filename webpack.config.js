@@ -39,7 +39,7 @@ module.exports = {
     // Config for our build files
     output: {
         path: path.resolve(__dirname,"dist/"),
-        filename: '[name].bundle.js',
+        filename:"bundle.js",
         sourceMapFilename: '[name].map',
         chunkFilename: '[id].chunk.js'
     },
