@@ -1,0 +1,122 @@
+.greenPoint{
+    display: inline-block;
+    width: 6px;
+    height:6px;
+    border-radius: 50%;
+    background: green;
+    margin-bottom:2px;
+    margin-right:8px;
+}
+.redPoint{
+    display: inline-block;
+    width:6px;
+    height:6px;
+    border-radius: 50%;
+    background: red;
+    margin-bottom:2px;
+    margin-right:8px;
+}
+.orangePoint{
+    display: inline-block;
+    width:6px;
+    height:6px;
+    border-radius: 50%;
+    background: #999;
+    margin-bottom:2px;
+    margin-right:8px;
+}
+.operate{
+    position: relative;
+    display: inline-block;
+}
+.menuitem{
+    display: none;
+    position: absolute;
+    left:-95px;
+    top:-10px;
+    width:76px;
+    list-style: none;
+    z-index:1000;
+    border:1px solid #999;
+    border-radius: 5px;
+    background: #fff;
+}
+.menuitem li,.menuitem li{
+    border-bottom:1px solid #ddd;
+    padding:3px;
+    text-align: center;
+}
+.menuitem li:hover,.menuitem li:hover{
+    background: #ddd;
+    cursor: pointer;
+}
+
+#oTitle .col-xs-6,
+#oTitle .col-xs-4,
+#oTitle .col-xs-2{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+#oTitle{
+    padding-right: 6px;
+    padding-left: 8px;
+}
+
+.orderImg{
+    height: 56px;
+    width: 56px;
+    float: left;
+    background: url(../../img/pic1.png) no-repeat 50%;
+}
+
+.orderTitle{
+    display: inline-block;
+    margin-top:14px;
+    margin-left: 8px;
+}
+
+#survey .orderNums{
+    font-size: 18px;
+}
+#orderReleaseManage_queryTerm.form-horizontal .form-group{
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
+#orderReleaseManage_queryTerm label{
+    font-size: 12px;
+    padding-right: 10px;
+    padding-left: 8px;
+}
+
+#orderReleaseManage_queryTerm{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+}
+
+#orderReleaseManage_query{
+    background-color: #1890FF;
+    color: #fff!important;
+    margin-right: 20px;
+}
+
+#orderReleaseManage_query,
+#orderReleaseManage_reset{
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#releaseManage_orderAdd{
+    font-size:14px;
+    margin-top:12px;
+}
+#releaseManage_import{
+    font-size:14px;
+    margin-top:12px;
+    margin-left: 6PX;
+}
+
+
+/* 多次选中div导致选中文字的问题 */
+// html,body{-moz-user-select: none; -khtml-user-select: none; user-select: none;}

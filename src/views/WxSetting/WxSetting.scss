@@ -1,0 +1,233 @@
+#WxSetting{
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 55px;
+}
+.setTitle {
+    width: 100%;
+    height: 150px;
+    background: url(../../img/bj_img@3x.png) no-repeat top;
+    display: inline-block;
+    background-size: cover;
+    text-align: center;
+}
+.headPic{
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+}
+
+.headPicstyle{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-top: 20px;
+}
+.headUsername{
+    font-size: 18px;
+    color: #fff;
+    margin-top: 30px;
+}
+
+#WxSetting .weui-navbar{
+    position: relative;
+    height: 50px;
+    padding-top: 8px;
+}
+
+#WxSetting .weui-navbar__item{
+    padding: 0;
+}
+
+#WxSetting .weItem{
+    text-align: left;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#WxSetting .weui-navbar__item:after{
+    border-right: none;
+}
+
+#WxSetting .weui-navbar:after{
+    border-bottom: none;
+}
+.processOrder::after{
+    border-bottom: #ccc;
+}
+
+.orderCompareTitle{
+    line-height: 14px;
+    font-size: 14px;
+    color: #333;
+    display: inherit;
+}
+
+.compareLast{
+    margin-top: 6px;
+    line-height: 12px;
+    font-size: 12px;
+    color: #666;
+    display: inline-block;
+}
+
+#orderArrow{
+    display: inline-block;
+    margin-left: 10px;
+}
+.orderArrowImg{
+    width: 5px;
+    height: 12px;
+    margin-top: -3px;
+}
+
+.countOrderTotal{
+    text-align: right;
+    margin-right: 25px;
+    color: #333;
+    line-height: 33px;
+    font-size: 28px;
+}
+
+#WxSetting .processOrder{
+    height: 120px;
+    margin-top: 10px;
+}
+
+#WxSetting .progress{
+    background: #ccc;
+    margin-top: 50px;
+    height: 1px;
+}
+#WxSetting .progress:after{
+    border-top: none;
+}
+
+#WxSetting .circle1{
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid #2da1f4;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: -3px;
+}
+
+#WxSetting .circle2{
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: url(../../img/point.png) no-repeat;
+    background-size: 100%;
+    top: -5px;
+    border: none;
+}
+
+#WxSetting .point1{
+    left: 0%;
+}
+
+#WxSetting .point2{
+    left: 25%;
+}
+
+#WxSetting .point3{
+    left: 34%;
+}
+
+#WxSetting .point4{
+    left: 68%;
+}
+
+#WxSetting .point5{
+    left: 100%;
+}
+
+.processItem1,.processItem2,.processItem3,.processItem4,.processItem5{
+    position: absolute;
+    top: -24px;
+    text-align: center;
+    margin-left: -3.5%;
+}
+
+.processItem1{
+    white-space:nowrap; 
+    left: -4px;
+}
+.processItem2{
+    white-space:nowrap; 
+    left: 24%;
+}
+.processItem3{
+   white-space:nowrap; 
+    left: 33.5%;
+}
+.processItem4{
+    white-space:nowrap; 
+    left: 67%;
+}
+.processItem5{
+    white-space:nowrap; 
+    left: 99.5%;
+}
+
+.itemNum{
+    line-height: 12px;
+    height: 12px;
+    color: #2DA1F4;
+    font-size: 15px;
+    display: inherit;
+}
+.itemName{
+    width: 38px;
+    margin-top: 25px;
+    display: inherit;
+    height: 12px;
+    line-height: 12px;
+    font-size: 12px;
+    color: #333;
+}
+
+.afc1{
+    font-size: 15px;
+    line-height: 15px;
+    color: #333;
+}
+
+.afc2{
+    font-size: 12px;
+    line-height: 12px;
+    color: #666
+}
+
+.wxsetting_btn{
+    width: 90%;
+    height:100%;
+    line-height: 23px;
+    font-size: 16px;
+    color: #F25A4E;
+    background-color: #fff;
+    border: none;
+    border-radius: 4px;
+}
+.weui-cell__bd .feePng{
+    display: inline-block;
+    width:22px;
+    height:22px;
+    background: url('../../img/fee@3x.png') no-repeat;
+    background-size:100%;
+    vertical-align: text-bottom;
+    margin-left:6px;
+}
+
+.weui-cell__bd .editPng{
+    display: inline-block;
+    width:22px;
+    height:22px;
+    background: url('../../img/fankui.png') no-repeat;
+    background-size:100%;
+    vertical-align: text-bottom;
+    margin-left:6px;
+}

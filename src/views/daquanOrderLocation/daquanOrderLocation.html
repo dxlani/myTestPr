@@ -1,0 +1,150 @@
+<div id="DaquanOrderLocation">
+    <div class="orderLocation-title daquan-bc">
+        <img :src="userLogo" class="daquan-title">
+        <span class="location-title">订单定位</span>
+        <span class="welcome-title">欢迎来到订单定位页面！</span>
+    </div>
+    <div id="noValide" v-show="!isValide">
+        <div>
+            <img src="../../img/noValide.png">
+            <p>未取得授权不能查看哦~</p>
+        </div>
+    </div>
+    <div id="location-content" v-show="isValide">
+        <div id="location-content-top" class="row">
+            <div id="location-tabs" class="col-lg-11 col-md-10 col-sm-10">
+                <ul id="tabs">
+                    <li  class="tabs-li" :id="index" v-for="(index,item) in carList" @click="getCar(item)">车辆{{$index + 1}}</li>
+                </ul>
+            </div>
+            <div id="tabs-btn" class="col-lg-1 col-md-2 col-sm-2">
+                <button class="tabs-btn-l" @click="goLeft()" :disabled="leftIsdisabled"><i class="glyphicon glyphicon-triangle-left"></i></button>
+                <button class="tabs-btn-r" @click="goRight()" :disabled="rightIsdisabled"><i class="glyphicon glyphicon-triangle-right"></i></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="location-content-l col-lg-9 col-md-9 col-sm-9">
+                <div class="order-basic daquan-bc">
+                    <div class="order-basic-title block-title">
+                        <span>订单基本信息</span>
+                    </div>
+                    <div class="block-content">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 form-group no-padding-left">
+                                <label class="control-label">订单编号：</label>
+                                <label class="control-label">{{orderNum}}</label>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 form-group">
+                                <label class="control-label">车牌号：</label>
+                                <label class="control-label">{{carCode}}</label>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 form-group">
+                                <label class="control-label">手机号：</label>
+                                <label class="control-label">{{phone}}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 form-group no-padding-left">
+                                <label class="control-label">北斗定位：</label>
+                                <label class="control-label" v-if="isBdlocation"><i class="iconfont icon-yikaitong"></i> {{bdLocation}}</label>
+                                <label class="control-label" v-if="!isBdlocation">{{bdLocation}}</label>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 form-group">
+                                <label class="control-label">LBS定位：</label>
+                                <label class="control-label" v-if="isLbsLocation"><i class="iconfont icon-yikaitong"></i> {{lbsBtn}}</label>
+                                <button class="btn btn-sm btn-info btn-addon" v-if="!isLbsLocation" :disabled="isLbsdis" @click="openLocation()"><i class="iconfont icon-lbs"></i>{{lbsBtn}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="real-location daquan-bc">
+                    <div class="block-title">
+                        <span>实时定位</span>
+                    </div>
+                    <div class="block-content">
+                        <div class="row">
+                            <div class="col-lg-9 col-md-9 col-sm-9 form-group no-padding-left">
+                                <label class="control-label">定位时间：</label>
+                                <label class="control-label">{{locationTime}}</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 form-group" style="text-align:right;">
+                                <button class="pull-right-xs btn btn-sm btn-success btn-addon" :disabled="isLocationdis" @click="location()">
+                                    <i class="iconfont icon-dingwei" v-show="!isLocating"></i>
+                                    <i v-show="isLocating">
+                                        <b class="fa fa-spinner no-bordr" v-bind:class="{'fa-spin':isLocating}"></b>
+                                    </i>
+                                    {{locationText}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8 form-group no-padding-left">
+                                <label class="control-label">当前位置：</label>
+                                <label class="control-label">{{nowArea}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="location-map" class="location-map daquan-bc">
+                    <div id="dituContent"></div>
+                </div>
+            </div>
+            <div class="location-content-r col-lg-3 col-md-3 col-sm-3">
+                <div class="follow-order daquan-bc">
+                    <div class="block-title">
+                        <span>订单跟踪</span>
+                    </div>
+                    <div class="block-content order-status">
+                        <div id="orderStatus-list" class="orderStatus-box">
+                            <ul id="daquanOrderTimeline" class="status-list">
+                                <li v-for="item in orderLogItemList">
+                                    <span class="orderTimeline-icon" v-if="item.orderStatus == '已送达'"><i class="iconfont icon-songda"></i></span>
+                                    <span class="orderTimeline-icon" v-if="!(item.orderStatus == '已送达' || item.orderStatus == '已发货')"><i class="iconfont icon-zaitudingwei"></i></span>
+                                    <span class="orderTimeline-icon" v-if="item.orderStatus == '已发货'"><i class="iconfont icon-fahuo"></i></span>
+                                    <span class="orderTimeline-title">{{item.orderStatus}}</span>			
+                                    <p class="orderTimeline-content">{{item.locationAddress}}</p>
+                                    <p class="orderTimeline-date">{{item.locationDateTime}}</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="location-bottom" class="daquan-bc">
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-9 bottom-left">
+                <div class="sino-icon"><i class="iconfont icon-sinowulian"></i></div>
+                <div class="phone-and-address daquan-font">热线：051186990000  |  官网：www.vip56.cn  |  地址：江苏省镇江市京口区丁卯经十二路智慧大道470号镇江科技园A座研发楼</div>
+                <div class="mark-sino daquan-font">Copyright © 2018, All Rights Reserved Powered By Danyang Hurricane Logistics Co.,Ltd</div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 bottom-right">
+                <div class="link-top">
+                    <a class="sino-home-a" href="https://www.vip56.cn" target="_Blank"><i class="iconfont icon-sinozhuye"></i><span class="sino-home daquan-font">斯诺物联</span></a>
+                    <a class="write-email-a" href="Mailto:hr@vip56.cn"><i class="iconfont icon-email"></i><span class="write-email daquan-font">E-mail</span></a>
+                </div>
+                <div class="link-bottom">
+                    <a class="icon-sino-a">
+                        <div class="sino-erweima" >
+                            <img src="../../img/sino-er.png" style="width:115px;">
+                        </div>
+                        <i class="iconfont icon-sino"></i>
+                    </a>
+                    <a class="icon-csp-a">
+                        <div class="csp-erweima" >
+                            <img src="../../img/csp-er.png" style="width:115px;">
+                        </div>
+                        <i class="iconfont icon-csp"></i>
+                    </a>
+                    <a class="icon-ccp-a">
+                        <div class="ccp-erweima" >
+                            <img src="../../img/ccp-er.png" style="width:115px;">
+                        </div>
+                        <i class="iconfont icon-ccp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

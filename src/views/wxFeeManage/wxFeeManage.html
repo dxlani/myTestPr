@@ -1,0 +1,54 @@
+<div id="wxfeeManage">
+    <div class="weui-flex blue_bc">
+        <div class="weui-flex__item">
+            <select class="weui-select" id="month" name="month" v-model="month" @change="selectMonth()">
+                <option v-for="option in monthDropDown" v-bind:value="option.value">
+                    {{option.text}}
+                </option>
+            </select>
+            <em class="glyphicon glyphicon-chevron-down selectDown"></em>
+            <div class="accountBalance">
+                <p class="accountBalance_text">当前账户余额</p>
+                <p class="accountBalance_number">{{accountBalance}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="weui-flex feeDetail">
+        <div class="weui-flex__item">
+            <p class="feeSum">{{deductionSum}}</p>
+            <p class="feeSum_text">当月扣款</p>
+        </div>
+        <div class="weui-flex__item">
+            <p class="feeSum">{{rechargeSum}}</p>
+            <p class="feeSum_text">当月充值</p>
+        </div>
+    </div>
+    <div class="feeListTitle" v-show="notnull">费用明细（单位：￥）</div>
+    <div id="wxFeeList" class="feeList fade in" v-show="notnull">
+        <div class="feeManageList clearfloat" v-for="item in feeList">
+            <div class="listLeft">
+                <div style="float: left;width: 100%;">
+                    <span class="lf bg_red" v-if="item.feeAttribute=='1'">扣款</span>
+                    <span class="lf bg_blue" v-if="item.feeAttribute=='2'">充值</span>
+                    <span class="lf feeManage_feeType" v-if="item.feeType=='1'">运费支付</span>
+                    <span class="lf feeManage_feeType" v-if="item.feeType=='2'">服务费</span>
+                    <span class="lf feeManage_feeType" v-if="item.feeType=='3'">其他</span>
+                    <span class="lf feeManage_feeType" v-if="item.feeType=='4'">运费预充</span>
+                    <span class="lf feeManage_feeType" v-if="item.feeType=='5'">其他</span>
+                </div>
+                <!-- <span class="lf " v-if="item.feeType=='0'"></span> -->
+                <p class="feeManage_remark">{{item.remarks}}</p>
+                <p class="feeTime">{{item.creationTime}}</p>
+            </div>
+            <div class="listRight">
+                <p v-if="item.feeAttribute=='1'" style="color:#EB595A;font-size: 18px;">{{item.feeDetailNum}}</p>
+                <p v-if="item.feeAttribute=='2'" style="color:#2da1f4;font-size: 18px;">{{item.feeDetailNum}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="noFeeList" v-show="!notnull">
+        <div class="msg" style="color:#999;text-align: center;">
+            <h5>当月未查到费用明细</h5>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+<div id="DaquanOrderLocation">
+    <div class="orderLocation-title daquan-bc">
+        <img src="../../img/default-avatar.png" class="daquan-title" v-if="!userLogo">
+        <img :src="userLogo" class="daquan-title" v-if="userLogo">
+        <span class="daquan-name">{{userName}}</span>
+        <span class="location-title">财务对账</span>
+        <span class="welcome-title">欢迎来到财务对账页面！</span>
+    </div>
+    <div id="noValide" v-show="!isValide">
+        <div>
+            <img src="../../img/noValide.png">
+            <p>未取得授权不能查看哦~</p>
+        </div>
+    </div>
+<div class="wrapper-md" id="SumaccountControlle" v-show="isValide">
+    <div class="panel panel-default">
+        <div class="panel-heading font-bold">查询</div>
+        <div class="form-horizontal panel-body">
+            <div class="row">
+                <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">发货起始时间</label>
+                <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group date has-feedback">
+                    <input id="sumaccount_startTime" name="startTime" datetimepicker plugintype="datetime" v-model="checkQuery.startTime"  placeholder="起始时间" class="form-control" type="text" />
+                    <span id="sumaccount_openStartTime" class="form-control-feedback curpoint">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">发货结束时间</label>
+                <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group date has-feedback">
+                    <input id="sumaccount_endTime" name="endTime" datetimepicker plugintype="datetime" v-model="checkQuery.endTime"  placeholder="结束时间" class="form-control" type="text" />
+                    <span id="sumaccount_openEndTime" class="form-control-feedback curpoint">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">发货地址</label>
+                <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                    <input class="form-control" id="sumaccount_originAddress" name="originAddress" v-model="checkQuery.originAddress" placeholder="请输入发货地址" type="text">
+                </div>
+                <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">送货地址</label>
+                <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                    <input class="form-control" id="sumaccount_destinationAddress" name="destinationAddress" v-model="checkQuery.destinationAddress" placeholder="请输入送货地址" type="text">
+                </div>
+                <!-- <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">货物类别</label>
+                <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                    <input class="form-control" id="sumaccount_goodsType" name="goodsType" v-model="checkQuery.goodsType" placeholder="请输入货物类别" type="text">
+                </div>
+                <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">货物名称</label>
+                <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                    <input  class="form-control" id="sumaccount_goodsName" name="goodsName" v-model="checkQuery.goodsName" placeholder="请输入货物名称" type="text">
+                </div> -->
+            </div>
+            <div class="row">
+                <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">发货单号</label>
+                <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                    <input class="form-control" id="sumaccount_orderNumber" name="orderNumber" v-model="checkQuery.orderNumber" placeholder="请输入发货单号" type="text">
+                </div>
+                <label class="control-label pull-left  ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">回单状态</label>
+                <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                    <select id="sumaccount_receiptStatus" name="receiptStatus" class="form-control" v-model="checkQuery.receiptStatus" >
+                        <option v-for="option in receiptStatusList" v-bind:value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </select>
+                </div>
+                <label class="control-label pull-left  ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3"></label>
+                <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group"></div>
+                <label class="control-label pull-left  ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3"></label>
+                <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group"> 
+                    <button id="sumaccount_querySum" @click="querySum()" class="btn btn-sm btn-info btn-addon ">
+                        <i class="glyphicon glyphicon-search" v-show="!seeks"></i>
+                        <!-- <i v-show="seeks">
+                            <b class="fa fa-spinner no-bordr"  v-bind:class="{'fa-spin':seeks}"></b>
+                        </i> -->
+                        <span v-show="!seeks">查询</span>
+                        <span v-show="seeks">查询中...</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading font-bold">
+            对账列表
+        </div>
+        <div class="line line-xs pull-in">
+        </div>
+        <div class="table-responsive" >
+            <table id="sumaccount_table" class="table table-hover" data-events="actionEvents"></table>
+            <pagination-Com :total="records" v-on:pageIndexChange="onPageIndexChange($event)"></pagination-Com>    
+        </div>
+        <div class="panel-body">
+            <label class="form-group" id="sumaccount_priceTotal">
+                <p>费用合计：{{priceTotal}} 元</p>
+            </label>
+            <div>
+                <label class="form-group" id="downExport">
+                    <button id="sumaccount_export" class="pull-right-xs btn btn-sm btn-success btn-addon "  @click="downExport()" ><i class="glyphicon glyphicon-download-alt"></i>导出报表</button>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="location-bottom" class="daquan-bc">
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-9 bottom-left">
+            <div class="sino-icon"><i class="iconfont icon-sinowulian"></i></div>
+            <div class="phone-and-address daquan-font">热线：051186990000 | 官网：www.vip56.cn |
+                地址：江苏省镇江市京口区丁卯经十二路智慧大道470号镇江科技园A座研发楼</div>
+            <div class="mark-sino daquan-font">All Rights Reserved Powered By SINO logistics networking technology</div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 bottom-right">
+            <div class="link-top">
+                <a class="sino-home-a" href="https://www.vip56.cn" target="_Blank"><i class="iconfont icon-sinozhuye"></i><span
+                        class="sino-home daquan-font">斯诺物联</span></a>
+                <a class="write-email-a" href="Mailto:hr@vip56.cn"><i class="iconfont icon-email"></i><span class="write-email daquan-font">E-mail</span></a>
+            </div>
+            <div class="link-bottom">
+                <a class="icon-sino-a">
+                    <div class="sino-erweima">
+                        <img src="../../img/sino-er.png" style="width:115px;">
+                    </div>
+                    <i class="iconfont icon-sino"></i>
+                </a>
+                <a class="icon-csp-a">
+                    <div class="csp-erweima">
+                        <img src="../../img/csp-er.png" style="width:115px;">
+                    </div>
+                    <i class="iconfont icon-csp"></i>
+                </a>
+                <a class="icon-ccp-a">
+                    <div class="ccp-erweima">
+                        <img src="../../img/ccp-er.png" style="width:115px;">
+                    </div>
+                    <i class="iconfont icon-ccp"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

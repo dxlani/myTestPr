@@ -1,0 +1,56 @@
+<div id="wxFeedBack">
+    <div class="weui-flex ">
+        <div class="weui-flex__item link getid" @click="allStatus()">
+            <a href="javascript:;" >全部</a>
+        </div>
+        <div class="weui-flex__item link " @click="hasfeedBack()">
+            <a href="javascript:;">已回复</a>
+        </div>
+        <div class="weui-flex__item link " @click="nofeedBack()">
+            <a href="javascript:;">未回复</a>
+        </div>
+        <div class="search" @click="addfeedBack()">
+            <img src="../../img/plus.png" alt="">
+        </div>
+        <div class="bottomline"></div>
+    </div>
+    <!-- <div id="myTabContent" class="tab-content"> -->
+    <div class="bd_Content tab-pane fade in active " v-show="notnull" >
+        <div class="weui-pull-to-refresh__layer">
+            <div class="circle-wrap">
+                <div class="circle"></div>
+            </div>
+            <div class="status">
+                <div class="down">下拉刷新</div>
+                <div class="up">释放刷新</div>
+                <div class="refresh">正在刷新</div>
+            </div>
+        </div>
+        <!-- 列表 -->
+        
+        <div class="feedbackList " v-for="item in feedbacklist">
+            <a :href="'#!/wxFeedBackDetail?id='+item.id">
+                <p class="feedbackTitle">{{item.title}}</p>
+                <p class="textOverflow feedbackContent">{{item.content}}</p>
+                <div class="clearfloat feedbackTips">
+                    <span class="lf">{{item.creationTime}}</span>
+                    <span class="feedBtn rt" v-if="item.status=='已回复'">{{item.status}}</span>
+                    <span class="feedbtn rt" v-if="item.status=='未回复'">{{item.status}}</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="weui-loadmore">
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips">正在加载...</span>
+        </div>
+    </div>
+    <div class="noOrder" v-show="!notnull">
+        <div class="pic"></div>
+        <div class="msg" style="color:#999">
+            <h5>暂无意见反馈</h5>
+        </div>
+    </div>
+</div>
+
+</div>

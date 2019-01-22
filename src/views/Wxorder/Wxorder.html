@@ -1,0 +1,206 @@
+<div id="wxorder" v-show="showTemp">
+    <div class="weui-flex ">
+        <div class="weui-flex__item link " @click="hasorder()" onclick="_czc.push(['_trackEvent', '订单-待处理', '点击待处理tab', '','','']);">
+            <a href="javascript:;" >待处理</a>
+        </div>
+        <div class="weui-flex__item link " @click="waitdeliever()" onclick="_czc.push(['_trackEvent', '订单-待发货', '点击待发货tab', '','','']);">
+            <a href="javascript:;" >待发货</a>
+        </div>
+        <div class="weui-flex__item link " @click="hasdeliever()" onclick="_czc.push(['_trackEvent', '订单-已发货', '点击已发货tab', '','','']);">
+            <a href="javascript:;">已发货</a>
+        </div>
+        <div class="search" onclick="_czc.push(['_trackEvent', '订单-搜索', '点击订单搜索', '','','']);">
+            <img src="../../img/search.png" alt="">
+        </div>
+        <div class="orderAdd" @click="orderAdd()" onclick="_czc.push(['_trackEvent', '订单-新增', '点击订单新增', '','','']);">
+            <img src="./img/plus.png">
+        </div>
+        <div class="bottomline"></div>
+    </div>
+    <div class="bd_content tab-pane fade in active " v-show="notnull">
+        <div class="weui-pull-to-refresh__layer">
+            <div class="circle-wrap">
+                <div class="circle"></div>
+            </div>
+            <div class="status">
+                <div class="down">下拉刷新</div>
+                <div class="up">释放刷新</div>
+                <div class="refresh">正在刷新</div>
+            </div>
+        </div>
+        <!-- 列表 -->
+        <!-- 待处理 -->
+        <div class="inquiryList" v-for="item in orderData" @click="goOrderReleasedetail(item)" v-if="showList" onclick="_czc.push(['_trackEvent', '订单-订单列表', '点击查看待处理订单详情', '','','']);">
+            <div class="inquiryidTitle clearfloat">
+                <div class="inquiryid lf  ">
+                    <p>
+                        <span v-show="item.cspOrderId">订单：</span>{{item.cspOrderId}}</p>
+                </div>
+                <div class="inquiryid lf" style="text-align: right;">
+                    <p>{{item.cspOrderTime}}</p>
+                </div>
+            </div>
+            <div class="part2">
+                <div class="orderaddress clearfloat">
+                    <div class="lf maxWidth">
+                        <h4>{{item.originCity}}{{item.originCounty}}</h4>
+                    </div>
+                    <div class="rightarrow lf ">
+                        <img src="../../img/route_img@3x.png" alt="">
+                    </div>
+                    <div class="lf maxWidth">
+                        <h4>{{item.destinationCity}}{{item.destinationCounty}}</h4>
+                    </div>
+                </div>
+                <div class="market clearfloat">
+                    <div class="goods lf bg_blue">{{item.goodsName}}</div>
+                    <div class="count lf bg_red">{{item.goodsNum }}</div>
+                    <div class="count rt bg_blue" v-if="item.status=='未处理'">待接单</div>
+                    <div class="count rt bg_blue" v-if="item.status=='订单终结'">已终结</div>
+                </div>
+            </div>
+        </div>
+        <!--派车中 ||  待发货 || 已发货 -->
+        <div class="inquiryList" v-for="item in orderData"  v-if="!showList" onclick="_czc.push(['_trackEvent', '订单-订单列表', '点击查看派车中or待发货or已发货订单详情', '','','']);">
+            <a :href="'#!/WxOrder/WxOrderManageDetail?id='+item.id+'&status='+item.status">  
+            <div class="inquiryidTitle clearfloat">
+                        <div class="inquiryid lf  ">
+                            <p>
+                                <span v-show="item.orderId">订单：</span>{{item.orderId}}</p>
+                        </div>
+                        <div class="inquiryid lf" style="text-align: right;">
+                            <p>{{item.creationTime}}</p>
+                        </div>
+                    </div>
+                    <div class="part2">
+                        <div class="orderaddress clearfloat">
+                            <div class="lf maxWidth">
+                                <h4>{{item.originCity}}{{item.originCounty}}</h4>
+                            </div>
+                            <div class="rightarrow lf ">
+                                <img src="../../img/route_img@3x.png" alt="">
+                            </div>
+                            <div class="lf maxWidth">
+                                <h4>{{item.destinationCity}}{{item.destinationCounty}}</h4>
+                            </div>
+                        </div>
+                        <div class="market clearfloat">
+                            <div class="goods lf bg_blue">{{item.goodsName}}</div>
+                            <div class="count lf bg_red">{{item.quantityOfGoods }}</div>
+                            <div class="count rt bg_blue" v-if="item.statusStr=='派车中' || item.statusStr=='已派车' || item.statusStr=='退回派车' || item.statusStr=='退回下单'">派车中</div>
+                            <div class="count rt bg_blue" v-if="item.statusStr=='待发货' ">待发货</div>
+                            <div class="count rt bg_blue" v-if="item.statusStr=='已发货' ">已发货</div>
+                            <div class="count rt bg_blue" v-if="item.statusStr=='货已送达' ">已送达</div>
+                            <a class="open-popup fa fa-map-marker fa-lg rt"  data-target="#carLocation" id="orderManage_showLoaction" name="orderManage_showLoaction"  @click="showLoaction(item)"  v-show="item.statusStr == '待发货'|| item.statusStr == '已发货'" style="color:#2DA1F4;margin-right: 14px;margin-top: 3px;"></a>
+                        </div>
+                    </div>
+                </a>  
+        </div>
+        <div class="weui-loadmore">
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips">正在加载...</span>
+        </div>
+    </div>
+    <div class="noInquiry" v-show="!notnull">
+        <div class="pic"></div>
+        <div class="msg" style="color:#999">
+            <h5>暂无订单记录</h5>
+        </div>
+    </div>
+</div>
+<div  class="noAuth" v-show="!showTemp">
+    <div class="authImg"></div>
+    <div class="message" >
+        <h4>您没有当前页面的查看权限</h4>
+        <h4>如需查看，请向管理员申请相应权限</h4>
+    </div>
+</div>
+<!-- 模态框 -->
+<div class="searchModal">
+    <div class="searchPop">
+        <div class="border">
+            <label for="searchOrderId">订单编号</label>
+            <input type="text" id="searchOrderId" placeholder="请输入订单编号" v-model="searchOrderId">
+        </div>
+
+        <div class="border" v-if="tab1">
+            <label for="searchOrderStatus">订单状态</label>
+            <select class="weui-select wx-fb wx-padf" id="searchOrderStatus" name="state" v-model="searchOrderStatus" >
+                <option v-for="option in orderStatuslist1" v-bind:value="option.value">
+                    {{ option.text }}
+                </option>
+            </select>
+        </div>
+        <div class="border" v-if="tab3">
+            <label for="searchOrderStatus">订单状态</label>
+            <select class="weui-select wx-fb wx-padf" id="searchOrderStatus" name="state" v-model="searchOrderStatus">
+                <option value="6,7" selected>全部</option>
+                <option v-for="option in orderStatuslist2" v-bind:value="option.value">
+                    {{ option.text }}
+                </option>
+            </select>
+        </div>
+        <div class="border">
+            <label for="searchStartAddress">发货地址</label>
+            <input type="text" id="searchStartAddress" placeholder="请输入发货地址" v-model="searchStartAddress">
+        </div>
+        <div class="border">
+            <label for="searchEndAddress">送货地址</label>
+            <input type="text" id="searchEndAddress" placeholder="请输入送货地址" v-model="searchEndAddress">
+        </div>
+        <div class="btnGroup">
+            <button class="btn btn-lg btn-default btnStyle" @click="reset()">重置</button>
+            <button class="btn btn-lg btn-info btnStyle" @click="query()">搜索</button>
+        </div>
+    </div>
+</div>
+<!--定位模块-->
+<div id="carLocation" class="weui-popup__container">
+    <div class="weui-popup__modal" style="background:#fff">
+        <div id="mapContent"></div>
+        <div class="weui-cells weui-cells_form "  style="margin-bottom:20px;">
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label class="weui-label locationfont">车牌号</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" id="orderManage_locationCarCode" name="orderManage_locationCarCode" v-model="locationCarCode" style="margin-bottom: 5px;"
+                        disabled>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label class="weui-label locationfont">发货地址</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" id="orderManage_locationOriginAddress" name="orderManage_locationOriginAddress" v-model="locationOriginAddress"
+                        style="margin-bottom: 5px;" disabled>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label class="weui-label locationfont">送货地址</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input " id="orderManage_locationDestinationAddress" name="orderManage_locationDestinationAddress" v-model="locationDestinationAddress"
+                        style="margin-bottom: 5px;" disabled>
+                </div>
+            </div>
+            <div class="labeltitle">定位信息</div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd" style="width:100%;">
+                  <div class="locationfont locationStyle">
+                      <p style="margin:0;">{{locationStatus}}</p>
+                      <p style="margin:0;">{{locationArea}}</p>
+                      <p style="margin:0;">{{locationTime}}</p>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="btnGroup">
+                        <button class="btn btn-lg btn-info btnStyle" @click="location()">{{locationText}}</button>
+                        <button class="btn btn-lg btn-default btnStyle" @click="goback()">返回</button>
+        </div>
+        
+    </div>
+</div>

@@ -1,0 +1,305 @@
+<div id="inquiryCheckEl">
+	<div class="bg-light lter b-b wrapper-sm">
+		<h1 class="m-n font-thin h4">{{titleInquiry}}</h1>
+	</div>
+	<div class="wrapper-sm">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<validator name="validation">
+					<form id="inquiryCheckForm" class="form-validation form-horizontal novalidate">
+						<!--:disabled="{disabled: titleInquiry=='询价单详情'}"-->
+						<fieldset>
+							<div class="form-group">
+								<div class="panel-heading font-bold m-t-n m-b-sm">
+									基本信息
+								</div>
+								<div class="blockInfo">
+									<label class=" col-ls-150 col-lg-081  col-md-140  col-sm-3 pull-left lg-pull-right ">子询价单编号:</label>
+									<label id="inquiryCheck_inquiryChildId" class="col-lg-2 col-md-8  col-sm-8">{{inquiryChildId}}</label>
+									<div class="line  pull-in hidden-lg"></div>
+									<label class="col-lg-081 col-ls-150 col-md-140  col-sm-2 pull-left lg-pull-right">下单时间
+										<span class="text-danger">*</span>
+									</label>
+									<label class="col-lg-2 col-md-9 col-sm-9 text-left">{{creationTime}}</label>
+									<div class="line  pull-in hidden-lg"></div>
+									<label class="col-lg-081 col-ls-150 col-md-140  col-sm-2 pull-left lg-pull-right">紧急程度
+										<span class="text-danger">*</span>
+									</label>
+									<div class="col-lg-081 col-ls-2 col-md-3 col-sm-3 pull-left lg-pull-right">
+										<input id="inquiryCheck_urgency" disabled name="urgency" type="text" class="form-control input-sm" v-model="responseTime">
+									</div>
+								</div>
+
+							</div>
+							<div class="form-group">
+								<div class="blockInfo">
+									<label class="col-lg-081 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">客户单位
+										<span class="text-danger">*</span>
+									</label>
+									<label class="col-lg-2 col-md-9 col-sm-9 text-left">{{clientName}}</label>
+									<div class="line  pull-in hidden-lg"></div>
+									<label class="col-lg-081 col-ls-150 col-md-140 col-sm-2  pull-left lg-pull-right">发货计划人
+										<span class="text-danger">*</span>
+									</label>
+									<div class="col-lg-2 col-md-10 col-sm-10">
+										<input id="inquiryCheck_customerName" type="text" class="form-control input-sm" v-model="customerName" required name="customerName"
+										 disabled="disabled">
+									</div>
+									<div class="line  pull-in hidden-lg"></div>
+									<label class="col-lg-081 col-ls-150 col-md-140 col-sm-2  pull-left lg-pull-right">发货人电话
+										<span class="text-danger">*</span>
+									</label>
+									<div class="col-lg-2 col-md-10 col-sm-10">
+										<input id="inquiryCheck_consignorPhone" name="consignorPhone" type="text" class="form-control input-sm" v-model="customerPhone"
+										 required disabled="disabled">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="blockInfo">
+									<label class="col-lg-081 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">总询价内容 :</label>
+									<div class="col-lg-10 col-md-10 col-sm-10 pull-left lg-pull-right">
+										<textarea id="inquiryCheck_content" class="form-control input-sm" v-model="content" name="content" disabled></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="panel-heading font-bold m-b-sm">
+									线路信息
+								</div>
+								<div class="blockInfo">
+									<label class="col-lg-081 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">发货地址
+										<span class="text-danger">*</span>
+									</label>
+
+									<div class="pull-left lg-pull-right form-group form-inline col-ls-6  col-lg-3 col-md-10 col-sm-10" required="true">
+										<div class="form-group m-n  col-md-4 col-sm-4 col-lg-4col-md-4 col-sm-4 col-lg-4">
+											<input id="inquiryCheck_startProvince" name="startProvince" disabled type="text" class="form-control input-sm" v-model="originProvinceStr">
+										</div>
+										<div class="form-group col-md-4 col-sm-4 col-lg-4 m-l-n-sm">
+											<input id="inquiryCheck_startCity" name="startCity" disabled type="text" class="form-control input-sm" v-model="originCityStr">
+										</div>
+										<div class="form-group lg-m-n m-n col-md-4 col-sm-4 col-lg-4">
+											<input id="inquiryCheck_startCounty" name="startCounty" disabled type="text" class="form-control input-sm" v-model="originCountyStr">
+										</div>
+									</div>
+									<label class="col-md-140 col-sm-2 pull-left lg-pull-right hidden-lg ">
+										<span class="text-danger"></span>
+									</label>
+									<div class="col-lg-4  col-md-10 col-sm-10 ">
+										<input id="inquiryCheck_startAddress" name="startAddress" disabled type="text" class="form-control input-sm" v-model="originDetails">
+									</div>
+
+									<div class="line  pull-in lg-m-tb-0"></div>
+									<label class="col-lg-081 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">送货地址
+										<span class="text-danger">*</span>
+									</label>
+
+									<div class="pull-left lg-pull-right form-group form-inline col-ls-6  col-lg-3 col-md-10 col-sm-10" required="true">
+										<div class="form-group m-n  col-md-4 col-sm-4 col-lg-4col-md-4 col-sm-4 col-lg-4">
+											<input id="inquiryCheck_endProvince" name="endProvince" disabled type="text" class="form-control input-sm" v-model="destinationProvinceStr">
+										</div>
+										<div class="form-group col-md-4 col-sm-4 col-lg-4 m-l-n-sm">
+											<input id="inquiryCheck_endCity" name="endCity" disabled type="text" class="form-control input-sm" v-model="destinationCityStr">
+										</div>
+										<div class="form-group lg-m-n m-n col-md-4 col-sm-4 col-lg-4">
+											<input id="inquiryCheck_endCounty" name="endCounty" disabled type="text" class="form-control input-sm" v-model="destinationCountyStr">
+										</div>
+									</div>
+									<label class="col-md-140 col-sm-2 pull-left lg-pull-right hidden-lg ">
+										<span class="text-danger"></span>
+									</label>
+									<div class="col-lg-4  col-md-10 col-sm-10 ">
+										<input id="inquiryCheck_endAddress" name="endAddress" type="text" class="form-control input-sm" disabled v-model="destinationDetails">
+									</div>
+									<div class="line  pull-in lg-m-tb-0"></div>
+
+									<label class="col-lg-081 col-ls-150 col-md-140 col-sm-200 pull-left lg-pull-right ls-p-r-0">预计发货时间
+										<span class="text-danger">*</span>
+									</label>
+									<div class="col-lg-2 col-md-3 col-sm-3">
+										<div class="input-group input-group-sm date">
+											<input id="inquiryCheck_plannedArrivalTime" name="plannedArrivalTime" datetimepicker plugintype="datetime" disabled v-model="foreArrivalTime"
+											 placeholder="预计发货时间" class="form-control" type="text">
+											<!-- <span id="opendataTime" class="input-group-addon curpoint">
+												<span class="glyphicon glyphicon-calendar"></span>
+											</span> -->
+										</div>
+									</div>
+									<div class="line  pull-in hidden-lg"></div>
+									<label class="col-lg-081 col-ls-150 col-md-140 col-sm-200 pull-left lg-pull-right lg-m-l-n-sm ls-p-r-0">预计到货时间
+										<span class="text-danger">*</span>
+									</label>
+									<div class="col-lg-2 col-md-3 col-sm-3">
+										<div class="input-group input-group-sm date">
+											<input id="inquiryCheck_plannedDeliveryTime" disabled name="plannedDeliveryTime" datetimepicker plugintype="datetime" v-model="foreDeliveryTime"
+											 placeholder="预计到货时间" class="form-control" type="text" />
+											<!-- <span id="opendataTimeEnd" class="input-group-addon curpoint">
+												<span class="glyphicon glyphicon-calendar"></span>
+											</span> -->
+										</div>
+									</div>
+									<div class="line  pull-in hidden-lg"></div>
+									<label class="col-lg-081 col-ls-150 col-md-140 col-sm-200 pull-left lg-pull-right lg-m-l-n-sm ls-p-r-0">里程数
+										<span class="text-danger">*</span>
+									</label>
+									<div class="col-lg-1 col-md-3 col-sm-3">
+										<div class="input-group input-group-sm date">
+											<input type="text" id="releaseAdd_mileage" name="releaseAdd_mileage" class="form-control input-sm" v-model="mileage" disabled>
+										</div>
+									</div>
+									<label>公里</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="panel-heading font-bold m-b-sm">
+									货物信息
+								</div>
+								<div class="blockInfo">
+									<label class="col-lg-081 col-ls-150 pull-left lg-pull-right lg-pull-right col-md-140 col-sm-2">货物类别
+										<span class="text-danger">*</span>
+									</label>
+									<div class="col-lg-2 col-md-10 col-sm-10 lg-m-n">
+										<input id="inquiryCheck_goodsTypeName" type="text" class="form-control input-sm" v-model="goodsTypeName" required name="goodsTypeName"
+										 disabled>
+									</div>
+									<div class="line  pull-in show-ls"></div>
+									<div class="line  pull-in hidden-lg"></div>
+									<label class="w-s pull-left lg-pull-right lg-pull-right col-lg-081 col-ls-150 col-md-140 col-sm-2">货物名称
+										<span class="text-danger">*</span>
+									</label>
+									<div class="col-lg-2 col-md-10 col-sm-10">
+										<input id="inquiryCheck_goodsName" type="text" class="form-control input-sm" v-model="goodsName" required name="goodsName"
+										 disabled>
+									</div>
+									<div class="line  pull-in hidden-lg"></div>
+									<div class="line  pull-in show-ls"></div>
+									<label class="w-s pull-left lg-pull-right lg-pull-right col-lg-081 col-ls-150 col-md-140 col-sm-2">货物数量
+										<span class="text-danger">*</span>
+									</label>
+									<div class="col-md-3 col-sm-3 col-lg-2  ">
+										<!--ng-pattern="/^[0-9]+(\.[0-9]{1,4})?$/"-->
+										<input id="inquiryCheck_goodsQuantity" name="goodsQuantity" type="text" disabled class="form-control input-sm" v-model="quantityOfGoods">
+									</div>
+									<div class="col-md-3 col-sm-3 col-lg-2 m-l-n-sm ">
+										<input id="inquiryCheck_goodsUnit" type="text" class="form-control input-sm" v-model="goodsUnitStr" required name="goodsUnit"
+										 disabled>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="panel-heading font-bold m-b-sm">
+									所需车辆信息
+								</div>
+								<div class="blockInfo">
+									<label class="col-lg-081 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">所需车型
+										<span class="text-danger">*</span>
+									</label>
+									<div class="col-lg-2 col-md-3 col-sm-3">
+										<input id="inquiryCheck_vehicleType" type="text" class="form-control input-sm" v-model="vehicleTypeStr" required name="vehicleType"
+										 disabled>
+									</div>
+									<div class="line  pull-in hidden-lg"></div>
+									<label class="col-lg-081 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">所需车长
+										<span class="text-danger">*</span>
+									</label>
+									<div class="col-lg-2 col-md-3 col-sm-3">
+										<input id="inquiryCheck_carLength" type="text" class="form-control input-sm" v-model="carLengthStr" required name="carLength"
+										 disabled>
+									</div>
+									<div class="line  pull-in "></div>
+									<label class="col-lg-081 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">承运方式
+										<span class="text-danger">*</span>
+									</label>
+									<div class="col-lg-2 col-md-3 col-sm-3">
+										<input id="inquiryCheck_carriageWay" type="text" class="form-control input-sm" v-model="carriageWayStr" required name="carriageWay"
+										 disabled>
+									</div>
+									<div class="line  pull-in hidden-lg"></div>
+									<label class="col-lg-081 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">装车效果</label>
+									<div class="col-lg-2 col-md-3 col-sm-3">
+										<input id="inquiryCheck_loadingEffect" name="loadingEffect" type="text" disabled class="form-control input-sm" v-model="loadingEffect"
+										 placeholder="请填写装车效果">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="panel-heading font-bold m-b-sm">
+									附件信息
+								</div>
+								<div class="col-md-4 m-l-xs">
+									<!--<div class="col-md-3 form-group">
+										<input id="realHead" accept="image/gif,image/jpeg,image/jpg,image/png,image/bmp" name="realHead" type="file" nv-file-select="" uploader="attachmentUploader" multiple />
+									</div>-->
+								</div>
+								<div class="wrapper-sm">
+									<div class="line  pull-in"></div>
+									<div class="wrapper-sm bg-light dk b-b m-b-xs hidden">
+										<span class="">上传文件数:
+											<b class="badge bg-info">{{}}</b>
+										</span>
+									</div>
+									<div class="table-responsive table-cel-k">
+										<v-client-table class="editTables" :data="imageLists" :columns="imageColumns" :options="imageOptions" style="overflow:auto; min-width:1000px;"></v-client-table>
+									</div>
+
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="blockInfo">
+									<label class="col-ls-150 col-lg-081 col-md-140 col-sm-2 w-s pull-left lg-pull-right">备注</label>
+									<div class="col-lg-11 col-ls-10  col-md-10 col-sm-11">
+										<textarea id="inquiryCheck_remarks" class="form-control" v-model="remarks" placeholder="请填写备注" name="remarks" disabled></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="form-group" id="quotation" v-if='quotation'>
+								<div class="panel-heading font-bold m-b-sm">
+									报价信息
+								</div>
+								<label class=" pull-left control-label col-lg-233">报价金额
+									<span class="text-danger">*</span>
+								</label>
+								<div class="col-lg-2">
+									<input id="inquiryCheck_quotationAmount" name="quotationAmount" type="text" class="form-control input-sm" v-model="receivablePrice"
+									 disabled placeholder="请填写报价金额">
+								</div>
+								<div class="col-lg-2">
+									<input id="inquiryCheck_quotationAmountUnit" name="quotationAmountUnit" type="text" class="form-control input-sm" v-model="receivablePriceUnitStr"
+									 placeholder="请填写报价金额单位" disabled>
+								</div>
+								<label class="w-s pull-left control-label">报价说明
+									<span class="text-danger">*</span>
+								</label>
+								<div class="col-lg-5">
+									<input id="inquiryCheck_quotationDescription" name="quotationDescription" type="text" disabled class="form-control input-sm"
+									 v-model="receivableSummary" placeholder="请填写报价说明">
+								</div>
+							</div>
+						</fieldset>
+						<div class="form-group">
+							<div class="col-lg-5">
+								<button id="inquiryCheck_lose" type="button" class="pull-right-xs btn btn-sm btn-primary btn-addon" @click="endInquiry()" v-show="status=='待报价'">
+									<i class="fa fa-phone"></i>终结
+								</button>
+								<button id="inquiryCheck_win" type="button" class="pull-right-xs btn btn-sm btn-success btn-addon" @click="winTheBid()" v-show="winBid">
+									<i class="fa fa-check"></i>接受报价
+								</button>
+								<button id="inquiryCheck_lose" type="button" class="pull-right-xs btn btn-sm btn-danger btn-addon" @click="loseTheBid()" v-show="loseBid">
+									<i class="fa fa-close"></i>拒绝报价
+								</button>
+								<button id="inquiryCheck_win" type="button" class="pull-right-xs btn btn-sm btn-primary btn-addon" @click="goAddOrder()" v-show="(webAuthorize.indexOf('2')>-1 || isAdmin=='true')&&status==='已中标'">
+									<i class="glyphicon glyphicon-plus"></i>一键下单
+								</button>
+								<button id="inquiryCheck_cancel" type="button" @click="cancel()" class="pull-right-xs btn btn-sm btn-info btn-addon ">
+									<i class="fa fa-reply"></i>返回
+								</button>
+
+							</div>
+						</div>
+					</form>
+				</validator>
+			</div>
+		</div>
+	</div>
+</div>

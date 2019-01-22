@@ -1,0 +1,36 @@
+
+     
+
+<div id="aiHelper">
+    <div class="talkContent" id="talkContent">
+        <div class="dialogue">
+           <p>我是小i，有什么可以帮到您？</p>
+        </div>
+        <div id="bottom"></div>
+        <div class="sliderTip1">手指上滑 取消输入</div>
+        <div class="sliderTip2">松开手指 取消输入</div>
+        <div class="sliderTip3">未识别的语音</div>
+    </div>
+    <div class="aiRecord">
+        <div class="microphone">
+            <div class="mircro">
+                    <div id="microphoneBg1" ></div>
+                    <div id="microphoneBg" ></div>
+                    <div id="microphone">
+                        <div class="blueBg"></div>
+                        <div class="whitemai"></div>
+                    </div>
+            </div>
+        </div>
+        <div class="keyboard">
+            <img src="../../img/keyboard.png" alt="" @click="getKeyBoard()">
+        </div>
+    </div>
+    <div class="aiInput clearfloat">
+        <div class="mai lf" @click="toMaikefeng()">
+                <div class="toMaikefeng lf"></div>
+        </div>
+        <input type="text" id="aiInputContent" class="lf" v-model="dialogue">
+        <button  class="sendMessage rt" :disabled="!dialogue" v-bind:class="[{default:dialogue==''}]" id="sendMessage" @click="sendMessage()">发 送</button>
+    </div> 
+</div>

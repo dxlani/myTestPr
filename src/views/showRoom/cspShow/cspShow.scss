@@ -1,0 +1,210 @@
+#container{
+  width:100%;
+  height:100%;
+  overflow: hidden;
+  position: fixed;
+}
+#container img.bg{
+  width:100%;
+  height:100%;
+  z-index:-1;
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
+#container #circle{
+  bottom: 10%;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+#container #circle1{
+  width:10%;
+  height:10%;
+  position: relative;
+  display: inline-block;
+      margin: 0px 3%;
+}
+#container #circle1 div{
+animation: rotate 5s linear 0s infinite ;
+  -webkit-animation: rotate 5s linear 0s infinite ;
+  -moz-animation:rotate 5s linear 0s infinite;
+  -ms-animation: rotate 5s linear 0s infinite;
+  -o-animation: rotate 5s linear 0s infinite;
+}
+#container #circle1 p{
+      position: absolute;
+      top: 0;
+      color: #fff;
+      font-size: 15px;
+      width: 100%;
+      height: 100%;
+      font-size: 1.5vw;
+      margin-top: 30%;
+}
+
+#container #circle2{
+  width:10%;
+  height:10%;
+  position: relative;
+  display: inline-block;
+      margin: 0px 3%;
+}
+#container #circle2 div{
+animation: rotate 5s linear 0s infinite ;
+  -webkit-animation: rotate 5s linear 0s infinite ;
+  -moz-animation:rotate 5s linear 0s infinite;
+  -ms-animation: rotate 5s linear 0s infinite;
+  -o-animation: rotate 5s linear 0s infinite;
+}
+#container #circle2 p{
+      position: absolute;
+      top: 0;
+      color: #fff;
+      font-size: 15px;
+      width: 100%;
+      height: 100%;
+      font-size: 1.5vw;
+      margin-top: 30%;
+}
+
+
+
+#container #circle3{
+  width:10%;
+  height:10%;
+  position: relative;
+  display: inline-block;
+      margin: 0px 3%;
+}
+#container #circle3 div{
+animation: rotate 5s linear 0s infinite ;
+  -webkit-animation: rotate 5s linear 0s infinite ;
+  -moz-animation:rotate 5s linear 0s infinite;
+  -ms-animation: rotate 5s linear 0s infinite;
+  -o-animation: rotate 5s linear 0s infinite;
+}
+#container #circle3 p{
+      position: absolute;
+      top: 0;
+      color: #fff;
+      font-size: 15px;
+      width: 100%;
+      height: 100%;
+      font-size: 1.5vw;
+      margin-top: 30%;
+}
+
+#container #circle span {
+line-height: 1.5;      
+}
+#container img{
+  width:100%;
+  height: 100%;;
+}
+
+@keyframes rotate{
+  from{transform: rotate(0deg);}
+  to{transform: rotate(360deg);}
+}
+@-webkit-keyframes rotate{
+  from{-webkit-transform: rotate(0deg);}
+  to{-webkit-transform: rotate(360deg);}
+}
+@-moz-keyframes rotate{
+  from{-moz-transform: rotate(0deg);}
+  to{-moz-transform: rotate(360deg);}
+}
+@-ms-keyframes rotate{
+  from{-ms-transform: rotate(0deg);}
+  to{-ms-transform: rotate(360deg);}
+}
+@-o-keyframes rotate{
+  from{-o-transform: rotate(0deg);}
+  to{-o-transform: rotate(360deg);}
+}
+#container #point1{
+  position: absolute;
+  top: 8%;
+  left: 51.5%;
+  width: 3%;
+  animation: falsh1 2.5s linear 0s infinite ;
+  -webkit-animation: falsh1 2.5s linear 0s infinite ;
+  -moz-animation:falsh1 2.5s linear 0s infinite;
+  -ms-animation: falsh1 2.5s linear 0s infinite;
+  -o-animation: falsh1 2.5s linear 0s infinite;
+}
+#container #point2{
+  position: absolute;
+  top: 16%;
+  left: 9.6%;
+  width: 2.5%;
+  animation: falsh2 2.5s linear 0s infinite ;
+  -webkit-animation: falsh2 2.5s linear 0s infinite ;
+  -moz-animation:falsh2 2.5s linear 0s infinite;
+  -ms-animation: falsh2 2.5s linear 0s infinite;
+  -o-animation: falsh2 2.5s linear 0s infinite;
+}
+#container #point3{
+  position: absolute;
+  top: 44%;
+  left: 61.5%;
+  width: 2.5%;
+  animation: falsh2 2.5s linear 0s infinite ;
+  -webkit-animation: falsh2 2.5s linear 0s infinite ;
+  -moz-animation:falsh2 2.5s linear 0s infinite;
+  -ms-animation: falsh2 2.5s linear 0s infinite;
+  -o-animation: falsh2 2.5s linear 0s infinite;
+}
+@keyframes falsh1{
+  0% {opacity: 0.2;}
+  50% {opacity: 1;}
+  100% {opacity: 0.2;}
+}
+@-webkit-keyframes falsh1{
+  0% {opacity: 0.2;}
+  50% {opacity: 1;}
+  100% {opacity: 0.2;}
+}
+@-moz-keyframes falsh1{
+  0% {opacity: 0.2;}
+  50% {opacity: 1;}
+  100% {opacity: 0.2;}
+}
+@-ms-keyframes falsh1{
+  0% {opacity: 0.2;}
+  50% {opacity: 1;}
+  100% {opacity: 0.2;}
+}
+@-o-keyframes falsh1{
+  0% {opacity: 0.2;}
+  50% {opacity: 1;}
+  100% {opacity: 0.2;}
+}
+@keyframes falsh2{
+  0% {opacity: 1;}
+  50% {opacity: 0.2;}
+  100% {opacity: 1;}
+}
+@-webkit-keyframes falsh2{
+  0% {opacity: 1;}
+  50% {opacity: 0.2;}
+  100% {opacity: 1;}
+}
+@-moz-keyframes falsh2{
+  0% {opacity: 1;}
+  50% {opacity: 0.2;}
+  100% {opacity: 1;}
+}
+@-ms-keyframes falsh2{
+  0% {opacity: 1;}
+  50% {opacity: 0.2;}
+  100% {opacity: 1;}
+}
+@-o-keyframes falsh2{
+  0% {opacity: 1;}
+  50% {opacity: 0.2;}
+  100% {opacity: 1;}
+}

@@ -1,0 +1,564 @@
+<!--订单发布管理查看详情页面-->
+<div id="orderManageDetail">
+    <div class="bg-light lter b-b wrapper-md">
+        <h1 class="m-n font-thin h4">订单详情 
+            <a class="orderTrace" data-toggle="modal" data-target="#orderTrace" @click="orderTrace()" v-if="status==3||status==4||status==5||status==6||status==7">订单跟踪</a>
+        </h1>
+    </div>
+    <div class="wrapper-md">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <validator name="validation">
+                    <form name="orderForm" id="orderForm" class="form-validation form-horizontal novalidate">
+                        <fieldset>
+                            <div class="form-group">
+                                <div class="panel-heading font-bold m-t-n m-b-sm">
+                                    基本信息
+                                </div>
+                                <div class="blockInfo">
+                                    <label class="col-lg-080 col-ls-150 col-md-140  col-sm-2 pull-left lg-pull-right">订单编号  </label>
+                                    <label class="col-lg-2 col-md-9 col-sm-9 text-left">{{orderId}}</label>
+                                    <div class="line pull-in hidden-lg"></div>
+                                    <div class="line  pull-in show-ls"></div>
+                                    <label class="col-lg-080 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">销售编号</label>
+                                    <div class="col-lg-2 col-ls-2  col-md-3 col-sm-3 pull-left lg-pull-right">
+                                        <input type="text" class="form-control input-sm" id="manageDetail_clientOrderId" v-model="clientOrderId" placeholder="请填写销售编号" name="manageDetail_clientOrderId" disabled>
+                                    </div>
+                                    <div class="line pull-in hidden-lg"></div>
+                                    <div class="line  pull-in show-ls"></div>
+                                    <label class="col-lg-081 col-ls-150 col-md-140  col-sm-2 pull-left lg-pull-right">下单时间<span class="text-danger">*</span></label>
+                                    <label class="col-lg-210 col-md-9 col-sm-9 text-left">{{orderTime}}</label>
+                                    <div class="line  pull-in hidden-lg"></div>
+                                    <div class="line  pull-in show-ls"></div>
+                                    <label class="col-lg-080 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">紧急程度<span class="text-danger">*</span></label>
+                                    <div class="col-lg-2 col-ls-2  col-md-3 col-sm-3 pull-left lg-pull-right">
+                                        <input type="text" class="form-control input-sm" id="manageDetail_urgency" v-model="urgency" placeholder="请填写紧急程度" name="manageDetail_urgency" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="blockInfo">
+                                    <label class="col-lg-080 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">客户单位<span class="text-danger">*</span></label>
+                                    <label class="col-lg-210 col-md-9 col-sm-9 text-left">{{customerUnit}}</label>
+                                    <div class="line pull-in show-ls"></div>
+                                    <label class="col-lg-081 ls-p-r-0 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right pd5">发货计划人<span class="text-danger">*</span></label>
+                                    <div class="col-lg-2 col-md-3 col-sm-3 text-left">
+                                        <input type="text" class="form-control input-sm" id="manageDetail_consignor" v-model="consignor" name="consignorPhone" disabled>
+                                    </div>
+                                    <div class="line pull-in hidden-lg"></div>
+                                    <label class="col-lg-081 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right pd5">发货人电话<span class="text-danger">*</span></label>
+                                    <div class="col-lg-2 col-md-3 col-sm-3 text-left">
+                                        <input type="text" id="manageDetail_consignorPhone" name="manageDetail_consignorPhone" class="form-control input-sm" v-model="consignorPhone" placeholder="请填写发货人电话" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="blockInfo">
+                                    <label class="col-lg-080 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">发货内容  :</label>
+                                    <div class="col-lg-10 col-md-10 col-sm-10 pull-left lg-pull-right">
+                                        <textarea class="form-control input-sm" id="manageDetail_shipPriceContent" v-model="content" placeholder="请填写发货内容" name="manageDetail_shipPriceContent" disabled></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="panel-heading font-bold ">
+                                    线路货物信息<span class="text-danger">*</span>
+                                </div>
+                                <div class="wrapper-sm font-bold">
+                                    总线路货物信息<span class="text-danger">*</span>
+                                </div>
+                                <div class="wrapper-sm m-t-n">
+                                    <div class="table-responsive table-cel-k">
+                                        <v-client-table class="editTables" id="manageDetail_totalGoods" class="manageDetail_totalGoods" :data="totalData1" :columns="columns" :options="options" style="overflow:hidden; min-width:1000px;"></v-client-table>
+                                    </div>
+                                </div>
+                                <div class="wrapper-sm font-bold">
+                                    子线路货物信息<span class="text-danger">*</span>
+                                </div>
+                                <div class="wrapper-sm m-t-n">
+                                    <div class="table-responsive table-cel-k">
+                                        <v-client-table class="editTables" id="manageDetail_singleGoods" class="manageDetail_singleGoods" :data="orderChildData" :columns="columns2" :options="options2" style="overflow:hidden; min-width:1000px;"></v-client-table>
+                                    </div>
+                                </div>
+                                <div class="line pull-in"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="panel-heading font-bold m-b-sm">
+                                    所需车辆信息
+                                </div>
+                                <div class="blockInfo">
+                                    <label class="col-lg-080 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">所需车型</label>
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <input id="manageDetail_carType" type="text" class="form-control input-sm" v-model="carType" placeholder="请填写所需车型" disabled name="manageDetail_carType">
+                                    </div>
+                                    <div class="line  pull-in hidden-lg"></div>
+                                    <label class="col-lg-080 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">所需车长</label>
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <input id="manageDetail_carLength" type="text" class="form-control input-sm" v-model="carLength" placeholder="请填写所需车长" disabled name="manageDetail_carLength">
+                                    </div>
+                                    <div class="line  pull-in hidden-lg"></div>
+                                    <div class="line  pull-in show-ls"></div>
+                                    <label class="col-lg-080 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">承运方式</label>
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <input id="manageDetail_carrierCategory" type="text" class="form-control input-sm" v-model="carrierCategory" placeholder="请填写承运方式" disabled name="manageDetail_carrierCategory">
+                                    </div>
+                                    <div class="line  pull-in hidden-lg"></div>
+                                    <label class="col-lg-080 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">装车效果</label>
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <input id="manageDetail_loadingResult" type="text" class="form-control input-sm" v-model="loadingEffect" placeholder="请填写装车效果" disabled name="manageDetail_loadingResult">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="panel-heading font-bold m-b-sm">
+                                    附件信息
+                                </div>
+                                <div class="wrapper-sm">
+                                    <div class="table-responsive table-cel-k">
+                                        <v-client-table class="editTables" id="manageDetail_editTables" name="manageDetail_editTables" :data="imageLists" :columns="imageColumns" :options="imageOptions" style="overflow:hidden; min-width:1000px;"></v-client-table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="panel-heading font-bold m-b-sm">
+                                    备注信息
+                                </div>
+                                <div class="blockInfo">
+                                    <label class="col-lg-1 col-md-1 col-sm-1 col-sm-2 pull-left lg-pull-right">备注</label>
+                                    <div class="col-lg-11 col-ls-10 col-md-10 col-sm-10">
+                                        <textarea id="manageDetail_orderRemarks" name="manageDetail_orderRemarks" class="form-control" v-model="orderDetail.remarks" placeholder="请填写备注" disabled></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" v-show="carriershow">
+                                <div class="panel-heading font-bold m-b-sm">
+                                    承运商车辆信息
+                                </div>
+                                <div class="blockInfo">
+                                    <label class="col-lg-080 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">车牌号<span class="text-danger">*</span></label>
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <input id="manageDetail_carCode" type="text" class="form-control input-sm" v-model="carrierCarCode" name="manageDetail_carCode" disabled placeholder="请填写车牌号">
+                                    </div>
+                                    <div class="line pull-in hidden-lg"></div>
+                                    <label class="col-lg-080 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">车长<span class="text-danger">*</span></label>
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <input id="manageDetail_carLength" type="text" class="form-control input-sm" v-model="carrierCarLength" placeholder="请填写车长" disabled name="manageDetail_carLength">
+
+                                    </div>
+                                    <div class="line  pull-in hidden-lg"></div>
+                                    <label class="col-lg-080 col-ls-150 col-md-140 col-sm-2 pull-left lg-pull-right">车型<span class="text-danger">*</span></label>
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <input id="manageDetail_carTypeLoading" type="text" class="form-control input-sm" v-model="carrierCarType" placeholder="请填写车型" disabled name="manageDetail_carTypeLoading">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" v-show="receiptshow">
+                                <div class="panel-heading font-bold m-b-sm">回单信息</div>
+                                <div v-for="(index, item) in receiptPicList">
+                                    <label class="pull-left m-l m-r">回单{{$index + 1}}</label>
+                                    <table class="table bg-white-only b-a">
+                                        <tbody>
+                                            <tr v-for="itemC in item" class="t-2">
+                                                <td>
+                                                    <img :id="itemC.id" data-toggle="modal" data-target="#orderReceipt" :src="itemC.path" @click="bigPic(itemC)" class="accountDetail_tModol" style="max-width:298px;">
+                                                </td>
+                                                <td style="vertical-align:middle">
+                                                    <button type="button" class="btn btn-primary btn-xs" id="manageDetail_button" name="manageDetail_button" @click="downLoadReceiptPic(itemC.id)">
+                                                        <span class="fa fa-cloud-download"></span> 下载
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="form-group">
+                            <label class=" pull-left control-label"></label>
+                            <div class="col-lg-5">
+                                    <button id="releaseDetail_shipBack" name="releaseDetail_shipBack" type="button"  class="pull-right-xs btn btn-sm btn-primary btn-addon" v-show="status=='1' || status=='3' || status=='4' " @click="falseEndOrder()"><i class="fa fa-phone"></i>终结</button>
+                                    <button id="releaseDetail_shipBack" name="releaseDetail_shipBack" type="button"  class="pull-right-xs btn btn-sm btn-success btn-addon" v-show="status=='5' " @click="comfirmDeliver()" :disabled="isDelivery"><i class="fa fa-check"></i>{{isDeliveryName}}</button>
+                                    <button id="releaseDetail_shipBack" name="releaseDetail_shipBack" type="button"  class="pull-right-xs btn btn-sm btn-danger btn-addon" v-show="status=='5' && !isDelivery" @click="recall()" ><i class="fa fa-phone"></i>申请撤回</button>
+                                    <button id="releaseDetail_shipBack" name="releaseDetail_shipBack" type="button"  class="pull-right-xs btn btn-sm btn-success btn-addon" v-show="status=='6' " @click="comfirmAccept()" :disabled="isReceipt"><i class="fa fa-check"></i>{{isReceiptName}}</button>
+                                    <button id="releaseDetail_shipBack" name="releaseDetail_shipBack" type="button"  class="pull-right-xs btn btn-sm btn-danger btn-addon" v-show="status=='6' && !isReceipt" @click="unusual()"><i class="fa fa-phone"></i>通报异常</button>
+                                    <button id="manageDetail_shipBackl" name="manageDetail_shipBackl" type="button" class="pull-right-xs btn btn-sm btn-info btn-addon " @click="returnBack()"><i class="fa fa-reply "></i>返回</button>
+                            </div>
+                        </div>
+                    </form>
+                </validator>
+
+                <!-- 回单照片模态框 -->
+                <div id="orderReceipt" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+                    <div class="modalClose" data-dismiss="modal" aria-label="Close">
+                        <!-- <div class="modal-content"> -->
+                        <img id="orderManageDetail_receiptPic" class="receiptPic" :src="picPath">
+                        <!-- </div> -->
+                    </div>
+                </div>
+                <!-- 总线路模态框 -->
+                <div class="modal fade bs-example-modal-lg" id="orderTotal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button id="page_orderManagent_detail_orderTotal" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">总线路货物信息</h4>
+                            </div>
+
+                            <form class="form-horizontal form-validation" name="UserForm" novalidate>
+                                <div class="modal-body">
+                                    <div class="form-group ">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">发货地址<span class="text-danger">*</span></label>
+
+                                        <div class="form-group  col-md-3 col-sm-3 col-lg-3 p-r-30">
+                                            <input id="orderDeliverDetail_originProvinceStr" name="originProvinceStr" type="text" class="form-control-modal input-sm col-sm-12" v-model="shipProvinceW" disabled="disabled">
+                                        </div>
+                                        <div class="form-group  col-md-3 col-sm-3 col-lg-3 p-r-30">
+                                            <input id="orderDeliverDetail_originCityStr" name="originCityStr" type="text" class="form-control-modal input-sm col-sm-12" v-model="shipCityW" disabled="disabled">
+                                        </div>
+                                        <div class="form-group  col-md-3 col-sm-3 col-lg-3 ">
+                                            <input id="orderDeliverDetail_originCountyStr" name="originCountyStr" type="text" class="form-control-modal input-sm col-sm-12" v-model="shipAreaW" disabled="disabled">
+                                        </div>
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label "><span class="text-danger"></span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0">
+                                            <input id="orderDeliverDetail_originDetails" type="text" class="form-control-modal input-sm col-lg-12 col-md-12 col-sm-12" v-model="OData.originDetails" placeholder="请填写详细地址" disabled="disabled" name="shipdetail">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">送货地址<span class="text-danger">*</span></label>
+
+                                        <div class="form-group  col-md-3 col-sm-3 col-lg-3 p-r-30">
+                                            <input id="orderDeliverDetail_destinationProvinceStr" type="text" class="form-control-modal input-sm col-sm-12" v-model="endProvinceW" disabled="disabled">
+                                        </div>
+                                        <div class="form-group  col-md-3 col-sm-3 col-lg-3 p-r-30">
+                                            <input id="orderDeliverDetail_destinationCityStr" type="text" class="form-control-modal input-sm col-sm-12" v-model="endCityW" disabled="disabled">
+                                        </div>
+                                        <div class="form-group  col-md-3 col-sm-3 col-lg-3">
+                                            <input id="orderDeliverDetail_destinationCountyStr" type="text" class="form-control-modal input-sm col-sm-12" v-model="endAreaW" disabled="disabled">
+                                        </div>
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label "><span class="text-danger"></span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0 ">
+                                            <input id="orderDeliverDetail_destinationDetails" type="text" class="form-control-modal input-sm col-lg-12 col-md-12 col-sm-12" v-model="OData.destinationDetails" placeholder="请填写详细地址" name="deliverdetail" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">中转地</label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0">
+                                            <input id="viaAddress" type="text" class="form-control-modal input-sm col-sm-12" v-model="viaAddressDe" name="viaAddress" disabled="disabled">
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">发货时间<span class="text-danger">*</span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0">
+                                            <input id="orderDeliverDetail_deliveryTime" type="text" class="form-control-modal input-sm col-sm-12 " v-model="OData.deliveryTime" disabled="disabled" name="shipTime">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">到货时间<span class="text-danger">*</span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0">
+                                            <input id="orderDeliverDetail_arrivalTime" type="text" class="form-control-modal input-sm col-sm-12 " v-model="OData.arrivalTime" disabled="disabled" name="arriveTime">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">里程数</label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0">
+                                            <input id="orderDeliverDetail_mileage" type="text" class="form-control-modal input-sm col-sm-12 " v-model="OData.mileage" disabled="disabled" name="mileage">
+
+                                        </div>
+                                        <label class="pull-left control-label span_after_input">公里</label>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">货物类别<span class="text-danger">*</span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0">
+                                            <input id="orderDeliverDetail_goodsTypeName" type="text" class="form-control-modal input-sm col-sm-12" v-model="OData.goodsTypeName" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">货物名称<span class="text-danger">*</span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0">
+                                            <input id="orderDeliverDetail_goodsName" type="text" class="form-control-modal input-sm col-sm-12" v-model="OData.goodsName" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">吨位范围<span class="text-danger">*</span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0">
+                                            <input id="orderDeliverDetail_tonnageRange" type="text" class="form-control-modal input-sm col-sm-12" v-model="OData.tonnageRange" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">货物数量<span class="text-danger">*</span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-3 col-md-3 col-sm-3 p-r-30">
+                                            <input id="goodsNum" type="text" class="form-control-modal input-sm col-sm-12 " v-model="OData.quantityOfGoods" disabled="disabled" name="goodsNum">
+                                        </div>
+                                        <div class="pull-left  form-group form-inline  col-lg-3 col-md-3 col-sm-3 p-r-30">
+                                            <input id="orderDeliverDetail_goodsUnit" type="text" class="form-control-modal input-sm col-sm-12" v-model="OData.goodsUnitStr" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">货物数量2</label>
+                                        <div class="pull-left  form-group form-inline  col-lg-3 col-md-3 col-sm-3 p-r-30">
+                                            <input id="orderDeliverDetail_quantityOfGoodsTwo" type="text" class="form-control-modal input-sm col-sm-12 " v-model="OData.quantityOfGoodsTwo" disabled="disabled" name="goodsNumTwo">
+                                        </div>
+                                        <div class="pull-left  form-group form-inline  col-lg-3 col-md-3 col-sm-3 p-r-30">
+                                            <input id="orderDeliverDetail_goodsUnitTwo" type="text" class="form-control-modal input-sm col-sm-12" v-model="OData.goodsUnitTwoStr" disabled="disabled">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="page_orderManagent_detail_miss" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!--orderChildren Modal -->
+                <div class="modal fade bs-example-modal-lg" id="orderChildren" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button id="orderDeliverDetail_orderChildren" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">子线路货物信息</h4>
+                            </div>
+
+                            <form class="form-horizontal form-validation" name="UserForm" novalidate>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">发货地址<span class="text-danger">*</span></label>
+
+                                        <div class="form-group  col-md-3 col-sm-3 col-lg-3 p-r-30">
+                                            <input id="orderDeliverDetail_shipProvinceStr" name="shipProvinceStr" type="text" class="form-control-modal input-sm col-sm-12" v-model="shipProvinceW2" disabled="disabled">
+                                        </div>
+                                        <div class="form-group  col-md-3 col-sm-3 col-lg-3 p-r-30">
+                                            <input id="orderDeliverDetail_shipCityStr" name="shipCityStr" type="text" class="form-control-modal input-sm col-sm-12" v-model="shipCityW2" disabled="disabled">
+                                        </div>
+                                        <div class="form-group  col-md-3 col-sm-3 col-lg-3">
+                                            <input id="orderDeliverDetail_shipAreaStr" name="shipAreaStr" type="text" class="form-control-modal input-sm col-sm-12" v-model="shipAreaW2" disabled="disabled">
+                                        </div>
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label "><span class="text-danger"></span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0">
+                                            <input id="orderDeliverDetail_shipAddress" type="text" class="form-control-modal input-sm col-lg-12 col-md-12 col-sm-12" v-model="CDate.originDetails" placeholder="请填写详细地址" disabled="disabled" name="shipAddress">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">送货地址<span class="text-danger">*</span></label>
+
+                                        <div class="form-group  col-md-3 col-sm-3 col-lg-3 p-r-30">
+                                            <input id="orderDeliverDetail_deliverProvinceStr" name="deliverProvinceStr" type="text" class="form-control-modal input-sm col-sm-12" v-model="endProvinceW2" disabled="disabled">
+                                        </div>
+                                        <div class="form-group  col-md-3 col-sm-3 col-lg-3 p-r-30">
+                                            <input id="orderDeliverDetail_deliverCityStr" name="deliverCityStr" type="text" class="form-control-modal input-sm col-sm-12" v-model="endCityW2" disabled="disabled">
+                                        </div>
+                                        <div class="form-group  col-md-3 col-sm-3 col-lg-3">
+                                            <input id="orderDeliverDetail_deliverAreaStr" name="deliverAreaStr" type="text" class="form-control-modal input-sm col-sm-12" v-model="endAreaW2" disabled="disabled">
+                                        </div>
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label "><span class="text-danger"></span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0">
+                                            <input id="orderDeliverDetail_deliverAddress" type="text" class="form-control-modal input-sm col-lg-12 col-md-12 col-sm-12" v-model="CDate.destinationDetails" placeholder="请填写详细地址" name="deliverAddress" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">中转地</label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="viaAddress" type="text" class="form-control-modal input-sm col-sm-12" v-model="viaAddressC" name="viaAddress" disabled="disabled">
+                                            <!--<span v-model="viaAddressDe" style="margin-right: 3px; margin-bottom:3px;" class="ui-select-match-item btn btn-default btn-xs">-->
+                                        </div>
+                                        <!--<span class="ui-select-bootstrap dropdown form-control" disabled="disabled">
+                                                    <span v-for="item in CDate.viaList" style="margin-right: 3px; margin-bottom:3px;" class="ui-select-match-item btn btn-default btn-xs">
+                                                        <span>{{item}}</span>
+                                                    </span>
+                                                </span>
+                                            </span>-->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">发货时间<span class="text-danger">*</span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="orderDeliverDetail_shipTime" type="text" class="form-control-modal input-sm col-sm-12 " v-model="CDate.deliveryTime" disabled="disabled" name="shipTime">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">到货时间<span class="text-danger">*</span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="orderDeliverDetail_arriveTime" type="text" class="form-control-modal input-sm col-sm-12 " v-model="CDate.arrivalTime" disabled="disabled" name="arriveTime">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">里程数</label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="orderDeliverDetail_mileage" type="text" class="form-control-modal input-sm col-sm-12 " v-model="CDate.mileage" disabled="disabled" name="mileage">
+
+                                        </div>
+                                        <label class="pull-left control-label span_after_input">公里</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">货物类别<span class="text-danger">*</span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="orderDeliverDetail_goodsType" type="text" class="form-control-modal input-sm col-sm-12" v-model="CDate.goodsTypeName" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">货物名称<span class="text-danger">*</span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="orderDeliverDetail_goodsName" type="text" class="form-control-modal input-sm col-sm-12" v-model="CDate.goodsName" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">吨位范围<span class="text-danger">*</span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="orderDeliverDetail_tonRange" type="text" class="form-control-modal input-sm col-sm-12" v-model="CDate.tonnageRange" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">货物数量<span class="text-danger">*</span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-3 col-md-3 col-sm-3 p-r-30">
+                                            <input id="orderDeliverDetail_goodsNum" type="text" class="form-control-modal input-sm col-sm-12 " v-model="CDate.quantityOfGoods" disabled="disabled" name="goodsNum">
+                                        </div>
+                                        <div class="pull-left  form-group form-inline  col-lg-3 col-md-3 col-sm-3 p-r-30">
+                                            <input id="orderDeliverDetail_goodsNumUnit" type="text" class="form-control-modal input-sm col-sm-12" v-model="childUnit" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">货物数量2</label>
+                                        <div class="pull-left  form-group form-inline  col-lg-3 col-md-3 col-sm-3 p-r-30">
+                                            <input id="orderDeliverDetail_goodsNumTwo" type="text" class="form-control-modal input-sm col-sm-12 " v-model="CDate.quantityOfGoodsTwo" disabled="disabled" name="goodsNumTwo">
+                                        </div>
+                                        <div class="pull-left  form-group form-inline  col-lg-3 col-md-3 col-sm-3 p-r-30">
+                                            <input id="orderDeliverDetail_goodsNumUnitTwo" type="text" class="form-control-modal input-sm col-sm-12" v-model="childUnit2" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">结算方式<span class="text-danger">*</span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="orderDeliverDetail_settleType" type="text" class="form-control-modal input-sm col-sm-12" v-model="settleWayC" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">含税<span class="text-danger">*</span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="orderDeliverDetail_includeTax" type="text" class="form-control-modal input-sm col-sm-12" v-model="includeTaxC" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">说明</label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="orderDeliverDetail_receivableRemarks" type="text" class="form-control-modal input-sm col-sm-12 " v-model="CDate.receivableSummary" disabled="disabled" name="receivableRemarks">
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="true">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">单价<span class="text-danger">*</span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-3 col-md-3 col-sm-3 p-r-30">
+                                            <input id="orderDeliverDetail_receivablePrice" type="text" class="form-control-modal input-sm col-sm-12 " v-model="CDate.receivablePrice" disabled="disabled" name="receivablePrice">
+                                        </div>
+                                        <div class="pull-left  form-group form-inline  col-lg-3 col-md-3 col-sm-3 p-r-30">
+                                            <input id="orderDeliverDetail_receivablePriceUnit" type="text" class="form-control-modal input-sm col-sm-12" v-model="receivablePriceUnit" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="true">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">总价</label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="orderDeliverDetail_receivableTotal" type="text" class="form-control-modal input-sm col-sm-12 " v-model="CDate.receivableTotalPrice" disabled="disabled" name="receivableTotal">
+                                        </div>
+                                        <label class="pull-left control-label span_after_input">元</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">结算单位<span class="text-danger">*</span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="orderDeliverDetail_reckoner" type="text" class="form-control-modal input-sm col-sm-12" v-model="CDate.settle" disabled="disabled" name="reckoner">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">工程名称</label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="orderDeliverDetail_projectName" type="text" class="form-control-modal input-sm col-sm-12 " v-model="CDate.projectName" disabled="disabled" name="projectName">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">工程编号</label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="orderDeliverDetail_projectCode" type="text" class="form-control-modal input-sm col-sm-12 " v-model="CDate.projectCode" disabled="disabled" name="projectCode">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">工程总量</label>
+                                        <div class="pull-left  form-group form-inline  col-lg-3 col-md-3 col-sm-3 p-r-30">
+                                            <input id="orderDeliverDetail_projectTotal" type="text" class="form-control-modal input-sm col-sm-12 " v-model="CDate.projectMax" disabled="disabled" name="projectTotal">
+                                        </div>
+                                        <div class="pull-left  form-group form-inline  col-lg-3 col-md-3 col-sm-3 p-r-30">
+                                            <input id="orderDeliverDetail_projectTotalUnit" name="projectTotalUnit" type="text" class="form-control-modal input-sm col-sm-12" v-model="projectU" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">收货单位</label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="orderDeliverDetail_takeGoodsCompany" type="text" class="form-control-modal input-sm col-sm-12 " v-model="CDate.consigneeCompany" disabled="disabled" name="takeGoodsCompany">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">收货人</label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="orderDeliverDetail_consignee" type="text" class="form-control-modal input-sm col-sm-12 " v-model="CDate.consignee" disabled="disabled" name="consignee">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">收货人号码<span class="text-danger">*</span></label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="orderDeliverDetail_consigneePhone" type="text" class="form-control-modal input-sm col-sm-12 " v-model="CDate.consigneePhone" disabled="disabled" name="consigneePhone">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label">发货单号</label>
+                                        <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0">
+                                            <input id="orderDeliverDetail_shipOrderId" type="text" class="form-control-modal input-sm col-sm-12 " v-model="CDate.orderNumber" disabled="disabled" name="shipOrderId">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    
+                                    <button id="orderDeliverDetail_dismiss" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 订单追踪模态框 -->
+<div id="orderTrace" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" v-if="isPass">
+            <div class="modal-header orderPass">
+                <button id="orderManage-pass" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+        </div>
+        <div class="modal-content" v-if="!isPass">
+            <div class="modal-header">
+                <button id="orderManage-trace" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p class="modal-title" id="myModalLabel">订单跟踪</p>
+                <p>耗时:{{ordertrackTime}}</span></p>
+            </div>
+            <div class="modal-body">
+                <div class="order-status">
+                    <div id="status_list" class="status-box">
+                        <ul id="orderTimeline" class="status-list">
+                            <li v-for="item in orderLogList">
+                                <span class="orderTimeline-title">{{item.orderStatus}}</span>			
+                                <p class="orderTimeline-content">{{item.locateInfo}}</p>
+                                <p class="orderTimeline-date">{{item.operatorTime}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

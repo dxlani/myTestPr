@@ -1,0 +1,43 @@
+<div id="wxFeedBackAdd">
+    <validator name="validation" :groups="['rUserpasswordGroup']">
+    <div class="questionStyle">
+        <div class="qt">
+            <span>标题 (必填)</span>
+        </div>
+        <div class="qContent">
+            <textarea name="" id="wordcount1" maxlength="20" placeholder="请简要描述您遇到的问题标题" @keyup="wordStatic1()" @keydown="wordStatic1()"
+                @change="wordStatic1()" v-model="title" v-validate:title="{ required: true }"></textarea>
+            <div class="getCount">{{wordcount1}}/20</div>
+        </div>
+    </div>
+    <div class="questionStyle">
+        <div class="qt">
+            <span>内容 (必填)</span>
+        </div>
+        <div class="qContent">
+            <textarea name="" id="wordcount2" maxlength="300" rows="8" placeholder="请简要描述您遇到的问题" @keyup="wordStatic2()" @keydown="wordStatic2()"
+                @change="wordStatic2()" v-model="content" v-validate:content="{ required: true }"></textarea>
+            <div class="getCount">{{wordcount2}}/300</div>
+        </div>
+    </div>
+    <div class="questionStyle clearfloat setHeight" style='padding:10px 0 10px 15px;width: 100%;'>
+        <div class="image-box" v-for="(index,item) in imageslist">
+            <div class="redclose" @click="deleteImage(index)"></div>
+            <img :src="item.path" alt="" id="feedbackImg">
+        </div>
+        <div class="weui-uploader__input-box" v-if="imageslist.length<3">
+            <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple="" v-on:change="fileChange($event)">
+        </div>
+    </div>
+
+    <div class="uploadTips lf">
+        <p style="margin:0;text-align: left;">请添加问题相关的截图或照片 (最多3张)</p>
+    </div>
+    <button @click="submitFeedBack()" :disabled="!$validation.valid" v-bind:class="[{'btnGrey':!$validation.valid},{'btnBlue':$validation.valid}]">提交</button>
+    </validator>
+</div>
+<!-- 图片预览模态框 -->
+<div id="ImgModal">
+    <span class="closeImg" @click="closeImg()">×</span>
+    <img class="modal-content" id="img01">
+</div>

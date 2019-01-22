@@ -1,0 +1,104 @@
+<div id="WxSetting" v-show="showTemp">
+    <div class="setTitle">
+        <div class="headPic">   
+            <!-- <input type="file" accept="image/*" mutiple="mutiple" capture=“camera”> -->
+            <img class="headPicstyle" src="./img/settingPerson.png">
+        </div>
+        <div class="headUsername">{{userName}}</div>
+    </div>
+    <div class="weui-navbar" @click="redirectOrder()" >
+        <div class="weui-navbar__item weItem">
+            <span class="orderCompareTitle">本月总订单量</span>
+            <div class="compareLast">
+                环比上月
+                <span id="orderUpstatus">{{orderPercentStatus}}</span>
+                <!-- <span id="orderDown">减少：</span> -->
+                <span>{{orderPercent}}笔</span>
+                <div id="orderArrow">
+                    <img :src="arrowPic" class="orderArrowImg">
+                </div>
+            </div>
+        </div>
+        <div class="weui-navbar__item">
+            <div class="countOrderTotal">{{orderTotal}}</div>
+        </div>
+    </div>
+    <div class="weui-navbar processOrder " >
+        <div class="weui-navbar__item weItem">
+            <span class="orderCompareTitle">已处理订单</span>
+            <div style="width: 90%; margin-left: 5%;margin-right: 5%;">
+                <div class="progress">
+                    <div class="processItem1"  @click="redirectOrder()">
+                        <span class="itemNum">{{sendingCar}}</span>
+                        <span class="itemName">派车中</span>
+                    </div>
+                    <!-- <div class="processItem2" @click="redirectOrder()">
+                        <span class="itemNum">{{alreadySendcar}}</span>
+                        <span class="itemName">已派车</span>
+                    </div> -->
+                    <div class="processItem3" @click="redirectOnroad()">
+                        <span class="itemNum">{{pendDelivery}}</span>
+                        <span class="itemName">待发货</span>
+                    </div>
+                    <div class="processItem4" @click="redirectOnroad()">
+                        <span class="itemNum">{{alreadyDelivery}}</span>
+                        <span class="itemName">已发货</span>
+                    </div>
+                    <div class="processItem5" @click="redirectOnroad()">
+                        <span class="itemNum">{{alreadyReach}}</span>
+                        <span class="itemName">已送达</span>
+                    </div>
+                    <div class="circle1 point1"></div>
+                    <!-- <div class="circle1 point2"></div> -->
+                    <div class="circle2 point3"></div>
+                    <div class="circle2 point4"></div>
+                    <div class="circle2 point5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="weui-navbar" style="border-top:1px solid #f0f0f0">
+        <div class="weui-navbar__item" style="border-right:1px solid #f0f0f0">
+            <div class="afc1">{{untreated}}</div>
+            <span class="afc2">待接单</span>
+        </div>
+        <div class="weui-navbar__item">
+            <div class="afc1">{{orderEnd}}</div>
+            <span class="afc2">已终结</span>
+        </div>
+    </div>
+    <div class="weui-cells" style="margin-top:10px;background-color:#fafafa;" v-if="isAdmin=='true'">
+        <a class="weui-cell weui-cell_access" href="#!/wxFeeManage" style="padding: 5px 15px;">
+            <div class="weui-cell__bd">
+                <span class="feePng"></span>
+            <span style="margin-left:5px;font-size:16px;color:#000">费用管理</span>
+            </div>
+            <div class="weui-cell__ft">
+                <p style="font-size: 18px;color: #2DA1F4;margin-bottom: 0px;">￥{{accountBalance}}</p>
+                <p style="font-size: 12px;color: #666;margin-bottom: 0px;">账户：{{accountStatus}}</p>
+            </div>
+        </a>
+    </div>
+    <div class="weui-cells" style="margin-top:10px;background-color:#fafafa;" v-if="isAdmin=='true'">
+        <a class="weui-cell weui-cell_access" href="#!/wxFeedBack" style="padding: 15px 15px;" onclick="_czc.push(['_trackEvent', '我-意见反馈', '点击意见反馈', '','','']);">
+            <div class="weui-cell__bd">
+                <span class="editPng"></span>
+            <span style="margin-left:5px;font-size:16px;color:#000">意见反馈</span>
+            </div>
+            <div class="weui-cell__ft">
+            </div>
+        </a>
+    </div>
+    <div class="weui-navbar" style="margin-top: 10px;padding-top:0px;">
+        <div class="weui-navbar__item" style="line-height: 50px;background:#f0f0f0;">
+            <button class="wxsetting_btn" @click="logOut()">退出登录</button>
+        </div>
+    </div>
+</div>
+<div  class="noAuth" v-show="!showTemp">
+    <div class="authImg"></div>
+    <div class="message" >
+        <h4>您没有当前页面的查看权限</h4>
+        <h4>如需查看，请向管理员申请相应权限</h4>
+    </div>
+</div>

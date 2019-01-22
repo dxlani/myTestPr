@@ -1,0 +1,88 @@
+<div class="senderMessage_title">
+        <span>发货通知详情</span>
+    </div>
+<div id="showDeliveryDetail">
+    <!-- 发货方发货通知 -->
+    <div class="weui-form-preview" v-show="status=='发货人'">
+        <div class="weui-form-preview__bd">
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">收货单位</label>
+                <span class="weui-form-preview__value">亚细亚机械有限公司</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">收货地址</label>
+                <span class="weui-form-preview__value">江苏扬州宝应县亚细亚广场123号</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">车牌号</label>
+                <span class="weui-form-preview__value">苏G39708</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">驾驶员姓名</label>
+                <span class="weui-form-preview__value">谢长春</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">货物名称</label>
+                <span class="weui-form-preview__value">变速箱</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">货物数量</label>
+                <span class="weui-form-preview__value">200台</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">备注信息</label>
+                <span class="weui-form-preview__value"></span>
+            </div>
+        </div>
+        <div class="weui-form-preview__ft">
+            <button type="submit" class="btn btn-warning btn-lg btn-block" :disabled="isConfirm" @click="confirmDeliver()">{{buttonMessage}}</button>
+        </div>
+    </div>
+
+    <!-- 收货方发货通知 -->
+    <div class="weui-form-preview" v-show="status=='收货人'">
+        <div class="weui-form-preview__hd">
+            <label class="weui-form-preview__label">发货时间</label>
+            <em class="weui-form-preview__value">2018-07-12 16:00:00</em>
+        </div>
+        <div class="weui-form-preview__bd">
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">发货单位</label>
+                <span class="weui-form-preview__value">江苏沃得农业机械有限公司</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">发货地址</label>
+                <span class="weui-form-preview__value">江苏镇江市智慧大道科技研发楼A座</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">发货联系人姓名</label>
+                <span class="weui-form-preview__value">张世翔</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">发货联系人电话</label>
+                <span class="weui-form-preview__value">18083781768</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">车牌号</label>
+                <span class="weui-form-preview__value">苏G39708</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">驾驶员姓名</label>
+                <span class="weui-form-preview__value">谢长春</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">货物名称</label>
+                <span class="weui-form-preview__value">变速箱</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">货物数量</label>
+                <span class="weui-form-preview__value">200.00台</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">备注信息</label>
+                <span class="weui-form-preview__value"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<show-Home-Button></show-Home-Button>

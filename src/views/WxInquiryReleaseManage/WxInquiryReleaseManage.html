@@ -1,0 +1,141 @@
+<div id="wxInquiry" v-show="showTemp">
+    <div class="weui-flex ">
+        <div class="weui-flex__item link getid" @click="goInquiry()">
+            <a href="javascript:;"  onclick="_czc.push(['_trackEvent', '询价-待反馈', '点击待反馈tab', '','','']);">待反馈</a>
+        </div>
+        <div class="weui-flex__item link " @click="goDeal()">
+            <a href="javascript:;"  onclick="_czc.push(['_trackEvent', '询价-待处理', '点击待处理tab', '','','']);">待处理</a>
+        </div>
+        <div class="weui-flex__item link " @click="goConfirm()">
+            <a href="javascript:;"  onclick="_czc.push(['_trackEvent', '询价-已确认', '点击已确认tab', '','','']);">已确认</a>
+        </div>
+        <div class="search" onclick="_czc.push(['_trackEvent', '询价-搜索', '点击搜索', '','','']);">
+            <img src="../../img/search.png" alt="">
+        </div>
+        <div class="inquiryAdd" @click="inquiryAdd()" onclick="_czc.push(['_trackEvent', '询价-新增', '点击新增询价单', '','','']);">
+            <img src="./img/plus.png">
+        </div>
+        <div class="bottomline"></div>
+    </div>
+    <div class="bd_content tab-pane fade in active " v-show="notnull">
+        <div class="weui-pull-to-refresh__layer">
+            <div class="circle-wrap">
+                <div class="circle"></div>
+            </div>
+            <div class="status">
+                <div class="down">下拉刷新</div>
+                <div class="up">释放刷新</div>
+                <div class="refresh">正在刷新</div>
+            </div>
+        </div>
+        <!-- 列表 -->
+        <!-- 待反馈 -->
+        <div class="inquiryList" v-for="item in InquiryData" @click="LinckToInquiryDetail(item)" v-if="pendingBack" onclick="_czc.push(['_trackEvent', '询价-询价单列表', '点击待反馈列表', '','','']);">
+            <div class="inquiryidTitle clearfloat" v-if="!isPendingQuote">
+                <div class="inquiryid lf">
+                    <p><span v-show="item.cspInquiryId">询价：</span>{{item.cspInquiryId}}</p>
+                </div>
+                <div class="inquiryid lf" style="text-align: right;">
+                    <p>{{item.cspInquiryTime}}</p>
+                </div>
+            </div>
+            <div class="inquiryidTitle clearfloat" v-if="isPendingQuote">
+                <div class="inquiryid lf  ">
+                    <p><span v-show="item.inquiryId">询价：</span>{{item.inquiryId}}</p>
+                </div>
+                <div class="inquiryid lf" style="text-align: right;">
+                    <p>{{item.creationTime}}</p>
+                </div>
+            </div>
+            <div class="part2">
+                <div class="orderaddress clearfloat">
+                    <div class="lf maxWidth">
+                        <h4>{{item.originCity}}{{item.originCounty}}</h4>
+                    </div>
+                    <div class="rightarrow lf ">
+                        <img src="../../img/route_img@3x.png" alt="">
+                    </div>
+                    <div class="lf maxWidth">
+                        <h4>{{item.destinationCity}}{{item.destinationCounty}}</h4>
+                    </div>
+                </div>
+                <div class="market clearfloat">
+                    <div class="goods lf bg_blue">{{item.goodsName}}</div>
+                    <div class="count lf bg_red" v-if="!isPendingQuote">{{item.goodsNum}}</div>
+                    <div class="count lf bg_red" v-if="isPendingQuote">{{item.quantityOfGoods}}</div>
+                    <div v-show="item.status=='询价终结'" class="count rt bg_blue">已终结</div>
+                    <div v-show="item.status=='2'|| item.status=='4' || item.status=='5' || item.status=='6' || item.status=='7'" class="count rt bg_blue">待报价</div>
+                    <div v-show="item.status=='未处理'" class="count rt bg_blue">待接单</div>
+                </div>
+            </div>
+        </div>
+        <!-- 待处理/已确认 -->
+        <div class="inquiryList" v-for="item in InquiryData" @click="LinckToInquiryDetail1(item)" v-if="alreadyInquiry" onclick="_czc.push(['_trackEvent', '询价-询价单列表', '点击待处理列表', '','','']);">
+            <div class="inquiryidTitle clearfloat">
+                <div class="inquiryid lf  ">
+                    <p><span v-show="item.inquiryId">询价：</span>{{item.inquiryId}}</p>
+                </div>
+                <div class="inquiryid lf" style="text-align: right;">
+                    <p>{{item.creationTime}}</p>
+                </div>
+            </div>
+            <div class="part2">
+                <div class="orderaddress clearfloat">
+                    <div class="lf maxWidth">
+                        <h4>{{item.originCity}}{{item.originCounty}}</h4>
+                    </div>
+                    <div class="rightarrow lf ">
+                        <img src="../../img/route_img@3x.png" alt="">
+                    </div>
+                    <div class="lf maxWidth">
+                        <h4>{{item.destinationCity}}{{item.destinationCounty}}</h4>
+                    </div>
+                </div>
+                <div class="market clearfloat">
+                    <div class="goods lf bg_blue">{{item.goodsName}}</div>
+                    <div class="count lf bg_red">{{item.quantityOfGoods}}</div>
+                    <div v-show="item.status=='8' || item.status=='11'" class="count rt bg_blue">待确认</div>
+                    <div v-show="item.status=='9'" class="count rt bg_blue">已中标</div>
+                    <div v-show="item.status=='10'" class="count rt bg_blue">未中标</div>                    
+                </div>
+            </div>
+        </div>
+        <div class="weui-loadmore">
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips">正在加载...</span>
+        </div>
+    </div>
+    <div class="noInquiry" v-show="!notnull">
+        <div class="pic"></div>
+        <div class="msg" style="color:#999">
+            <h5>暂无询价记录</h5>
+        </div>
+    </div>
+</div>
+<div  class="noAuth" v-show="!showTemp">
+    <div class="authImg"></div>
+    <div class="message" style="color:#999">
+        <h4>您没有当前页面的查看权限</h4>
+        <h4>如需查看，请向管理员申请相应权限</h4>
+    </div>
+</div>
+<div class="searchModal">
+    <div class="searchPop">
+        <div class="border">
+            <label for="searchingInquiryId">询价编号</label>
+            <input type="text" id="searchingInquiryId" placeholder="请输入询价编号" v-model="searchingInquiryId">
+        </div>
+        <div class="border" v-if="!isPendingDeal">
+            <label for="searchingState">询价状态</label>
+            <select class="weui-select wx-fb wx-padf" id="wxInquiryManage_state" name="state" v-model="searchingState">
+                <option v-for="option in StateDropDown" v-bind:value="option.value">
+                    {{ option.text }}
+                </option>
+            </select>
+        </div>
+        <div class="btnGroup">
+            <button class="btn btn-lg btn-default btnStyle" @click="reset()">重置</button>
+            <button class="btn btn-lg btn-info btnStyle" @click="query()">搜索</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="bg-light lter b-b wrapper-sm">
+	<h1 class="m-n font-thin h4">硬件定位</h1>
+</div>
+<div id="locktoollocation" class="wrapper-sm">
+	<div class="panel panel-default">
+		<div class="panel-heading font-bold"></div>
+		<div class="panel-body">
+                <label class="control-label pull-left w-xs">定位器编码：</label>
+                <div class="col-lg-2 col-md-10 form-group">
+                    <label class="control-label text-left">{{gpsDeviceID}}</label>
+                </div>
+                <label class="control-label pull-left w-xs">定位情况：</label>
+                <div class="col-lg-2 col-md-10 form-group">
+                    <label class="control-label text-left">{{locationstatus}}</label>
+                </div>
+                <label class="control-label pull-left w-xs">定位时间：</label>
+                <div class="col-lg-2 col-md-10 form-group">
+                    <label class="control-label text-left">{{locationTime}}</label>
+                </div>
+                <label class="control-label pull-left w-xs">位置信息：</label>
+                <div class="col-lg-2 col-md-10 form-group">
+                    <label class="control-label text-left">{{locationDetail}}</label>
+                </div>
+			<div class="line line-xs pull-in"></div>
+			<div class="col-md-8 form-group col-md-offset-8">
+			<!-- <div class="col-md-4 form-group col-md-offset-5"> -->
+				<button id="location_goBack" @click="goBack()" class="btn btn-sm btn-default btn-addon m-l"><i class="fa fa-mail-reply"></i>返回</button>
+			</div>
+        </div>
+    </div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div style="border:#ccc solid 1px;" id="dituContents"></div>
+		</div>
+	</div>
+</div>
+<style type="text/css">
+	#dituContents {
+		border: #ccc solid 1px;
+		width: 100%;
+		height: 458px;
+		overflow: hidden;
+		margin: 0;
+	}
+	
+	.iw_poi_title {
+		color: #CC5522;
+		font-size: 14px;
+		font-weight: bold;
+		overflow: hidden;
+		padding-right: 13px;
+		white-space: nowrap;
+	}
+	
+	.iw_poi_content {
+		font: 12px arial, sans-serif;
+		overflow: visible;
+		padding-top: 4px;
+		word-wrap: break-word;
+	}
+	
+	.BMapLabel {
+		max-width: none;
+	}
+</style>
+

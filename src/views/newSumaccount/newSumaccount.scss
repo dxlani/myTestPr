@@ -1,0 +1,38 @@
+#sumaccount_priceTotal{
+    font-weight: bold;
+}
+
+@media (min-width: 1200px){
+    #finance .col-lg-2 {
+        width: 14%;
+    }
+}
+#finance .SurveyName{
+    font-size:18px;
+}
+@media (max-width: 1366px){
+    #finance .InquiryNums{
+        font-size:13px;
+    }
+}
+@media (max-width: 1600px) and (min-width:1441px){
+    #finance .InquiryNums{
+        font-size:16px;
+    }
+}
+@media (max-width: 1440px) and (min-width:1367px){
+    #finance .InquiryNums{
+        font-size:14px;
+    }
+}
+@media (min-width: 1601px) {
+    #finance .InquiryNums{
+        font-size:18px;
+    }
+}
+#sumReleaseManage_query {
+    background-color: #1890ff;
+    color: #fff!important;
+    margin-right: 20px;
+    border-radius: 5px;
+}

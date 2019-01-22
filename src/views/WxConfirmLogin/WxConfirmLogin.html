@@ -1,0 +1,33 @@
+<form name="form" class="form-validation" id="WxConfirmLogin" autocomplete="false">
+    <div class="imgX"></div>
+    <div class="Wxcontent-padded">
+        <h1 class="Wx-title">手机号登录</h1>
+        <div class="Wx-ku">
+            <validator name="validation">
+                <div class="WxlgInput" id="WxloginUserName">
+                    <div class="Wxlico">
+                        <img src="./img/yonghu-icon@3x.png" alt="">
+                    </div>
+                    <div class="weui-cell weui-cell_vcode">
+                        <div class="weui-cell__bd">
+                          <input id="phone" type="tel" placeholder="请输入手机号" class="form-control weui-input no-border required lgInput" v-model="user.phone" v-validate:user.phone = "{ pattern: '/^1[0-9]{10}$/' }">
+                        </div>
+                        <div class="weui-cell__ft">
+                          <button id="yzm" class="weui-vcode-btn" :disabled="!$validation.valid" disabled="disabled" @click="getCode()">{{btnMessage}}</button>
+                        </div>
+                      </div>
+                </div>
+                <div class="WxlgInput" id="WxloginPassword">
+                    <div class="Wxlico">
+                        <img src="./img/mima-img@3x.png" alt="">
+                    </div>
+                    <input id="wxLogin_password" name="code" type="text" placeholder="请输入验证码" class="form-control no-border required lgInput" v-model="user.code">
+                </div>
+            </validator>
+            <button type="button" class="weui-btn_primary weui-btn" @click="login()" id="wxlogin_wxloginBtn" v-bind:class="{'weui-btn_disabled':user.phone==''||user.code==''}">
+                <i>登   录</i>
+            </button>
+        </div>
+    </div>
+    <Wx-Foot-Com></Wx-Foot-Com>
+</form>

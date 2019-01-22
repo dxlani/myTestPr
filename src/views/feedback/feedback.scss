@@ -1,0 +1,242 @@
+#feedBack{
+    width:50px;
+    height:100px;
+    position: fixed;
+    bottom:60px;
+    left:0px;
+    z-index:200;
+}
+
+#feedBack a{
+    width:50px;
+    height:50px;
+    position: absolute;
+    z-index: 200;
+}
+
+.feedBack{
+    background:url(../../img/menu-modalFeedBack.png) #003366 center no-repeat;
+}
+
+.feedBack2{
+    background:url(../../img/menu-modalFeedBack2.png) #fff center no-repeat;
+}
+
+.qRcode{
+    top:50px;
+    background:url(../../img/menu-erweima.png) #003366 center no-repeat;
+}
+
+.feedBackTextarea{
+    resize:none;
+    height: 85px!important;
+    border-bottom: none;
+    padding-bottom: 0px;
+    border-radius: 0;
+}
+
+.feedBackTextarea:focus{
+    border-color: #cfdadd;
+}
+
+.textNum{
+    text-align: right;
+    height: auto;
+    border-top: none;
+    padding: 0 12px 2px;
+    border-radius: 0;
+    color: #ccc;
+}
+
+.titleNum{
+    position: absolute;
+    right: 12px;
+    bottom: 5px;
+    color: #ccc;
+}
+
+#feedBack .qRcode2{
+    background:url(../../img/menu-erweima2.png) #fff center no-repeat;
+}
+
+.erweima{
+    width:150px;
+    height:200px;
+    position: absolute;
+    left:50px;
+    bottom:0;  
+    z-index: 500;
+    background-color: #036;
+    padding:10px;
+    display: none;
+}   
+.erweima span{
+    color:#B6C2CB;
+    width:100%;
+    text-align: center;
+    display: inline-block;
+    padding:5px;
+}
+.erweima img{
+    width:100%;
+}
+#feedbackModal .nav-tabs {
+    border-color: #7266BA;
+    border-bottom: 2px solid #7266BA;
+    position: fixed;
+    width: 93%;
+    background-color: #fff;
+    margin-left: 10px;
+}
+#feedbackModal .nav-tabs>li{
+    width: 50%;
+    text-align: center;
+    font-size: 16px;
+}
+#feedbackModal .nav-tabs>li>a{
+    border-radius: 0;
+    border: none;
+    margin-right:0;
+}
+#feedbackModal .nav-tabs>li.active>a{
+    border-bottom-color:#7266BA;
+}
+#feedbackModal .nav-tabs>li.active>a, 
+#feedbackModal .nav-tabs>li.active>a:hover{
+    border-color:#7266BA;
+}
+#feedbackModal .nav-tabs>li.active>a, 
+#feedbackModal .nav-tabs>li.active>a:focus, 
+#feedbackModal .nav-tabs>li.active>a:hover{
+    color: #fff;
+    background-color: #7266BA;
+    border: 2px solid #7266BA;
+    border-bottom-color: #7266BA!important;
+}
+
+#addFeedback .VueTables__sort-icon{
+    display: none;
+}
+
+#addFeedback,
+#myFeedBack{
+    padding: 15px 5px;
+}
+#addModalForm .table>thead>tr>th{
+    text-align: center;
+}
+#addModalForm .table>thead:first-child>tr:first-child>th{
+    width: 150px;
+}
+
+#addModalForm .table>tbody>tr>td, 
+#addModalForm .table>tfoot>tr>td{
+    word-wrap:break-word;
+    text-align: center;
+}
+
+#addModalForm .progress-bar-success{
+    border-radius: 12px;
+    height: 14px;
+}
+#addModalForm .text-success{
+    color: #333;
+}
+
+#addModalForm .progress::after,
+#orderReleaseAdd .progress::after,
+#inquiryAdd .progress::after{
+    border-top: none;
+}
+
+#feedbackModal .modal-footer{
+    text-align: center;
+}
+
+#feedbackList .accordion-group{
+    margin-bottom: 8px;
+    clear: both;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #888;
+}
+
+.hsTitle,.hsbackTitle{
+    font-size: 15px;
+    font-weight: 900;
+    color: #333;
+    margin-bottom: 5px;
+}
+.hsBacktime{
+    float: right;
+    color: #666;
+}
+.feedbackPicList{
+    width: 100%;
+    height: 100%;
+    float: left;
+    margin: 8px 0px;
+}
+.feedbackPic{
+    width: 35px;
+    height: 35px;
+    float: left;
+    margin-right: 8px;
+    cursor: pointer;
+}
+.backContent{
+    margin-bottom: 5px;
+}
+
+.spread,
+.spread:hover,
+.spread:active,{
+    float: right;
+    color:#6699cc;
+}
+
+.retract,
+.retract:hover,
+.retract:active{
+    color:#6699cc;
+}
+
+.feedBackcolor{
+    background-color: #DCDCDC;
+}
+
+#feedbackPicModal{
+    text-align: center;
+    z-index: 9999;
+}
+
+#feedbackPicModal .modalClose{
+    height: 100%;
+}
+
+#feedbackPicModal img{
+    margin-top:3%;
+}
+
+#myFeedBack .container-fluid{
+    padding-right: 0px;
+    padding-left: 7px;
+}
+
+.modal-C{
+    text-align: center;
+}
+.modal-C .modal-footer{
+    text-align: center;
+} 
+
+@media (min-width: 992px){
+    #feedbackModal .nav-tabs {
+        width: 850px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px){
+    #feedbackModal .nav-tabs {
+        width: 550px;
+    }
+}

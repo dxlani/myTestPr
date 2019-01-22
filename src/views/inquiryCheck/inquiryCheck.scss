@@ -1,0 +1,15 @@
+#inquiryCheck_startProvince,#inquiryCheck_startCity,#inquiryCheck_endProvince,#inquiryCheck_endCity{
+    width: 100%;
+}
+#inquiryCheck_startCounty,#inquiryCheck_endCounty{
+    width: 128%;
+}
+
+@media(max-width:992px){
+    #inquiryCheck_inquiryChildId{
+        padding-left: 0px;
+    }
+    #inquiryCheck_startCounty,#inquiryCheck_endCounty{
+        width: 141%;
+    }
+}

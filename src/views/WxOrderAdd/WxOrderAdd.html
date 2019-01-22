@@ -1,0 +1,448 @@
+<validator name="validation">
+    <form id="WxOrderAdd" name="orderForm" id="orderForm" class="form-validation form-horizontal" novalidate>
+        <div class="WxOrderAddTitle">
+            <h3 class="">
+                <strong>{{title}}</strong>
+            </h3>
+        </div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-flex">
+                <div class="weui-flex__item">
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">销售编号</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <textarea class="weui-textarea" rows="3" cols="20" autosize id="orderAdd_clientOrderId" name="clientOrderId" v-model="clientOrderId"
+                                placeholder="请填写销售编号(选填)" maxlength="50" style="font-size:14px;padding-left:2px; margin-bottom: 5px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="weui-flex">
+                <div class="weui-flex__item">
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">紧急程度
+                                <span class="text-danger">*</span>
+                            </label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <input class="weui-input" id="orderAdd_urgency" name="orderAdd_urgency" type="number" v-model="urgency" placeholder="请填写紧急程度"
+                                v-validate:urgency="{required: true, pattern:'/^[0-9]*[1-9][0-9]*$/'}" style="margin-bottom: 5px;">
+                        </div>
+                        <div class="weui-cell1 ">
+                            <div class="weui-cell__bd">
+                                <select class="weui-select weui-select-a" id="orderAdd_urgencyUnit" name="orderAdd_urgencyUnit" v-model="urgencyUnit" v-validate:urgencyUnit="['required']">
+                                    <option value="" selected>请选择</option>
+                                    <option v-for="option in urgencyUnitList" v-bind:value="option.value">
+                                        {{option.text}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="weui-flex">
+                <div class="weui-flex__item">
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">发货计划人
+                                <span class="text-danger">*</span>
+                            </label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <select class="weui-select weui-select-b" v-model="consignorName" id="orderAdd_consignorName" name="orderAdd_consignorName"
+                                @change="changeConsignorName()" v-validate:consignorName="['required']">
+                                <option value="" selected>请选择</option>
+                                <option v-for="option in consignorNameList" v-bind:value="option.realName">
+                                    {{ option.realName }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div style="margin-top:10px;margin-left:50px;">|</div>
+                </div>
+                <div class="weui-flex__item">
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">
+                            <input type="text" id="orderAdd_consignorPhone" name="orderAdd_consignorPhone" class="weui-input" v-model="consignorPhone"
+                                name="consignorPhone" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="weui-flex">
+                <div class="weui-flex__item">
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">发货内容</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <textarea class="weui-textarea" id="orderAdd_orderContent" name="orderAdd_orderContent" v-model="orderContent" placeholder="请填写发货内容(选填)"
+                                rows="3" autosize style="font-size:14px;padding-left:2px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="weui-cell f5">
+                <div class="weui-cell__hd">
+                    <label class="weui-label" style="width:118px;margin-bottom:0;">发货地址
+                        <span class="text-danger">*</span>
+                    </label>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__bd Wxscroll">
+                    <select id="wxStartProvince" class="weui-select weui-left-a required" id="orderAdd_starProvince" name="orderAdd_starProvince"
+                        v-model="startProvince" @change="changeStarProvince()" v-validate:startProvince="{ required:true }">
+                        <option value="" selected>请选择省</option>
+                        <option v-for="option in provinceList" v-bind:value="option.value">{{ option.text }}</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd Wxscroll">
+                    <select id="wxStartCity" class="weui-select weui-left-a required" id="orderAdd_startCity" name="orderAdd_startCity" v-model="startCity"
+                        @change="changeCity()" v-validate:startCity="{ required:true }">
+                        <option value="" selected>请选择市</option>
+                        <option v-for="option in startCityList" v-bind:value="option.value">{{ option.text }}</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd Wxscroll">
+                    <select id="wxStartArea" class="weui-select weui-left-a required" id="orderAdd_startArea" name="orderAdd_startArea" v-model="startArea"
+                        v-validate:startArea="['required']" @change="getDistance()">
+                        <option value="" selected>请选择区</option>
+                        <option v-for="option in startAreaList" v-bind:value="option.value">{{ option.text }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__bd Wxscroll">
+                    <input class="weui-input addressInput" id="orderAdd_startAddressDetail" name="orderAdd_startAddressDetail" v-model="startAddressDetail"
+                        placeholder="请输入详细地址" type="text" v-validate:startAddressDetail="['required']" />
+                </div>
+            </div>
+            <div class="weui-cell f5">
+                <div class="weui-cell__hd">
+                    <label class="weui-label" style="width:118px;margin-bottom:0;">送货地址
+                        <span class="text-danger">*</span>
+                    </label>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__bd Wxscroll">
+                    <select id="wxEndProvince" class="weui-select weui-left-a required" id="orderAdd_endProvince" name="orderAdd_endProvince"
+                        v-model="endProvince" @change="changeEndProvince()" v-validate:endProvince="{ required:true }">
+                        <option value="" selected>请选择省</option>
+                        <option v-for="option in provinceList" v-bind:value="option.value">{{ option.text }}</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd Wxscroll">
+                    <select id="wxEndCity" class="weui-select weui-left-a required" id="orderAdd_endCity" name="orderAdd_endCity" v-model="endCity"
+                        @change="changeEndCity()" v-validate:endCity="{ required:true }">
+                        <option value="" selected>请选择市</option>
+                        <option v-for="option in endCityList" v-bind:value="option.value">{{ option.text }}</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd Wxscroll">
+                    <select id="wxEndArea" class="weui-select weui-left-a required" id="orderAdd_endArea" name="orderAdd_endArea" v-model="endArea"
+                        v-validate:endArea="['required']" @change="getDistance()">
+                        <option value="" selected>请选择区</option>
+                        <option v-for="option in endAreaList" v-bind:value="option.value">{{ option.text }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <input class="weui-input addressInput" v-model="endAddressDetail" id="orderAdd_endAddressDetail" name="orderAdd_endAddressDetail"
+                        placeholder="请输入详细地址" type="text" v-validate:endAddressDetail="['required']" />
+                </div>
+            </div>
+            <div class="weui-cell f5">
+                <div class="weui-cell__hd">
+                    <label class="weui-label" style="width:118px;margin-bottom:0;">里程数<span class="text-danger">*</span></label>
+                </div>
+            </div>    
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <input class="weui-input addressInput" v-model="mileage" id="orderAdd_mileage" name="orderAdd_mileage"
+                        placeholder="请输入里程数" type="text" v-validate:mileage="{required: true ,pattern:'/^[1-9]*[1-9][0-9]*$/'}" />
+                </div>
+                <div class="weui-cell__ft totalPrice">
+                    <p>公里</p>
+                </div>
+                <div class="weui-cell__bd" v-if="!mileage">
+                    <span style='color:red;font-size:14px;'>请输入里程数</span>   
+                </div>
+            </div>        
+            <div class="weui-cell f5">
+                <div class="weui-cell__hd">
+                    <label class="weui-label" style="width:118px;margin-bottom:0;">时间信息
+                        <span class="text-danger">*</span>
+                    </label>
+                </div>
+            </div>
+            <div class="weui-cell ">
+                <div class="weui-cell__hd">
+                    <label class="weui-label" style="width:118px">预计发货时间
+                        <span class="text-danger">*</span>
+                    </label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input id="orderAdd_dateTimeStart" name="orderAdd_dateTimeStart" class="weui-input" v-model="startTime" type="text" placeholder="请输入预计发货时间"
+                        v-validate:startTime="['required']" style="margin-bottom: 5px;">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label class="weui-label" style="width:118px">预计到货时间
+                        <span class="text-danger">*</span>
+                    </label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input id="orderAdd_dateTimeEnd" name="orderAdd_dateTimeEnd" class="weui-input" v-model="arrivalTime" type="text" placeholder="请输入预计到货时间"
+                        v-validate:arrivalTime="['required']" style="margin-bottom: 5px;">
+                </div>
+            </div>
+            <div class="weui-cell f5">
+                <div class="weui-cell__hd">
+                    <label class="weui-label" style="width:118px;margin-bottom:0;">货物信息
+                        <span class="text-danger">*</span>
+                    </label>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">货物类别
+                        <span class="text-danger">*</span>
+                    </label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select weui-select-c" id="orderAdd_goodsTypeId" name="orderAdd_goodsTypeId" v-model="goodsTypeId" @change="changeGoodsType()"
+                        v-validate:goodsTypeId="['required']">
+                        <option value="" selected>请选择</option>
+                        <option v-for="option in goodsTypeList" v-bind:value="option.id">
+                            {{ option.name }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <!--搜索-->
+                <div class="weui-cell__hd">
+                    <label class="weui-label">货物名称
+                        <span class="text-danger">*</span>
+                    </label>
+                </div>
+                <div class="weui-cell__bd">
+                    <a href="javascript:;" class="open-popup" id="orderAdd_searchGoods" name="orderAdd_searchGoods" data-target="#searchGoods"
+                        @click="openGoodsSearch()">
+                        <input class="weui-input" v-model="goodsName" placeholder="请输入货物名称" type="text" v-validate:goodsName="['required']" disabled/>
+                    </a>
+                </div>
+            </div>
+            <div class="weui-flex">
+                <div class="weui-flex__item">
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">货物数量
+                                <span class="text-danger">*</span>
+                            </label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <input type="number" class="weui-input" id="orderAdd_number" v-model="goodsNum" name="orderAdd_number" placeholder="请输入货物数量"
+                                v-validate:goodsNum="{required: true, pattern:'/^[0-9]+(\.[0-9]{1,4})?$/'}" style="width:110px;margin-bottom:5px;">
+                        </div>
+                        <div class="weui-cell1 ">
+                            <div class="weui-cell__bd">
+                                <select class="weui-select weui-select-c" id="orderAdd_goodsNumUnit" name="orderAdd_goodsNumUnit" v-model="goodsNumUnit"
+                                    v-validate:goodsNumUnit="['required']">
+                                    <option value="" selected>请选择</option>
+                                    <option v-for="option in goodsNumUnitList" v-bind:value="option.value">
+                                        {{ option.text }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">期望运价</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="number" id="orderAdd_totalPrice" name="orderAdd_totalPrice" v-model="totalPrice" placeholder="请输入期望运价(选填)"
+                        style="margin-bottom:5px;" />
+                </div>
+                <div class="weui-cell__ft totalPrice">
+                    <p>元</p>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">车型</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select weui-select-c" id="orderAdd_carType" name="orderAdd_carType" v-model="carType">
+                        <option value="" selected>请选择</option>
+                        <option v-for="option in carTypeList" v-bind:value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">车长</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select weui-select-c" id="orderAdd_carLength" name="orderAdd_carLength" v-model="carLength">
+                        <option value="" selected>请选择</option>
+                        <option v-for="option in carLengthList" v-bind:value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">承运方式</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select weui-select-c" id="orderAdd_carriageWay" name="orderAdd_carriageWay" v-model="carriageWay">
+                        <option value="" selected>请选择</option>
+                        <option v-for="option in carrierCategoryList" v-bind:value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">结算方式</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select weui-select-c" id="orderAdd_settleType" name="orderAdd_settleType" v-model="settleType">
+                        <option value="" selected>请选择</option>
+                        <option v-for="option in settleTypeList" v-bind:value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">是否含税
+                        <span class="text-danger">*</span>
+                    </label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select weui-select-c" v-model="includeTax" id="orderAdd_includeTax" name="orderAdd_includeTax" v-validate:includeTax="['required']">
+                        <option value="" selected>请选择</option>
+                        <option v-for="option in includeTaxList" v-bind:value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <!--获取结算单位-->
+                <div class="weui-cell__hd">
+                    <label class="weui-label">结算单位
+                        <span class="text-danger">*</span>
+                    </label>
+                </div>
+                <a href="javascript:;" class="weui-cell__bd open-popup" data-target="#searchSettle" @click="openSettleSearch()">
+                    <input class="weui-input" id="orderAdd_settle" name="orderAdd_settle" v-model="settle" placeholder="请输入结算单位" type="text"
+                        v-validate:settle="['required']" disabled/>
+                </a>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">收货人</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" id="orderAdd_consignee" name="orderAdd_consignee" type="text" v-model="consignee" placeholder="请输入收货人(选填)"
+                        style="margin-bottom:5px;" />
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">收货人号码</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" id="orderAdd_consigneePhone" name="orderAdd_consigneePhone" type="number" v-model="consigneePhone"
+                        placeholder="请输入收货人号码(选填)" v-validate:consigneePhone="{pattern:'/^\s*$|^1[0-9]{10}$/'}" style="margin-bottom:5px;"
+                    />
+                </div>
+            </div>
+            <div class="weui-cell" v-show="showBtn">
+                <div class="weui-cell__bd">
+                    <button type="button" id="orderAdd_addOrderSave" name="orderAdd_addOrderSave" class="weui-btn  wx-btnq" @click="addOrderSave($validation.valid)"
+                        v-bind:class="{'disabled' : !$validation.valid}" style="font-size:13px;">
+                        <i class="fa fa-copy"></i> 发 布</button>
+                </div>
+            </div>
+        </div>
+        <div class="weui-flex " v-show="!showBtn" style="padding:1%;">
+            <div class="weui-flex__item ">
+                <button type="button" id="orderAdd_addOrderSave"  class="weui-btn  wx-btnq" @click="editOrder($validation.valid)"
+                    v-bind:class="{'disabled' : !$validation.valid}"  style="font-size:13px; border: 1px solid #2da1f4;">
+                    <i class="fa fa-pencil-square-o"></i> 保 存</button>
+            </div>
+            <div class="weui-flex__item " style="margin-left:10px;" >
+                    <button type="button" id="orderAdd_addOrderSave"  class="weui-btn  wx-cancel" @click="returnBack()"  style="font-size:13px;border: 1px solid #2da1f4;">
+                    <i class="fa fa-arrow-left"></i> 取 消</button>
+            </div>
+     </div>
+    </form>
+
+    <!--货物名称模糊查询-->
+    <div id="searchGoods" class="weui-popup__container">
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal">
+            <div class="weui-search-bar" id="searchBar">
+                <form class="weui-search-bar__form" action="">
+                    <div class="weui-search-bar__box ui-widget">
+                        <i class="weui-icon-search"></i>
+                        <input type="search" class="weui-search-bar__input" id="orderAdd_goodsSearchInput" name="orderAdd_goodsSearchInput" placeholder="搜索"
+                            required="">
+                        <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+                    </div>
+                    <label class="weui-search-bar__label" id="orderAdd_goodSearchText" NAME="orderAdd_goodSearchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+                        <i class="weui-icon-search"></i>
+                        <span>请输入货物名称</span>
+                    </label>
+                </form>
+                <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+            </div>
+            <a class="close-popup" href="javascript:;" style="display:block;height:100%;width:100%"></a>
+        </div>
+    </div>
+
+    <!--结算单位模糊查询-->
+    <div id="searchSettle" class="weui-popup__container">
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal">
+            <div class="weui-search-bar" id="searchBar">
+                <form class="weui-search-bar__form" action="">
+                    <div class="weui-search-bar__box ui-widget">
+                        <i class="weui-icon-search"></i>
+                        <input type="search" class="weui-search-bar__input" id="settleSearchInput" placeholder="搜索" required="">
+                        <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+                    </div>
+                    <label class="weui-search-bar__label" id="orderAdd_searchText" name="orderAdd_searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+                        <i class="weui-icon-search"></i>
+                        <span>请输入结算单位</span>
+                    </label>
+                </form>
+                <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+            </div>
+            <a class="close-popup" href="javascript:;" style="display:block;height:100%;width:100%"></a>
+        </div>
+    </div>
+</validator>

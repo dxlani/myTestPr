@@ -1,0 +1,126 @@
+
+#WxdataAnalysisCost #WxtotalCostRange {
+    height:280px;
+    margin:0px auto;
+    padding:3%;
+}
+#WxdataAnalysisCost #WxlogisticsCostRangess {
+    height:260px;
+    margin:0px auto;
+    padding:3%;
+}
+#WxdataAnalysisCost #WxcostType {
+    height:220px;
+    margin:0px auto;
+    padding:3%;
+}
+#WxdataAnalysisCost #WxlineCost {
+    height:380px;
+    margin:0px auto;
+    padding:3%;
+}
+
+#WxdataAnalysisCost table, #WxdataAnalysisCost table tr th,#WxdataAnalysisCost table tr td { border:1px solid #000;width: 16%;font-size: 12px;};
+#WxdataAnalysisCost table tr{ background: #0A1C43};
+#WxdataAnalysisCost table { width: 98%; margin: 0 auto;min-height: 25px; line-height: 25px; text-align: center; border-collapse: collapse; padding:2px;}
+.colorful:nth-child(1){
+    background: #3BD7F9; 
+    height:6px;
+}
+.colorful:nth-child(2){
+    background: #0091F5 ; 
+    height:6px;
+}
+.colorful:nth-child(3){
+    background: #A77FFF; 
+    height:6px;
+
+}
+.colorful:nth-child(4){
+    background: #00E46C; 
+    height:6px;
+}
+.colorful:nth-child(5){
+    background: #FFD448; 
+    height:6px;
+}
+.colorful:nth-child(6){
+    background: #FF2A3A; 
+    height:6px;
+}
+
+
+/* 修改的内容  黑色主题 */
+#WxdataAnalysisCost .weui-flex .nav{
+    margin:0;
+}
+#WxdataAnalysisCost .weui-flex{
+    background: #0A122B;
+}
+#WxdataAnalysisCost .weui-flex .navborder{
+    border:none;
+}
+#WxdataAnalysisCost .weui-flex .active>a {
+    color: #fff;
+}
+#WxdataAnalysisCost .weui-flex__item a{
+    color:#999;
+}
+#WxdataAnalysisCost .weui-flex .active{
+    border-bottom: none ;
+}
+#WxdataAnalysisCost .weui-flex__item{
+    position: relative;
+}
+.whiteline{
+    width:23px;
+    height:3px;
+    position: absolute;
+    background-color:#fff;
+    bottom:0;
+    left:40%;
+    display: none;
+}
+.weui-flex span.titleName{
+    border-left:2px solid #2DA1F4;
+    padding-left:10px;
+    margin-left:10px;
+    line-height: 14px;
+}
+.weui-flex.titleP{
+    margin-top:10px; 
+}
+.titleP {
+    padding: 13px 0;
+}
+
+.active .whiteline{
+    display: block;
+}
+
+#WxdataAnalysisCost{
+    background: #1D2B40;
+    margin-bottom: 50px;
+}
+.weui-flex span.unit{
+    line-height: 14px;
+}
+
+.list_2{
+    padding-bottom: 15px;
+    background: #0A122B;
+}
+
+#WxtotalCostRange,#WxlogisticsCostRangess,#WxcostType,#WxlineCost{
+    background: #0a122b!important;
+}
+#WxdataAnalysisCost .list_c {
+    background: #045f9f!important;
+    color: #fbfbfb;
+}
+
+#WxdataAnalysisCost .analysistable{
+    padding-bottom: 15px;
+    background: #0a122b;
+}
+ 

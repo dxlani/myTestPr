@@ -1,0 +1,79 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">费用管理</h1>
+</div>
+<div class="wrapper-md" id="feeManage">
+    <div class="panel panel-default">
+        <div class="panel-heading font-bold">账户概览</div>
+        <div class="form-horizontal panel-body">
+            <div class="row">
+                <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">账户状态：</label>
+                <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2" style="text-align: left">{{accountStatus}}</label>
+                <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">当前账户余额：</label>
+                <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2" style="text-align: left"><span style="color:#199ED8;font-weight: bold">{{accountBalance}} 元</span></label>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading font-bold">查询</div>
+        <div class="form-horizontal panel-body">
+            <div class="row">
+                <label class="control-label pull-left  ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">费用属性</label>
+                <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                    <select id="feeManage_feeProperty" name="feeProperty" class="form-control" v-model="checkQuery.feeProperty" >
+                        <option v-for="option in feePropertyList" v-bind:value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">费用起始时间</label>
+                <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group date has-feedback">
+                    <input id="feeManage_startTime" name="startTime" datetimepicker plugintype="datetime" v-model="checkQuery.startTime"  placeholder="请选择费用起始时间" class="form-control" type="text" />
+                    <span id="feeManage_openStartTime" class="form-control-feedback curpoint">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">费用结束时间</label>
+                <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group date has-feedback">
+                    <input id="feeManage_endTime" name="endTime" datetimepicker plugintype="datetime" v-model="checkQuery.endTime"  placeholder="请选择费用结束时间" class="form-control" type="text" />
+                    <span id="feeManage_openEndTime" class="form-control-feedback curpoint">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                <label class="control-label pull-left  ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3"></label>
+                <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group"> 
+                    <button id="feeManage_queryFee" @click="queryFee()" class="btn btn-sm btn-default btn-addon">
+                        <i class="glyphicon glyphicon-search" v-show="!seeks"></i>
+                        <i v-show="seeks">
+                            <b class="fa fa-spinner no-bordr"  v-bind:class="{'fa-spin':seeks}"></b>
+                        </i>
+                        <span v-show="!seeks">查询</span>
+                        <span v-show="seeks">查询中...</span>
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading font-bold">
+            费用明细
+        </div>
+        <div class="line line-xs pull-in">
+        </div>
+        <div class="table-responsive" >
+            <table id="feeManage_table" class="table table-hover" data-events="actionEvents"></table>
+            <pagination-Com :total="records" v-on:pageIndexChange="onPageIndexChange($event)"></pagination-Com>    
+        </div>
+        <div class="panel-body">
+            <label class="form-group" id="feeManage_reCharge">
+                <p >充值总计 (元)：<span style="color:red;font-weight: bold">{{rechargeSum}}</span></p>
+            </label>
+            <br>
+            <label class="form-group" id="feeManage_withHold">
+                <p > 扣款总计 (元)：<span style="color:#66CC00;font-weight: bold">{{deductionSum}}</span></p>
+            </label>
+        </div>
+    </div>
+</div>

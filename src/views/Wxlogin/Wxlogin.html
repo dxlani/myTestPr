@@ -1,0 +1,27 @@
+<div name="form" class="form-validation" id="wxloginPanel" autocomplete="false">
+    <div class="Wxcontent">
+        <div class="wx_title">
+            <img src="../../img/wx-title.png" alt="">
+        </div>
+        <div class="Wx-ku">
+            <validator name="validation">
+                <div class="WxlgInput" id="WxloginUserName">
+                    <div class="Wx_ico">
+                        <img src="../../img/login-user.png" alt="">
+                    </div>
+                    <input id="wxLogin_userName" name="userName" type="text" placeholder="请输入用户名" class="form-control no-border required lgInput" v-model="user.name">
+                </div>
+
+                <div class="WxlgInput" id="WxloginPassword">
+                    <div class="Wx_ico">
+                        <img src="../../img/login-pwd.png" alt="">
+                    </div>
+                    <input id="wxLogin_password" name="password" type="password" placeholder="请输入密码" class="form-control no-border required lgInput" v-model="user.password">
+                </div>
+            </validator>
+            <button type="button" class="weui-btn_primary weui-btn" v-on:click="login" id="wxloginBtn" v-bind:class="{'weui-btn_disabled':user.name==''||user.password==''}">
+                <i>登   录</i>
+            </button>
+        </div>
+    </div>
+</div>

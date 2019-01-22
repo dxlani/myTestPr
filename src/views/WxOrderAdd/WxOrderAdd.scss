@@ -1,0 +1,128 @@
+.WxOrderAddTitle{
+    text-align: center;
+}
+
+#WxOrderAdd .weui-cell{
+    padding: 10px 8px;
+}
+#btnGroupStyle{
+    padding: 10px 8px;
+    background:#fff;
+}
+#btnGroupStyle a{
+    color:#fff;
+}
+
+#WxOrderAdd .weui-label{
+    width: 95px;
+}
+
+#WxOrderAdd label{
+    font-size: 14px!important;
+    color: #000; 
+}
+.wx-cancel{
+    border:1px solid #2da1f4;
+    color:#2da1f4!important;
+    background:#fff;
+}
+.weui-btn:after{
+    border:none!important;
+}
+.weui-input{
+    font-size: 14px;
+    margin-left: 5px;
+}
+// .changeStyle{
+//     margin-top: 1.17647059em;
+//     background-color: #FFFFFF;
+//     line-height: 1.41176471;
+//     overflow: hidden;
+//     position: relative;
+// }
+
+.orderAddUrgencyUnit{
+    float: right;
+    width: 48px;
+    padding: 10px 0px!important;
+}
+
+.weui-select-a{
+    width: 48px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    padding-left: 0px;
+    height: 24px;
+    line-height: 24px;
+}
+
+.urgencyText{
+    text-align:right;    
+    width:54px;
+    margin-right:5px;
+    padding: 10px 0px 14px 0px!important;
+}
+
+.weui-select-b{
+    width: 80px;
+    font-size: 14px;
+    padding-left: 5px;
+    margin-bottom: 3px;
+    height: 24px;
+    line-height: 24px;
+}
+
+.addressInput{
+    padding-left: 5px;
+}
+
+.orderContent, .shipAddress, .deliveryAddress{
+    height:49px;
+    padding:10px 9px
+}
+
+.weui-select-c{
+    font-size: 14px;
+    padding-left: 5px;
+    margin-bottom: 3px;
+    height: 24px;
+    line-height: 24px;
+}
+
+.totalPrice{
+    font-size: 17px!important;
+    margin-left: 15px;
+    margin-right: 10px;
+}
+
+.totalPrice p{
+    margin: 0 0 -1px;
+}
+
+.Wxscroll{
+    overflow: auto;
+}
+
+.ui-autocomplete{
+    max-height: 224px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling:touch;
+    /* 防止水平滚动条 */
+    overflow-x: hidden;
+  }
+
+/* 去掉两个横线 */
+.weui-cell1{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.wx-btnq{
+    background:#2DA1F4;
+    font-size:14px;
+}
+
+.f5{
+    background:#f5f5f5;
+}

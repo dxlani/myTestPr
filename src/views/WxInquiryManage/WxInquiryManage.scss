@@ -1,0 +1,51 @@
+#wxInquiryManage_navbar{
+    position: relative;
+}
+
+.weui-navbar__item.weui-bar__item--on{
+    // background-color: #58666e;
+    color: #869fb1;
+    border-bottom: 3px solid red;
+}
+
+#wxInquiryManage {
+    height: 100%;
+    background: #f5f5f5;
+    width: 100%;
+    display: inline-block;
+}
+
+#wxInquiryManage label {
+    color: #000;
+    min-width: 2em;
+    margin-bottom: 0px;
+}
+
+#wxInquiryManage span {
+    color: #000;
+}
+
+#wxInquiryManage h4 {
+    color: #000;
+    font-weight: bold;
+}
+
+.bg-gray {
+    background: #666666;
+}
+
+.bg-orange {
+    background: #F3A534;
+}
+
+.bg-green {
+    background: #31C27C;
+}
+
+.bg-red {
+    background: #F25A4E;
+}
+
+.bg-info {
+    background: #10aeff;
+}

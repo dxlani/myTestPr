@@ -1,0 +1,119 @@
+<div id="SumaccountDetail">
+
+    <div class="bg-light lter b-b wrapper-md">
+        <h1 class="m-n font-thin h4">查看费用详情</h1>
+    </div>
+    <div class="wrapper-md">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <validator name="validation">
+                    <form name="SumaccountForm" id="SumaccountForm" class="form-validation form-horizontal novalidate">
+                        <fieldset>
+                            <div class="form-group">
+                                <div class="panel-heading font-bold m-t-n">
+                                    线路货物信息<span class="text-danger">*</span>
+                                </div>
+                                <div class="wrapper-sm font-bold">
+                                    总线路货物信息<span class="text-danger">*</span>
+                                </div>
+                                <div class="wrapper-sm m-t-n">
+                                    <div class="table-responsive table-cel-k">
+                                        <v-client-table class="editTables" :data="totalData1" :columns="columns" :options="options" style="overflow:hidden; min-width:1000px;"></v-client-table>
+                                    </div>
+                                </div>
+                                <div class="wrapper-sm font-bold">
+                                    子线路货物信息<span class="text-danger">*</span>
+                                </div>
+                                <div class="wrapper-sm m-t-n">
+                                    <div class="table-responsive table-cel-k">
+                                        <v-client-table class="editTables" :data="orderChildData" :columns="columns2" :options="options2" style="overflow:hidden; min-width:1000px;"></v-client-table>
+                                    </div>
+                                </div>
+                                <div class="line pull-in"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="panel-heading font-bold ">
+                                    线路费用信息<span class="text-danger">*</span>
+                                </div>
+                                <div class="wrapper-sm font-bold">
+                                    线路费用列表<span class="text-danger">*</span>
+                                </div>
+                                <div class="wrapper-sm m-t-n">
+                                    <div class="table-responsive table-cel-k">
+                                        <v-client-table class="editTables" :data="orderChildData2" :columns="columns3" :options="options3" style="overflow:hidden; min-width:1000px;"></v-client-table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" v-show="receiptshow">
+                                <div class="panel-heading font-bold m-b-sm">回单信息</div>
+                                <div v-for="(index, item) in receiptPicList">
+                                    <label class="pull-left m-l m-r">回单{{$index + 1}}</label>
+                                    <table class="table bg-white-only b-a">
+                                        <tbody>
+                                            <tr v-for="itemC in item" class="t-1">
+                                                <td>
+                                                    <img :id="itemC.id" name="sumaccountDetail_itemCId" data-toggle="modal" data-target="#orderReceipt" :src="itemC.path" @click="bigPic(itemC)" class="accountDetail_tModol" style="max-width:298px;">
+                                                </td>
+                                                <td style="vertical-align:middle">
+                                                    <button type="button" class="btn btn-primary btn-xs" id="sumaccountDetail_button" name="sumaccountDetail_button" @click="downLoadReceiptPic(itemC.id)">
+                                                        <span class="fa fa-cloud-download"></span> 下载
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="panel-heading font-bold m-b-sm">电子回单信息</div>
+                                <div class="col-lg-11" v-if="isShowContract">
+                                    <p class="pull-left m-l m-r">电子回单编号：<span>{{contractNumber}}</span></p>
+                                    <div style="float:left;">
+                                        <a name="sumaccountDetail_itemId" data-toggle="modal" data-target="#orderElectronic"  class="accountDetail_tModol" style="color: #0000FF;text-decoration: underline;">点击查看详情</a>
+                                    </div>
+                                    <div style="float: right;">
+                                        <button type="button" class="btn btn-primary btn-xs" id="sumaccountDetail_button" name="sumaccountDetail_button" @click="downloadContract()">
+                                            <span class="fa fa-cloud-download"></span> 下载
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-11" v-if="!isShowContract">
+                                    <p class="pull-left m-l m-r">暂无电子回单</p>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="form-group">
+                            <label class=" pull-left control-label"></label>
+                            <div class="col-lg-5">
+                                <a id="order_shipBackl" type="button" href='#!/app/Sumaccount' class="pull-right-xs btn btn-sm btn-info btn-addon "><i class="fa fa-reply "></i>返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </validator>
+                <!-- 回单照片模态框 -->
+                <div id="orderReceipt" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+                    <div class="modalClose" data-dismiss="modal" aria-label="Close">
+                        <img id="orderManageDetail_receiptPic" class="receiptPic" :src="picPath">
+                    </div>
+                </div>
+                <!-- 电子回单模态框 -->
+                <div id="orderElectronic" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header" style="text-align:center;">
+                                <h4 class="modal-title" id="myModalLabel">电子回单合同</h4>
+                            </div>
+                            <div class="modal-body" style="height: 780px;overflow-y: auto;">
+                                <div v-for="(index,item) in contractImgList">
+                                    <img id="index" class="receiptPic" :src="item">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

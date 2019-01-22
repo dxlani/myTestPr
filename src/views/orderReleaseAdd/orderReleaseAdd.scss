@@ -1,0 +1,23 @@
+
+
+#releaseAdd_startProvince,#releaseAdd_startCity,#releaseAdd_startArea,#releaseAdd_endProvince,#releaseAdd_endCity,#releaseAdd_endArea,#releaseAdd_viaProvince,#releaseAdd_viaCity,#releaseAdd_viaArea{
+    width: 100%
+}
+#viaAddressList>span{
+    
+    height: auto;
+    min-height: 36px;
+}
+
+@media(min-width:992px)and(max-width:1199px){
+    #releaseAdd_addViaFn{
+        margin-left: 15px;
+    }
+}
+
+@media(max-width:992px){
+    #releaseAdd_addViaFn{
+        margin-left: 15px;
+    }
+}
+

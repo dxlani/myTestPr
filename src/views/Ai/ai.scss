@@ -1,0 +1,260 @@
+#aiHelper{
+   width:100%;
+   height:100vh;
+   background-color:#000;
+   position: relative;
+}
+#aiHelper .talkContent{
+    width:100%;
+    overflow-y:auto;
+    position: absolute;
+    left:0;
+    top:0;
+    bottom:170px;
+    -webkit-overflow-scrolling: touch;
+}
+#aiHelper .aiRecord{
+  width:100%;
+  height:170px;
+  position: absolute;
+  bottom:0;
+  left:0;
+}
+#aiHelper .aiRecord .microphone{
+    width: 100%;
+    position: relative;
+}
+#aiHelper .aiRecord .mircro{
+    position: relative;
+    width: 80px;
+    height:80px;
+    margin:20px auto;
+}
+#aiHelper .aiRecord #microphoneBg{
+    position: absolute;
+    width: 109px;
+    height: 109px;
+    background: url(../../img/microphoneBg.png) no-repeat;
+    background-size: 100% 100%;
+    top: -14px;
+    left: -14px;
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5) ;
+    transform: scale(1.5);
+    transition: all .5s;
+    animation: rotate 5s linear 0s infinite ;
+	-webkit-animation: rotate 5s linear 0s infinite ;
+	-moz-animation:rotate 5s linear 0s infinite;
+	-ms-animation: rotate 5s linear 0s infinite;
+    -o-animation: rotate 5s linear 0s infinite;
+    display: none;
+}
+#aiHelper .aiRecord #microphoneBg1{
+    position: absolute;
+    width: 109px;
+    height: 109px;
+    top: -14px;
+    left: -14px;
+    background: url(../../img/microphoneBg.png) no-repeat;
+    background-size: 100% 100%;
+    animation: shower 3s linear 0s infinite;
+    display: none;
+}
+#aiHelper .aiRecord .microphone #microphone{
+    width: 80px;
+    height:80px;
+    position: absolute;
+    top:0;
+    left:0;
+}
+#aiHelper .aiRecord .microphone #microphone .blueBg{
+    width: 80px;
+    height:80px;
+    position: absolute;
+    top:0;
+    left:0;
+    background:url(../../img/bluecircle.png) no-repeat;
+    background-size:100% 100%;
+}
+#aiHelper .aiRecord .microphone #microphone .whitemai{
+    width: 20px;
+    height:30px;
+    position: absolute;
+    top:25px;
+    left:30px;
+    background:url(../../img/whitemai.png) no-repeat;
+    background-size:100% 100%;
+}
+#aiHelper .aiRecord .keyboard img{
+    width: 30px;
+    height:30px;
+}
+#aiHelper .aiRecord .keyboard{
+    width: 100%;
+    height:50px;
+    padding:10px;
+    position: absolute;
+    left:0;
+    bottom:0;
+}
+
+#aiHelper .aiInput {
+  width:100%;
+  height:50px;
+  padding:5px;
+  background:#f5f5f5;
+  position: absolute;
+  bottom:0;
+  left:0;
+  display: none;
+}
+#aiHelper .aiInput .mai{
+    width:40px;
+    height:100%;
+    border-radius: 50%;
+    padding:5px;
+    background: #f0f0f0;
+}
+#aiHelper .aiInput .mai{
+    background: #f0f0f0;
+}
+#aiHelper .aiInput .mai.bgColor{
+    background: #ddd;
+}
+#aiHelper .toMaikefeng{
+  background: url('../../img/mai.png') no-repeat;
+  background-size:100% 100%;
+  width:100%;
+  height:100%;
+}
+#aiHelper .sendMessage {
+    width: 70px;
+    height: 40px;
+    color: #fff;
+    background: #009aff;
+    line-height: 40px;
+    text-align: center;
+    border-radius:4px;
+    margin-right:8px;
+    border: none;
+}
+#aiHelper .sendMessage.default {
+    background: #ccc;
+}
+#aiHelper #aiInputContent{
+    border:1px solid #979797;
+    width:60%;
+    margin-left:15px;
+    height:100%;
+}
+#aiHelper .dialogue {
+    padding:20px;
+    overflow-y: auto;
+}
+#aiHelper .dialogue section.question{
+    color:#2D87D2;
+    font-size:14px;
+    text-align: right;
+    padding:10px 0;
+    margin-left: 20%;
+}
+#aiHelper .dialogue>p{
+    color:#ededed;
+    font-size:16px;
+    text-align: left;
+    padding:10px 0;
+}
+#aiHelper p{
+  margin:0;
+}
+#aiHelper .talkContent .sliderTip1{
+   width:144px;
+   height:40px;
+   position: fixed;
+   background:#555;
+   opacity: .8;
+   text-align: center;
+   line-height: 40px;
+   color:#fff;
+   font-size:14px;
+   top:50%;
+   left:50%;
+   margin-left:-77px;
+   margin-top:-20px;
+   border-radius: 5px;
+   display: none;
+}
+#aiHelper .talkContent .sliderTip2{
+   width:144px;
+   height:40px;
+   position: fixed;
+   background:#355ff0;
+   opacity: .8;
+   text-align: center;
+   line-height: 40px;
+   color:#fff;
+   font-size:14px;
+   top:50%;
+   left:50%;
+   margin-left:-77px;
+   margin-top:-20px;
+   border-radius: 5px;
+   display: none;
+}
+#aiHelper .talkContent .sliderTip3{
+   width:144px;
+   height:40px;
+   position: fixed;
+   background:#555;
+   opacity: .8;
+   text-align: center;
+   line-height: 40px;
+   color:#fff;
+   font-size:14px;
+   top:50%;
+   left:50%;
+   margin-left:-77px;
+   margin-top:-20px;
+   border-radius: 5px;
+   display: none;
+}
+#aiHelper section.answer {
+    color:#ededed;
+    font-size:14px;
+    text-align: left;
+    padding:10px 0;
+    margin-right: 20%;
+}
+#aiHelper section.answer a{
+   color:#2D87D2;
+}
+@keyframes rotate{
+	from{transform: rotate(0deg);}
+    to{transform: rotate(360deg);}
+}
+
+@-webkit-keyframes rotate{
+	from{-webkit-transform: rotate(0deg);}
+	to{-webkit-transform: rotate(360deg);}
+}
+@-moz-keyframes rotate{
+	from{-moz-transform: rotate(0deg);}
+	to{-moz-transform: rotate(360deg);}
+}
+@-ms-keyframes rotate{
+	from{-ms-transform: rotate(0deg);}
+	to{-ms-transform: rotate(360deg);}
+}
+@-o-keyframes rotate{
+	from{-o-transform: rotate(0deg);}
+	to{-o-transform: rotate(360deg);}
+}
+
+@keyframes shower {
+    0% {-webkit-transform: scale(1);
+        transform: scale(1);}
+    50%{-webkit-transform: scale(1.2);
+        transform: scale(1.2);}
+     0%{-webkit-transform: scale(1);
+        transform: scale(1);}
+}

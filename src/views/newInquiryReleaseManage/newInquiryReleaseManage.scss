@@ -1,0 +1,166 @@
+#iTitle .col-xs-6,
+#iTitle .col-xs-4,
+#iTitle .col-xs-2{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+#iTitle{
+    padding-right: 6px;
+    padding-left: 8px;
+}
+.inquiryImg{
+    height: 56px;
+    width: 56px;
+    float: left;
+    background: url(../../img/pic1.png) no-repeat 50%;
+}
+.inquiryTitle{
+    display: inline-block;
+    margin-top:14px;
+    margin-left: 8px;
+}
+.fsize{
+    text-align: center;
+}
+#survey .col-xs-2{
+    text-align: center;
+}
+.surveyName{
+    font-size: 18px;
+    font-weight: 500;
+}
+#survey .inquiryNums{
+    font-size: 18px;
+}
+
+.select-group{
+    position: relative;
+}
+
+#selectButton {
+    cursor: pointer;
+    width: 130px;
+    height: 34px;
+    border: 1px solid #cfdadd;
+    line-height: 34px;
+    text-align: center;
+    border-radius: 4px;
+}  
+.ist{
+    left: 15px;
+    top: 1px;
+}
+#selectList {  
+    position: absolute; 
+    z-index: 100;
+    background-color: #fff;
+}  
+
+#selectList ul {
+    padding-top: 5px;
+    list-style: none;
+    text-align:left;
+    overflow-y: auto;
+    max-height: 150px; 
+    width: 130px;
+    border: 1px solid #ddd;
+}
+#selectList ul li{
+    margin-top: 2px;
+    margin-left: 5px;
+    margin-bottom: 2px;
+    display: inline-flex;
+}
+#selectList ul li label{
+    margin-top: -1px;
+    margin-left: 3px;
+}
+
+#inquiryReleaseManage_queryTerm label{
+    font-size: 12px;
+    padding-right: 10px;
+    padding-left: 8px;
+}
+
+#inquiryReleaseManage_queryTerm{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+}
+
+#newInquiryReleaseManage_query{
+    background-color: #1890FF;
+    color: #fff!important;
+    margin-right: 20px;
+}
+
+#newInquiryReleaseManage_query,
+#inquiryReleaseManage_reset{
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+
+.greenPoint{
+    display: inline-block;
+    width: 6px;
+    height:6px;
+    border-radius: 50%;
+    background: green;
+    margin-bottom:2px;
+    margin-right:8px;
+}
+.redPoint{
+    display: inline-block;
+    width:6px;
+    height:6px;
+    border-radius: 50%;
+    background: red;
+    margin-bottom:2px;
+    margin-right:8px;
+}
+.orangePoint{
+    display: inline-block;
+    width:6px;
+    height:6px;
+    border-radius: 50%;
+    background: #999;
+    margin-bottom:2px;
+    margin-right:8px;
+}
+.operate{
+    position: relative;
+    display: inline-block;
+}
+.menuitem{
+    display: none;
+    position: absolute;
+    left:-95px;
+    top:-10px;
+    width:76px;
+    list-style: none;
+    z-index:1000;
+    border:1px solid #999;
+    border-radius: 5px;
+    background: #fff;
+}
+.operate .itemtop{
+    top:-37px;
+}
+
+.operate .itemTop{
+    top:-91px;
+}
+.menuitem li,.menuitem li{
+    border-bottom:1px solid #ddd;
+    padding:3px;
+    text-align: center;
+}
+.menuitem li:hover,.menuitem li:hover{
+    background: #ddd;
+    cursor: pointer;
+}
+#inquiryReleaseManage .form-group{
+    margin-right: -10px;
+    margin-left: -10px
+}

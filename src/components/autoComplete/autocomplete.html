@@ -1,0 +1,11 @@
+<div class="col-lg-2 col-md-10 col-sm-10">
+    <input v-el:searchName  class="form-control input-sm" type="text" v-model="name" @focus="onfocus()" @blur="blur()" placeholder="请输入"  autocomplete="off">
+    <!--no result-->
+    <div v-el:noResult v-show="showReminder" class="autocomplete-noresult">暂无数据</div>
+    <!--have result-->
+    <div v-el:haveResult  class="autocomplete-dropdown"  v-show="showList ">
+        <ul class="selectUl">
+            <li class="selectItem" :value="item.id" @click="selectName(item)" v-for="item in list" track-by="$index">{{item.name}}</li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,191 @@
+<!-- navbar -->
+<div class="app-header navbar header-back" id="nav_bar">
+    <!-- navbar header -->
+    <div class="navbar-header bg-black">
+        <button id="navbar_header" class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
+          <i class="glyphicon glyphicon-cog"></i>
+        </button>
+        <button id="navbar_offscreen" class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app">
+          <i class="glyphicon glyphicon-align-justify"></i>
+        </button>
+        <a href="#!/app/home" class="navbar-brand text-lt" @click="clearActive()">
+            <img id="navbar_headImg" src="" alt="." class="hide">
+            <span class="hidden-folded m-l-xs text-base l-s-3x font-thin" style="letter-spacing: 1.5px">诺得物流客户服务平台</span>
+        </a>
+    </div>
+
+    <!-- navbar collapse -->
+    <div class="collapse pos-rlt navbar-collapse box-shadow bg-white-only">
+        <div class="nav navbar-nav hidden-xs">
+            <a class="btn no-shadow navbar-btn" @click="changeDedentIcon()">
+                <i v-bind:class="faDedent"></i>
+            </a>
+        </div>
+        <div class="nav navbar-nav hidden-xs" style="width: 85%;">
+           <div id="headerBg">
+               <div class="toNewPage" @click="redirectPage()"  v-if="showBtn" v-bind:class="{'toOrderPage':btnClass}"></div>
+           </div>
+        </div>
+        <ul class="nav navbar-nav navbarPosition ">
+            <li id="navbar_fullscreen" class="hidden-xs">
+                <a ui-fullscreen></a>
+            </li>
+            <li id="navbar_dropdown" class="dropdown">
+                <a href class="dropdown-toggle clear" data-toggle="dropdown">
+                    <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+                <img id="userImg"  alt="...">
+                <i class="on md b-white bottom"></i>
+              </span>
+                    <span class="hidden-sm hidden-md">{{userName}}</span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu animated fadeInRight w">
+                    <li id="navbar_loginOut">
+                        <a v-link="{path:links[13].path}">注   销</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- menu -->
+<div id="aside_bar" class="app-aside hidden-xs bg-black">
+    <div class="aside-wrap">
+        <div class="navi-wrap">
+            <div class="navi">
+                <ul class="nav">
+                    <li class="line dk"></li>
+                    <li class="ng-scope" id="navbarInquiry" v-if="webAuthorize.indexOf('1')>-1 || isAdmin=='true'"> 
+                        <a class="auto" @click="toggle('Inquiry')" v-link="{path:links[2].path}">
+                            <span class="pull-right text-muted">
+                                <i class="glyphicon glyphicon-chevron-right text"></i>
+                                <i class="glyphicon glyphicon-chevron-down text-active"></i>
+                            </span>
+                            <i class="glyphicon glyphicon-usd icon text-info-dker"></i>
+                            <span>询价</span>
+                        </a>
+                        <ul class="nav nav-sub dk">
+                            <li class="nav-sub-header">
+                                <a v-link="{path:links[2].path}" @click="clearStorage()">
+                                    <span>询价</span>
+                                </a>
+                            </li>
+                            <li v-bind:class="{'active' : $route.path == links[2].path}">
+                                <a v-link="{path:links[2].path}" @click="clearStorage()">
+                                    <span>待反馈</span>
+                                </a>
+                            </li>
+                            <li v-bind:class="{'active' : $route.path == links[3].path}" @click="clearStorage()">
+                                <a v-link="{path:links[3].path}">
+                                    <span>待处理</span>
+                                </a>
+                            </li>
+                            <li v-bind:class="{'active' : $route.path == links[18].path}" @click="clearStorage()">
+                                <a v-link="{path:links[18].path}">
+                                    <span>已确认</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="ng-scope" id="navbarOrder" v-if="webAuthorize.indexOf('2')>-1 || isAdmin=='true'">
+                        <a class="auto" @click="toggle('Order')" v-link="{path:links[5].path}">
+                            <span class="pull-right text-muted">
+                                <i class="glyphicon glyphicon-chevron-right text"></i>
+                                <i class="glyphicon glyphicon-chevron-down text-active"></i>
+                            </span>
+                            <i class="glyphicon glyphicon-duplicate icon text-info-dker"></i>
+                            <span>发货</span>
+                        </a>
+                        <ul class="nav nav-sub dk">
+                            <li class="nav-sub-header">
+                                <a v-link="{path:links[5].path}">
+                                    <span>发货</span>
+                                </a>
+                            </li>
+                            <li v-bind:class="{'active' : $route.path == links[5].path}">
+                                <a v-link="{path:links[5].path}" @click="clearStorage()">
+                                    <span>待处理</span>
+                                </a>
+                            </li>
+                            <li v-bind:class="{'active' : $route.path == links[8].path}">
+                                <a v-link="{path:links[8].path}" @click="clearStorage()">
+                                    <span>待发货</span>
+                                </a>
+                            </li>
+                            <li v-bind:class="{'active' : $route.path == links[19].path}">
+                                <a v-link="{path:links[19].path}" @click="clearStorage()">
+                                    <span>已发货</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li v-bind:class="{'active' : $route.path == links[10].path}" id="navbarSumaccount" v-if="webAuthorize.indexOf('3')>-1 || isAdmin=='true'">
+                        <a v-link="{path:links[10].path}" @click="toggle('Sumaccount')">
+                            <i class="glyphicon  glyphicon-sort icon text-info-dker"></i>
+                            <span>财务对账</span>
+                        </a>
+                    </li>
+                    <li class="ng-scope" id="navbarData" v-if="webAuthorize.indexOf('4')>-1 || isAdmin=='true'">
+                        <a class="auto" @click="toggle('Data')" v-link="{path:links[14].path}">
+                            <span class="pull-right text-muted">
+                                <i class="glyphicon glyphicon-chevron-right text"></i>
+                                <i class="glyphicon glyphicon-chevron-down text-active"></i>
+                            </span>
+                            <i class="glyphicon glyphicon-duplicate icon text-info-dker"></i>
+                            <span>数据分析</span>
+                        </a>
+                        <ul class="nav nav-sub dk">
+                            <li class="nav-sub-header">
+                                <a v-link="{path:links[14].path}">
+                                    <span>数据分析</span>
+                                </a>
+                            </li>
+                            <li v-bind:class="{'active' : $route.path == links[14].path}">
+                                <a v-link="{path:links[14].path}" @click="clearStorage()">
+                                    <span>需求分析</span>
+                                </a>
+                            </li>
+                            <li v-bind:class="{'active' : $route.path == links[15].path}">
+                                <a v-link="{path:links[15].path}" @click="clearStorage()">
+                                    <span>成本分析</span>
+                                </a>
+                            </li>
+                            <li v-bind:class="{'active' : $route.path == links[16].path}">
+                                <a v-link="{path:links[16].path}" @click="clearStorage()">
+                                    <span>质量分析</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li v-bind:class="{'active' : $route.path == links[20].path}" id="navbarFeeManage" v-if="isAdmin=='true'">
+                        <a v-link="{path:links[20].path}" @click="toggle('FeeManage')">
+                            <i class="glyphicon glyphicon-check icon text-info-dker"></i>
+                            <span>费用管理</span>
+                        </a>
+                    </li>
+                    <li v-bind:class="{'active' : $route.path == links[12].path}" id="navbarUser" v-if="isAdmin=='true'">
+                        <a v-link="{path:links[12].path}" @click="toggle('User')">
+                            <i class="glyphicon glyphicon-user icon text-info-dker"></i>
+                            <span>个人设置</span>
+                            <b class="badge bg-danger pull-right">{{total}}</b>
+                        </a>
+                    </li>
+                    <li v-bind:class="{'active' : $route.path == links[17].path}" id="navbarAuthority" v-if="isAdmin=='true'">
+                        <a v-link="{path:links[17].path}" @click="toggle('Authority')">
+                            <i class="fa fa-key icon text-info-dker"></i>
+                            <span>权限管理</span>
+                        </a>
+                    </li>                  
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--footer -->
+<div id="foot_bar" class="app-footer wrapper b-t bg-light">
+    Copyright &copy; 2017, All Rights Reserved Powered By SINO logistics networking technology
+</div>
+<!-- / footer -->

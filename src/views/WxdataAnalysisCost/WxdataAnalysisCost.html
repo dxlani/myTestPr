@@ -1,0 +1,59 @@
+<!-- <div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">成本分析</h1>
+</div>
+<div id="dataAnalysisCost" class="form-horizontal panel-body" style="width:100%;">
+    <div class="form-group col-lg-8" id="logisticsCostRangess" style="border: 1px solid #dee5e7;"></div>
+    <div class="form-group col-lg-4">
+        <div id="costType" style="border: 1px solid #dee5e7;"></div>
+    </div>
+    <div class="form-group col-lg-8"  id="totalCostRange"  style="border: 1px solid #dee5e7;"></div>
+    <div class="form-group col-lg-4">
+        <div id="lineCost" style="border: 1px solid #dee5e7;"></div>
+    </div>
+   
+</div> -->
+<div id="WxdataAnalysisCost">
+    <div class="weui-flex">
+            <div class="weui-flex__item nav "><a href="#!/wechat/WxdataAnalysis" class="datalink" onclick="_czc.push(['_trackEvent', '数据-需求分析', '点击需求分析tab', '','','']);">需求分析</a><div class="whiteline"></div></div>
+            <div class="weui-flex__item nav active"><a href="#!/wechat/WxdataAnalysisCost" class="datalink " onclick="_czc.push(['_trackEvent', '数据-成本分析', '点击成本分析tab', '','','']);">成本分析</a><div class="whiteline"></div></div>
+            <div class="weui-flex__item nav"><a href="#!/wechat/WxqualityWave" class="datalink" onclick="_czc.push(['_trackEvent', '数据-质量分析', '点击质量分析tab', '','','']);">质量分析</a><div class="whiteline"></div></div>
+      </div>
+      <div class="weui-flex titleP">
+        <span class="titleName">线路波动图</span>
+        <span class="unit">&nbsp;&nbsp;(单位：元)</span>
+      </div>
+      <div id="WxtotalCostRange"></div>
+      <div class="list_2">
+            <table class="analysistable">
+                    <tr>
+                        <td class="colorful"></td>
+                        <td class="colorful"></td>
+                        <td class="colorful"></td>
+                        <td class="colorful"></td>
+                        <td class="colorful"></td>
+                        <td class="colorful"></td>
+                    </tr>
+                  <tr v-for ="(index,item) in totaldata" class="trdata" :id="item.month" >
+                      <td>{{item.month}}</td>
+                      <td>{{item.a}}</td>
+                      <td>{{item.b}}</td>
+                      <td>{{item.c}}</td>
+                      <td>{{item.d}}</td>
+                      <td>{{item.e}}</td>
+                    </tr>
+                </table>
+      </div>
+      <div class="weui-flex titleP">
+        <span class="titleName">物流费用波动</span>
+        <span class="unit">&nbsp;&nbsp;(单位：元)</span>
+      </div>
+     <div id="WxlogisticsCostRangess"></div>
+      <div class="weui-flex titleP">
+        <span class="titleName">费用类型占比</span>
+      </div>
+     <div id="WxcostType"></div>
+      <div class="weui-flex titleP">
+        <span class="titleName">线路成本占比</span>
+      </div>
+     <div id="WxlineCost"></div>
+</div>

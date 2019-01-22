@@ -1,0 +1,66 @@
+<div class="bg-light lter b-b wrapper-sm">
+	<h1 class="m-n font-thin h4">北斗定位</h1>
+</div>
+<div id="BDNPLocation" class="wrapper-sm">
+	<div class="panel panel-default">
+		<!-- <div class="panel-heading font-bold"></div> -->
+		<div class="panel-body">
+			<label class="control-label pull-left w-xs">车牌号：</label>
+			<div class="col-lg-2 col-md-10 form-group">
+				<label class="control-label text-left">{{carCode}}</label>
+			</div>
+			<label class="control-label pull-left w-xs">发货地址：</label>
+			<div class="col-lg-2 col-md-10 form-group">
+				<label class="control-label text-left">{{originAddress}}</label>
+			</div>
+			<label class="control-label pull-left w-xs">送货地址：</label>
+			<div class="col-lg-2 col-md-10 form-group">
+				<label class="control-label text-left">{{destinationAddress}}</label>
+			</div>
+			<div class="line line-xs pull-in"></div>
+			<label class="control-label pull-left  w-xs">定位情况</label>
+			<div class="col-lg-2 col-md-10 form-group">
+				<label class="control-label text-left">{{status}}</label>
+			</div>
+
+			<label class="control-label pull-left  w-xs">定位日期：</label>
+			<div class="col-lg-2 col-md-10 form-group">
+				<label class="control-label text-left">{{creationTime}}</label>
+			</div>
+			<label class="control-label pull-left  w-xs">位置信息：</label>
+			<div class="col-md-4 form-group">
+				<label class="control-label text-left">{{area}}</label>
+			</div>
+			<div class="line line-xs pull-in"></div>
+			<div class="col-md-4 form-group col-md-offset-5">
+				<button id="BDNPlocation_locate" @click="location()" ng-disabled="isLocationEnabled" class="btn btn-sm btn-primary btn-addon m-l"><i class="glyphicon glyphicon-send"></i>{{locationText}}</button>
+				<button id="BDNPlocation_goBack" @click="goBack()" class="btn btn-sm btn-default btn-addon m-l"><i class="fa fa-mail-reply"></i>返回</button>
+				
+			</div>
+
+			
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div style="border:#ccc solid 1px;" id="BDNPdituContent"></div>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<label class="control-label pull-left w-xs">历史定位：</label>
+			<div class="line line-xs pull-in"></div>
+
+			<label class="control-label pull-left  w-xs">定位日期：</label>
+			<div class="col-lg-2 col-md-10 form-group">
+				<label class="control-label text-left">{{historyCreationTime}}</label>
+			</div>
+			<label class="control-label pull-left  w-xs">位置信息：</label>
+			<div class="col-md-4 form-group">
+				<label class="control-label text-left">{{historyArea}}</label>
+			</div>
+		</div>
+	</div>
+</div>
+

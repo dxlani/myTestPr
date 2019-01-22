@@ -1,0 +1,31 @@
+#WxAcceptanceDetail{
+    background: #EFEFF4;
+    padding-top: 1px;
+    // height:-webkit-fill-available;
+}
+
+.weui-form-preview__hd:after{
+    border-bottom:none;
+}
+
+.weui-form-preview__label{
+    margin-right: 3.4em;
+}
+
+.weui-form-preview__hd .weui-form-preview__value{
+    font-size: 1.4em;
+}
+
+button.weui-form-preview__btn{
+    background-color:#FFAF00;
+    font-size: large;
+    border-radius: 0.4em;
+    color:#fff;
+}
+
+#signature{
+    width:100%;
+    margin:5px 0;
+    height:180px;
+    background-color: rgb(221, 221, 221);
+}

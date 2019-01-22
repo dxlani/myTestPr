@@ -1,0 +1,232 @@
+.indeximgX {
+    width: 100%;
+    height: 215px;
+    background: url(../../img/bj_img@3x.png) no-repeat top center;
+    display: inline-block;
+    background-size: cover;
+}
+
+.indexT{
+    text-align: center;
+}
+
+.indeximgX h1 {
+    color: #fff;
+    text-align: center;
+    margin: 1.2em 0em;
+    font-size: 1.2em;
+    line-height: .1em;
+}
+
+.indeximgX a {
+    color: #fff;
+    font-size: 0.875em;
+    line-height: 5.2em;
+    margin: 0px 0em 0px 0.9em;
+    letter-spacing: 0.2em;
+}
+
+.indeximgX a:active {
+    color: #c2dcff;
+    font-size: 0.875em;
+    line-height: 5.2em;
+    margin: 0px 0em 0px 0.9em;
+    letter-spacing: 0.2em;
+}
+
+#WxIndexPanel .weui-navbar{
+    position: relative;
+    height: 60px;
+}
+
+#WxIndexPanel .weui-navbar:after{
+    border: none;
+}
+
+.n-b{
+    border-right:solid 1px rgba(0,0,0,0.08);
+}
+
+#WxIndexPanel .weui-navbar .weui-navbar__item{
+    font-size: 0.86em;
+    padding: 7px 0;
+}
+#WxIndexPanel .weui-navbar .weui-navbar__item:after{
+    border-right: none;
+}
+
+#WxIndexPanel .weui-navbar .weui-navbar__item span{
+    color: #1965AC;
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+.Wxcontent-index {
+    margin: 0px 0px 55px 0px;
+    width: 100%;
+    height: auto;
+    background: #F0F0F0;
+}
+
+.weui-left{
+    float: left;
+    width: 38.7%;
+    margin-top:0.714em;
+    margin-left: 2.7%;
+}
+
+.weui-right{
+    float: right;
+    width: 53.3%;
+    margin-top:0.714em;
+    margin-right: 2.7%;
+}
+
+.weui-grid {
+    width: 100%!important;
+    border: none!important;
+    padding: 15px 10px;
+    margin-bottom: 0.714em;
+}
+
+.weui-grid_a{
+    padding: 1.27em 0.714em;
+}
+
+.weui-grid__icon+.weui-grid__label{
+    // margin-left: 0.3em;
+    // margin-top: 0.6em;
+    vertical-align: middle;
+}
+
+// .weui-grid p{
+//     margin: 0 0 1.04em;
+// }
+
+.weui-grid:nth-child(2) {
+    width: 100%!important;
+    border: none!important;
+    background: #f3faff;
+}
+
+.weui-grid:nth-child(3) {
+    width: 100%!important;
+    border: none!important;
+    background: #f3faff;
+}
+
+.weui-grids {
+    border: none!important;
+}
+
+.weui-grids::before {
+    border: none!important;
+}
+
+.weui-grids::after {
+    border: none!important;
+}
+
+.weui-grid::before {
+    border: none!important;
+}
+
+.weui-grid::after {
+    border: none!important;
+}
+
+.weui-grid:first {
+    border-left: none!important;
+}
+
+.weui-grid__icon {
+    width: 4.2em!important;
+    height: 4.2em!important;
+}
+
+.weui-grid__icon img{
+    display: inline-block;
+}
+
+.weui-gird_iconM {
+    display: inline-block;
+    margin-left: 0.1em;
+    margin-bottom: 0.03em;
+}
+
+.weui-grid__iconL{
+    margin: 1.19em auto;
+}
+
+.weui-grid__label {
+    font-family: "Microsoft YaHei"!important;
+    font-size: 1.15em;
+}
+
+.weui-grid__labelR{
+    display: inline-block;
+}
+.wx-p{
+    color: #fff;
+}
+
+.weui-grid__label span {
+    margin: 3px 0px 0px 5px;
+    font-family: "Microsoft YaHei" !important;
+    font-size: 0.8em;
+    position: absolute;
+}
+
+@media screen and (max-height: 568px) {
+    .indeximgX {
+        width: 100%;
+        height: 172px;
+        background: url(../../img/bj_img@3x.png) no-repeat top center;
+        display: inline-block;
+        background-size: contain;
+    }
+    .indeximgX h1 {
+        color: #fff;
+        text-align: center;
+        // padding: 1em 0em;
+        margin: 0.3em 0em;
+        font-size: 1em;
+        line-height: 0em;
+    }
+    .weui-grid {
+        position: relative;
+        float: left;
+        padding: 10px 10px;
+        box-sizing: border-box;
+    }
+}
+
+@media screen and (max-height: 480px) {
+    .indeximgX {
+        width: 100%;
+        height: 152px;
+        background: url(../../img/bj_img@3x.png) no-repeat top center;
+        display: inline-block;
+        background-size: cover;
+    }
+    .indeximgX h1 {
+        color: #fff;
+        text-align: center;
+        // padding: 1em 0em;
+        margin: 0.3em 0em;
+        font-size: 1em;
+        line-height: 0em;
+    }
+    .weui-grid {
+        position: relative;
+        float: left;
+        padding: 5px 5px;
+        box-sizing: border-box;
+    }
+}
+
+.weui-input:disabled,
+.weui-textarea:disabled {
+    color: #333333;
+    opacity: 1;
+}

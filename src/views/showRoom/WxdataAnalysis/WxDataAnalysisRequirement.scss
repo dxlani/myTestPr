@@ -1,0 +1,142 @@
+
+.weui-flex .nav{
+    height:44px;
+    padding:12px 0;
+    margin:15px 0;
+}
+.weui-flex .datalink{
+    display: inline-block;
+    width:100%;
+    height:100%;
+    line-height: 20px;
+    text-align: center;
+    font-size:14px;
+}
+.weui-flex .navborder{
+    border-left:1px solid #ddd;
+    border-right:1px solid #ddd;
+}
+.weui-flex .active{
+    border-bottom: 3px solid #2D87D2 ;
+}
+.weui-flex .active>a{
+    color:#2D87D2;
+}
+.weui-flex span.titleName{
+    color:#fff;
+    font-size:14px;
+    line-height: 40px;
+}
+.weui-flex span.unit{
+    color:#fff;
+    font-size:12px;
+    line-height: 40px;
+}
+.titleP{
+ padding-left:4.3%;
+ background:#00A0E9;
+ height:40px;
+}
+#cspWxdataAnalysis #totalRequire{
+    height:280px;
+    margin:0px auto;
+    padding:2%;
+}
+#cspWxdataAnalysis #lineRequire,
+#cspWxdataAnalysis #startRequire,
+#cspWxdataAnalysis #arriveRequire,
+#cspWxdataAnalysis #carRequire,
+{
+    height:320px;
+    margin:0px auto;
+    padding:3%;
+}
+
+#cspWxdataAnalysis .list_c{
+    background: #045F9F!important;
+    color:#fbfbfb;
+}
+
+#cspWxdataAnalysis .colorful:nth-child(1){
+    background: #045F9F;
+    height: 6px;
+}
+#cspWxdataAnalysis .colorful:nth-child(2){
+    background: #FF2A3A;
+    height: 6px;
+}
+#cspWxdataAnalysis .colorful:nth-child(3){
+    background: #FFBB2E;
+    height: 6px;
+}
+#cspWxdataAnalysis .colorful:nth-child(4){
+    background: #3BD7F9;
+    height: 6px;
+}
+
+
+#cspWxdataAnalysis table, #cspWxdataAnalysis table tr th,#cspWxdataAnalysis table tr td { border:1px solid #000;width: 25%;font-size: 12px;};
+#cspWxdataAnalysis table tr{ background: #0A1C43};
+#cspWxdataAnalysis table { width: 98%;margin: 0 auto;min-height: 25px; line-height: 25px; text-align: center; border-collapse: collapse; padding:2px;}
+
+/* 修改的内容  黑色主题 */
+#cspWxdataAnalysis  .weui-flex .nav{
+    margin:0;
+}
+#cspWxdataAnalysis .weui-flex{
+    background: #0A122B;
+}
+#cspWxdataAnalysis.weui-flex .navborder{
+    border:none;
+}
+#cspWxdataAnalysis .weui-flex .active>a {
+    color: #fff;
+}
+#cspWxdataAnalysis .weui-flex__item a{
+    color:#999;
+}
+#cspWxdataAnalysis .weui-flex .active{
+    border-bottom: none ;
+}
+#cspWxdataAnalysis .weui-flex__item{
+    position: relative;
+}
+.whiteline{
+    width:23px;
+    height:3px;
+    position: absolute;
+    background-color:#fff;
+    bottom:0;
+    left:40%;
+    display: none;
+}
+.weui-flex span.titleName{
+    border-left:2px solid #2DA1F4;
+    padding-left:10px;
+    margin-left:10px;
+    line-height: 14px;
+}
+.weui-flex.titleP{
+    margin-top:10px; 
+}
+.titleP {
+    padding: 13px 0;
+}
+.active .whiteline{
+    display: block;
+}
+
+#cspWxdataAnalysis{
+    background: #1D2B40;
+    margin-bottom: 0!important;
+}
+.weui-flex span.unit{
+    line-height: 14px;
+}
+#totalRequire,#lineRequire,#startRequire,#arriveRequire,#carRequire{
+    background: #0a122b!important;
+}
+.list_2{
+    padding-bottom: 15px;
+    background: #0A122B;
+}

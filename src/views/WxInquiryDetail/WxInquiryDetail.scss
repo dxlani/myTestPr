@@ -1,0 +1,55 @@
+#wxInquiryDetail {
+    height: 100%;
+    background: #f5f5f5;
+    width: 100%;
+    display: block;
+}
+#wxInquiryDetail .weui-cells{
+    margin-top:0.625em;
+}
+
+#wxInquiryDetail .tc{
+    color: #58666e;
+}
+
+#wxInquiryDetail label {
+    font-size: 14px!important;
+    color: #000;
+    min-width: 2em;
+    margin-bottom: 0px;
+    width: 95px;
+}
+
+#wxInquiryDetail textarea {
+    min-width: 2em;
+    margin-bottom: 0px;
+    font-size: 14px;
+    padding: 5px;
+}
+
+#wxInquiryDetail .wx-btnq {
+    width: 100%;
+    font-size: 13px;
+}
+
+#wxInquiryDetail .bg_blue,
+#wxInquiryDetail .bg_red,
+#wxInquiryDetail .bg_green,
+#wxInquiryDetail .bg_grey{
+    font-size: 13px;
+    color: #fff;
+}
+
+#wxInquiryDetail .bg_red{
+    background-color:#EB595A;
+    margin-left: 0px;
+}
+
+#wxInquiryDetail .bg_green{
+    background-color: #31C27C;
+}
+
+#wxInquiryDetail .bg_grey{
+    background-color:#666;
+    margin-left: 0px;
+}

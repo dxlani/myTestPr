@@ -1,0 +1,33 @@
+.VuePagination__count{
+    display: none
+}
+
+@media(min-width:992px)and(max-width:1199px){
+    // #cspOrderTime{
+    //     padding-left: 0px;
+    // }
+}
+
+@media(max-width:991px){
+    // #cspOrderTime{
+    //     padding-left: 0px;
+    // }
+    .span_in_input{
+        display: inline-block;
+        position: relative;
+        left: -30px;
+    }
+}
+
+.span_in_input{
+    display: inline-block;
+    position: relative;
+    left: -5px;
+}
+.p-r-30{
+    padding-right: 30px;
+}
+
+.modal-body .form-group{
+    margin-bottom: 10px;
+}

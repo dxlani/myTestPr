@@ -1,0 +1,138 @@
+.span_in_input{
+    display: inline-block;
+    position: relative;
+    left: -5px;
+}
+.orderTrace,
+.orderTrace:hover{
+    margin-left: 20px;
+    font-size: 16px;
+    text-decoration: underline;
+    color: #4043FF;
+}
+.orderPass{
+    background: url(../../img/orderPass@3x.png) no-repeat;
+    background-size: 100%;
+    height: 161px;
+    border: none;
+}
+#orderManage-pass{
+    color: #fff;
+    opacity: 1;
+}
+#orderTrace .modal-content{
+    border-radius: 22px;
+}
+#orderTimeline p{
+    margin-bottom: 0px;
+}
+#status_list{
+    position: relative;
+}
+.order-status .status-box::before{
+    content: " ";
+    background-color: #fff;
+    display: block;
+    position: absolute;
+    top: -7px;
+    left: 35px;
+    width: 10px;
+    height: 13px;
+}
+#status_list .status-list{
+    margin: 0;
+    padding: 0;
+    margin-left: 30px;
+    margin-top: 0px;
+    padding-left: 10px;
+    list-style: none;
+}
+#status_list .status-list li{
+    height: auto;
+    min-height: 75px;
+    border-left: 1px solid #E0E4E7;
+}
+
+#status_list .status-list li::before{
+    content: '';
+    border: 1px solid #fff;
+    background-color: #E0E4E7;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-left: -4.4px;
+    margin-right: 25px;
+}
+#orderTimeline .orderTimeline-title{
+    font-size: 15px;
+    font-weight: 700;
+    color: #333;
+}
+#orderTimeline .orderTimeline-content{
+    font-size: 12px;
+    color: #333;
+    line-height: 25px;
+    margin-left: 32px;
+}
+#orderTimeline .orderTimeline-date{
+    font-size: 12px;
+    color: #999;
+    line-height: 16px;
+    margin-left: 32px;
+}
+#status_list .status-list .firstStatus::before{
+    background: url(../../img/point.png) no-repeat;
+    background-size: 100%;
+    width: 15px;
+    height: 15px;
+    margin-left: -7.1px;
+}
+#status_list .status-list .firstStatus .orderTimeline-title{
+    margin-left: -5px;
+}
+#status_list .status-list .lastStatus{
+    position: relative;
+}
+#status_list .status-list .lastStatus::after{
+    content: " ";
+    background-color: #fff;
+    display: block;
+    position: absolute;
+    top: 17px;
+    left: -5px;
+    width: 10px;
+    height: 68px;
+}
+#status_list .status-list .onlyStatus{
+    position: relative;
+    border: none;
+}
+#status_list .status-list .onlyStatus::before{
+    background: url(../../img/point.png) no-repeat;
+    background-size: 100%;
+    width: 14px;
+    height: 14px;
+    margin-left: -7.4px;
+    margin-right: 21px;
+}
+
+  
+
+#orderReceipt{
+    text-align: center;
+}
+
+#orderReceipt .modalClose{
+    height: 100%;
+}
+
+#orderReceipt img{
+    padding-top:25px;
+}
+
+@media (max-width: 1200px){
+    .t-2{
+        width: 30%;
+    }
+}

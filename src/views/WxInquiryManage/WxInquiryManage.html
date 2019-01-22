@@ -1,0 +1,88 @@
+<div id="wxInquiryManage" class="weui-tab">
+    <div class="weui-cells wx-notop wx-fonts wx-fixed ">
+        <div id="wxInquiryManage_navbar" class="weui-navbar">
+            <a href='javascript:void(0);' @click="changePathOne()" class="weui-navbar__item">
+                <h4>已下单</h4>
+            </a>
+            <a href='javascript:void(0);' @click="changePathTwo()" class="weui-navbar__item  weui-bar__item--on">
+                <h4>已处理</h4>
+            </a>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fb">编号查询</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryManage_inquiryCode" name="inquiryCode" v-model="inquiryParameter.code" class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入总询价单编号">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label for="" class="weui-label wx-fb">询价状态</label>
+            </div>
+            <div class="weui-cell__bd">
+                <select class="weui-select wx-fb wx-padf" id="wxInquiryManage_inquiryStatus" name="inquiryStatus" v-model="inquiryParameter.status">
+                    <option v-for="option in statusList" v-bind:value="option.value">
+                        {{ option.text }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <a href="javascript:;" id="wxInquiryManage_query" @click="query(skip,count)" class="weui-btn weui-btn_primary wx-btnq">
+                <i class="fa fa-search"></i> 查 询
+            </a>
+        </div>
+    </div>
+    <div class="weui-tab_bd">
+        <div class="weui-tab_bd_item weui-tab_bd_item_active">
+            <div class="wx-top-k">
+                <div class="weui-pull-to-refresh__layer">
+                    <div class='weui-pull-to-refresh__arrow'></div>
+                    <div class='weui-pull-to-refresh__preloader'></div>
+                    <div class="down">下拉刷新</div>
+                    <div class="up">释放刷新</div>
+                    <div class="refresh">正在刷新</div>
+                </div>
+                <div class="weui-cells weui-cells_form weui-form-preview wx-topJ" v-for="item in InquiryData" @click="LinckToInquiryDetail(item)">
+                    <div class="weui-form-preview__hd wx-lineh">
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label wx-fonts">{{item.inquiryId}}</label>
+                            <span class="weui-form-preview__value wx-fonts">{{item.creationTime}}</span>
+                        </div>
+                    </div>
+                    <div class="weui-form-preview__bd wx-pad0">
+                        <div class="weui-form-preview__item wx-arrow">
+                            <h4 class="weui-form-preview__label">{{item.originCity}}{{item.originCounty}}</h4>
+                            <h4 class="weui-form-preview__value">{{item.destinationCity}}{{item.destinationCounty}}</h4>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label wx-overtext">{{item.goodsName}}</label>
+                            <span class="weui-form-preview__value">{{item.quantityOfGoods}}</span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label weui-badge-wx bg-info">{{item.carLength}}</label>
+                            <span v-show="item.status=='2'" class="weui-form-preview__value weui-badge-wx bg-warning wx-right-a">报价中</span>
+                            <span v-show="item.status=='4'" class="weui-form-preview__value weui-badge-wx bg-warning wx-right-a">报价中</span>
+                            <span v-show="item.status=='5'" class="weui-form-preview__value weui-badge-wx bg-warning wx-right-a">报价中</span>
+                            <span v-show="item.status=='6'" class="weui-form-preview__value weui-badge-wx bg-warning wx-right-a">报价中</span>
+                            <span v-show="item.status=='7'" class="weui-form-preview__value weui-badge-wx bg-warning wx-right-a">报价中</span>
+                            <span v-show="item.status=='8'" class="weui-form-preview__value weui-badge-wx bg-warning wx-right-a">已报价</span>
+                            <span v-show="item.statusStr=='已报价'" class="weui-form-preview__value weui-badge-wx bg-success wx-right-a">{{item.statusStr}}</span>
+                            <span v-show="item.statusStr=='已接受'" class="weui-form-preview__value weui-badge-wx bg-green wx-right-a">{{item.statusStr}}</span>
+                            <span v-show="item.statusStr=='已拒绝'" class="weui-form-preview__value weui-badge-wx bg-gray wx-right-a">{{item.statusStr}}</span>
+                            <span v-show="item.statusStr=='待确认'" class="weui-form-preview__value weui-badge-wx bg-orange wx-right-a">{{item.statusStr}}</span>
+                            <span v-show="item.statusStr=='询价终结'" class="weui-form-preview__value weui-badge-wx bg-error wx-right-a">{{item.statusStr}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="weui-loadmore" v-show="IsLoad">
+                    <i class="weui-loading"></i>
+                    <span class="weui-loadmore__tips">正在加载...</span>
+                </div>
+                <div class="Wx-nothing" v-show="IsData">
+                    <i class="fa fa-frown-o"></i>
+                    <span>暂无更多数据...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,244 @@
+#wxInquiry .weui-flex a{
+    display: inline-block;
+    text-align: center;
+    height:99%;
+    line-height: 50px;
+    width:43px;
+}
+
+#wxInquiry .weui-flex {
+    background: #fff;
+    height:50px;
+    z-index: 500;
+    position: fixed;
+    top:0;
+    width:100%;
+    text-align: center; 
+}
+
+#wxInquiry .weui-cell_access .weui-cell__ft:after{
+    width:9px;
+    height:9px;
+}
+#wxInquiry .noInquiry{
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin-left:-65px;
+    margin-top:-60px;
+    text-align: center;
+    width:130px;
+    height:170px;  
+}
+#wxInquiry .noInquiry .pic{
+  width:70px;
+  height:72px;
+  margin:30px;
+  margin-bottom:0;
+  background: url(../../img/no-inquiry.png) no-repeat;
+  background-size:100%;
+}
+#wxInquiry .search{
+  width: 40px;
+  height: 40px;
+  border-left: 1px solid #efefef;
+  padding: 8px;
+  margin: 5px;
+  margin-right:0;
+}
+#wxInquiry .inquiryAdd{
+  width: 40px;
+  height: 40px;
+  border-left: 1px solid #efefef;
+  padding: 8px;
+  margin: 5px;
+  margin-left:0;
+}
+#wxInquiry .search img,
+#wxInquiry .inquiryAdd img{
+  width: 100%;
+  height: 100%;
+}
+
+.inquiryList{
+  background-color:#fff;
+  margin-top:10px;
+}
+
+.inquiryidTitle{
+  padding-top: 6px;
+}
+.lf{
+  float:left;
+}
+.rt{
+  float:right;
+}
+.inquiryid{
+  width: 50%;
+  padding-left: 4.3%;
+  padding-right: 4.3%;
+}
+.bd_content{
+  padding-top:50px;
+  height:100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+.bd_content .positionlist{
+  position: absolute;
+  top:50px;
+  width:100%;
+}
+@-webkit-keyframes animate-positive {
+  0% { width: 0%;}
+}
+@keyframes animate-positive {
+  0% { width:0%; }
+}
+.bg_blue{
+  background:#6CBDF7;
+  color:#fff;
+  padding:0 4px;
+  border-radius: 3px;
+  font-size:12px;
+}
+.bg_red{
+  margin-left:7px;
+  background:#FE9D83;
+  color:#fff;
+  padding:0 4px;
+  border-radius: 3px;
+  font-size:12px;
+}
+.bg_error{
+  background:#f6383a;
+  color: #fff;
+  padding: 0 4px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+.bg_success{
+  background:#4cd964; 
+  color: #fff;
+  padding: 0 4px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+.bg_warning{
+  background: #f60;
+  color: #fff;
+  padding: 0 4px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+.inquiryList .part2{
+  width:100%;
+  padding: 0 4.3%;
+}
+.orderaddress h4{
+  margin:0;
+  font-weight: bold;
+}
+.inquiryList .progress{
+  margin-bottom:0;
+}
+.rightarrow{
+  margin:0 7px;
+}
+.rightarrow img{
+  margin-bottom: 4px;
+}
+.inquiryList .market{
+  padding:6px 0px;
+}
+.bottomline{
+  width:42px;
+  height:3px;
+  background: #2DA1F4;
+  position: absolute;
+  bottom:0;
+  transition: all .5s
+}
+.maxWidth{
+  max-width: 43%;
+}
+
+.searchModal{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background:rgba(0, 0, 0, 0.6);
+  display: none;
+}
+.searchPop{
+  width: 100%;
+  height:auto;
+  position: absolute;
+  z-index: 500;
+  top: -165px;
+  border-radius: 0;
+  color: #3d4145;
+  background:#fff;
+}
+
+.btnStyle{
+  margin:0 15px;
+  width:40%
+}
+.searchPop .btnGroup{
+  display: flex;
+  justify-content: space-around;
+  padding:20px;
+}
+.searchPop .btnGroup .btn{
+  color:#fff;
+  text-align: center;
+  border-radius: 3px;
+}
+.searchPop .border{
+  border-bottom: 1px solid #ddd;
+  padding:10px;
+}
+.searchPop .border input,
+.searchPop .border select{
+  border:none;
+  padding-left:20px;
+  width:70%;
+}
+.searchPop label{
+  margin:0 10px;
+}
+.searchModal .toppx{
+  top:50px;
+}
+#wxInquiry .searchModal.showModal{
+  display: block;
+}
+
+.tabHidden{
+  display: none;
+}
+
+.circle {
+  height: 32px;
+  line-height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  font-size: 12px;
+  display: inline-block;
+  border: 1px solid #2da1f4;
+  color:#fff;
+}
+
+#wxInquiry .weui-pull-to-refresh__layer{
+  height:50px;
+  line-height: 15px;
+  padding:0;
+}

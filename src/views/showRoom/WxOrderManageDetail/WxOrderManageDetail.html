@@ -1,0 +1,679 @@
+<div id="WxOrderManageDetail">
+    <!-- <div class="orderStatus" v-if="status=='3' || status=='5' || status=='6' || status=='7'">
+        <img src="../../img/orderStatus.png" alt="" style="width:100%;height:100%;">
+        <div class="tracks">
+            <div class="track">
+                <i></i>订单跟踪已过期</div>
+            <div>
+                <span class="zhu">注：</span>
+                <span class="tips">只能查询到1-3个月内的订单跟踪信息</span>
+            </div>
+        </div>
+    </div>
+    <div class="orderStatus" v-if="status=='3' || status=='5' || status=='6' || status=='7'">
+        <img src="../../img/orderStatus.png" alt="" style="width:100%;height:100%;">
+        <div class="tracks">
+            <p class="track">订单跟踪</p>
+            <p class="trackTime">耗时：
+                <span>{{ordertrackTime}}</span>
+            </p>
+        </div>
+    </div>
+    <div class="orderDetail" v-if="status=='3' || status=='5' || status=='6' || status=='7'">
+        <div class="orderStatusDetail">
+            <div v-for="(index,item) in orderFollowing" class="orderStatusPosition">
+                <div class="orderPoint">
+                </div>
+                <p class="orderStatusTitle ">{{item.title}}</p>
+                <p class="orderStatusContent ">{{item.content}}</p>
+                <p>{{item.time}}</p>
+            </div>
+        </div>
+        <div class="slideUpBtn" @click="showDetail()" v-if="showDetailStatus">收起所有详情</div>
+        <div class="slideDownBtn" @click="showDetail()" v-if="!showDetailStatus">展示所有详情</div>
+    </div> -->
+    <!-- <div class="weui-cells weui-cells_form" style="margin-top:10px;"> -->
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label tc">基本信息</label>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">订单编号
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="number" v-model="orderId" disabled>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">销售编号</label>
+            </div>
+            <div class="weui-cell__bd">
+                <!-- <input class="weui-input" type="text" v-model="clientOrderId" disabled> -->
+                <textarea class="weui-textarea" rows="3" cols="20" autosize v-model="clientOrderId" disabled style="font-size:14px;padding-left:2px;">{{clientOrderId}}</textarea>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">下单时间
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" v-model="orderTime" disabled>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">紧急程度
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" v-model="urgency" disabled>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">客户单位
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" v-model="customerUnit" disabled>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">发货计划人
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" v-model="consignor" disabled>
+
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">发货人电话
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <input type="number" class="weui-input" v-model="consignorPhone" name="consignorPhone" disabled>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">发货内容</label>
+            </div>
+            <div class="weui-cell__bd">
+                <textarea class="weui-textarea" v-model="orderContent" rows="2" autosize style="font-size:14px" disabled></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="weui-cells weui-cells_form">
+        <a class="weui-cell weui-cell_access open-popup" href="javascript:;" data-target="#manageDetail_totalLineM" @click="totalLineDetail()">
+            <div class="weui-cell__bd">
+                <label class="weui-label tc">总线路</label>
+            </div>
+            <div class="weui-cell__ft"></div>
+        </a>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">发货地址
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <div class="weui-input addreClass">{{shipAddress}}</div>
+                <!-- <input type="text" class="weui-input" v-model="shipAddress" disabled> -->
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">送货地址
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <div class="weui-input addreClass">{{deliverAddress}}</div>
+                <!-- <input type="text" class="weui-input" v-model="deliverAddress" disabled> -->
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">货物类别
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <input type="text" class="weui-input" v-model="goodsTypeName" disabled>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">货物名称
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <input type="text" class="weui-input" v-model="goodsName" disabled>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">货物数量
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <input type="text" class="weui-input" v-model="goodsNum" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="weui-cells weui-cells_form">
+        <a class="weui-cell weui-cell_access open-popup" data-target="#manageDetail_childLineM" href="javascript:;" @click="childLineDetail()">
+            <div class="weui-cell__bd">
+                <label class="weui-label tc">子线路1</label>
+            </div>
+            <div class="weui-cell__ft"></div>
+        </a>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">发货地址
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <div class="weui-input addreClass">{{childShipAddress}}</div>
+                <!-- <input type="text" class="weui-input" v-model="childShipAddress" disabled> -->
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">送货地址
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <div class="weui-input addreClass">{{childDeliverAddress}}</div>
+                <!-- <input type="text" class="weui-input" v-model="childDeliverAddress" disabled> -->
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">货物类别
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <input type="text" class="weui-input" v-model="childGoodsType" disabled>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">货物名称
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <input type="text" class="weui-input" v-model="childGoodsName" disabled>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">货物数量
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <input type="text" class="weui-input" v-model="childGoodsNum" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label tc">所需车辆信息</label>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">所需车型</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input type="text" class="weui-input" v-model="carType" disabled>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">所需车长</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input type="text" class="weui-input" v-model="carLength" disabled>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">承运方式</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input type="text" class="weui-input" v-model="carrierCategory" disabled>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">装车效果</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" v-model="loadingEffect" disabled/>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">备注</label>
+            </div>
+            <div class="weui-cell__bd">
+                <textarea class="weui-textarea" v-model="remarks" rows="2" autosize style="font-size:14px" disabled></textarea>
+            </div>
+        </div>
+    </div>
+    <div id="carrierInfo" class="weui-cells weui-cells_form" v-show="carrierShow">
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label tc">承运商车辆信息</label>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">车牌号
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" v-model="carrierCarCode" disabled/>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">车型
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" v-model="carrierCarType" disabled/>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">车长
+                    <span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" v-model="carrierCarLength" disabled/>
+            </div>
+        </div>
+    </div>
+
+    <!--总线路页面-->
+    <div id="manageDetail_totalLineM" class="weui-popup__container">
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal" style="background:#fff">
+            <div class="weui-cells weui-cells_form">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <h4>
+                            <strong>总线路信息</strong>
+                        </h4>
+                    </div>
+                    <div class="weui-cell__ft icon-a">
+                        <a class="close-popup" href="javascript:;">
+                            <i class="fa fa-fw fa-times-circle fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">发货地址
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <div class="weui-input addreClass">{{totalLineData.originAddress}}</div>
+                        <!-- <input type="text" class="weui-input" v-model="totalLineData.originAddress" disabled> -->
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">送货地址
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <div class="weui-input addreClass">{{totalLineData.destinationAddress}}</div>
+                        <!-- <input type="text" class="weui-input" v-model="totalLineData.destinationAddress" disabled> -->
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">中转地址</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <textarea class="weui-textarea" v-model="totalVia" rows="2" autosize style="font-size:14px" disabled></textarea>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">发货时间
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="totalLineData.shipTime" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">到货时间
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="totalLineData.arriveTime" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">里程数</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="totalMileage" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">货物类别
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="totalLineData.goodsTypeName" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">货物名称
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="totalLineData.goodsName" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">吨位范围
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="totalLineData.tonRange" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">货物数量
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="totalGoodsNum" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">货物数量2</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="totalGoodsNumTwo" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--子线路页面-->
+    <div id="manageDetail_childLineM" class="weui-popup__container">
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal" style="background:#fff">
+            <div class="weui-cells weui-cells_form">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <h4>
+                            <strong>子线路1信息</strong>
+                        </h4>
+                    </div>
+                    <div class="weui-cell__ft icon-a">
+                        <a class="close-popup" href="javascript:;">
+                            <i class="fa fa-fw fa-times-circle fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">发货地址
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <div class="weui-input addreClass">{{childLineData.originAddress}}</div>
+                        <!-- <input type="text" class="weui-input" v-model="childLineData.originAddress" disabled> -->
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">送货地址
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <div class="weui-input addreClass">{{childLineData.destinationAddress}}</div>
+                        <!-- <input type="text" class="weui-input" v-model="childLineData.destinationAddress" disabled> -->
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">中转地址</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <textarea class="weui-textarea" v-model="childVia" rows="2" autosize style="font-size:14px" disabled></textarea>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">发货时间
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="childLineData.deliveryTime" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">到货时间
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="childLineData.arrivalTime" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">里程数</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="childMileage" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">货物类别
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="childLineData.goodsTypeName" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">货物名称
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="childLineData.goodsName" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">吨位范围
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="childLineData.tonnageRange" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">货物数量
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="childGoodsNumO" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">货物数量2</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="childGoodsNumT" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">单&nbsp;&nbsp;&nbsp;&nbsp;价</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="receivablePrice" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">总&nbsp;&nbsp;&nbsp;&nbsp;价</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="receivableTotalPrice" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">结算单位
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="childLineData.settle" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">结算方式</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="childLineData.settlementTypeStr" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">是否含税
+                            <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="childLineData.includeTaxStr" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">工程名称</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="childLineData.projectName" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">工程编号</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="childLineData.projectCode" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">工程总量</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="projectMax" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">收货单位</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="childLineData.consigneeCompany" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">收货人</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="childLineData.consignee" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">收货人号码</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="childLineData.consigneePhone" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">发货单号</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" v-model="childLineData.orderNumber" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<show-Home-Button></show-Home-Button>

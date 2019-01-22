@@ -1,0 +1,65 @@
+.operate{
+    position: relative;
+    display: inline-block;
+}
+.menuitem{
+    display: none;
+    position: absolute;
+    left:-95px;
+    top:-10px;
+    width:76px;
+    list-style: none;
+    z-index:1000;
+    border:1px solid #999;
+    border-radius: 5px;
+    background: #fff;
+}
+.operate .menuitemTop{
+    top:-37px;
+}
+.operate .menuitemtop{
+    top:-64px;
+}
+.menuitem li,.menuitem li{
+    border-bottom:1px solid #ddd;
+    padding:3px;
+    text-align: center;
+}
+.menuitem li:hover,.menuitem li:hover{
+    background: #ddd;
+    cursor: pointer;
+}
+
+#orderManage_queryTerm.form-horizontal .form-group{
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
+#orderManage_queryTerm label{
+    font-size: 12px;
+    padding-right: 10px;
+    padding-left: 8px;
+}
+
+#orderManage_queryTerm{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+}
+
+#orderManage_query{
+    background-color: #1890FF;
+    color: #fff!important;
+    margin-right: 20px;
+}
+
+#orderManage_query,
+#orderManage_reset{
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#neworderManage_excel{
+    font-size:14px;
+    margin-top:12px;
+}

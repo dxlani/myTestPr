@@ -1,0 +1,150 @@
+<Wx-Head-Com></Wx-Head-Com>
+<div id="WxOrderManagent">
+    <div id="WxOrderManagentHead" class="weui-cells weui-cells_form  wx-notop wx-fonts wx-fixed">
+            <div class="weui-navbar" id="orderManage_hasHandleList">
+                <div class="weui-navbar__item " @click="hasOrderList()">
+                    <h4>已下单</h4>
+                </div>
+                <div class="weui-navbar__item weui-bar__item--on" @click="hasHandleList()" id="orderManage_hasHandleListCSS">
+                    <h4>已处理</h4>
+                </div>
+            </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fb">编号查询</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" id="orderManage_searchOrderId" name="orderManage_searchOrderId" v-model="searchOrderId" pattern="[0-9]*" type="number" placeholder="请输入订单编号" style="margin-bottom: 5px;">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fb">订单状态</label></div>
+            <div class="weui-cell__bd">
+                <select class="weui-select wx-fb wx-padf" id="orderManage_searchOrderStatus" name="orderManage_searchOrderStatus" v-model="searchOrderStatus">
+                    <option v-for="option in orderStatusList" v-bind:value="option.value">
+                        {{option.text}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fb">发货地址</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" id="orderManage_searchStartAddress" name="orderManage_searchStartAddress" v-model="searchStartAddress" type="text" placeholder="请输入发货地址" style="margin-bottom: 5px;">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fb">送货地址</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" id="orderManage_searchEndAddress" name="orderManage_searchEndAddress" v-model="searchEndAddress" type="text" placeholder="请输入送货地址" style="margin-bottom: 5px;">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <button type="button" id="orderManage_queryOrder" name="orderManage_queryOrder" class="weui-btn weui-btn_primary wx-btnq" @click="queryOrder()"><i class="fa fa-search"></i> 查 询</button>
+            </div>
+        </div>
+    </div>
+    <div class="wx-top-ml">
+        <div class="weui-pull-to-refresh__layer">
+            <div class='weui-pull-to-refresh__arrow'></div>
+            <div class='weui-pull-to-refresh__preloader'></div>
+            <div class="down">下拉刷新</div>
+            <div class="up">释放刷新</div>
+            <div class="refresh">正在刷新</div>
+        </div>
+        <div class="weui-cells weui-cells_form weui-form-preview wx-topJ weui-tab__bd-item" v-for="item in orderManageList">
+            <div class="weui-form-preview__hd wx-lineh" id="orderManage_orderIdcreationTime" name="orderManage_orderIdcreationTime" @click="goOrderdetail(item)">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label wx-fonts">{{item.orderId}}</label>
+                    <span class="weui-form-preview__value wx-fonts">{{item.creationTime}}</span>
+                </div>
+            </div>
+            <div class="weui-form-preview__bd wx-pad0">
+                <div class="weui-form-preview__item wx-arrow" id="orderManage_originCitydestinationCity" name="orderManage_originCitydestinationCity" @click="goOrderdetail(item)">
+                    <h4 class="weui-form-preview__label">{{item.originCity}}{{item.originCounty}}</h4>
+                    <h4 class="weui-form-preview__value">{{item.destinationCity}}{{item.destinationCounty}}</h4>
+                </div>
+                <div class="weui-form-preview__item">
+                     <div class="weui-flex">
+                        <div class="weui-flex__item"  id="orderManage_goodsName" name="orderManage_goodsName" @click="goOrderdetail(item)" style="text-align:left">
+                            <span style="width:109px;display:inline-block;">{{item.goodsName}}</span>
+                        </div>
+                        <div class="weui-flex__item"  id="orderManage_quantityOfGoods" name="orderManage_quantityOfGoods" @click="goOrderdetail(item)">
+                            <span>{{item.quantityOfGoods}}</span>
+                        </div>
+                        <div class="weui-flex__item"  v-show="!(item.statusStr == '派车中'||item.statusStr == '订单终结')">
+                            <a class="open-popup" data-target="#carLocation"  id="orderManage_showLoaction" name="orderManage_showLoaction"  @click="showLoaction(item)">
+                                <img src="./img/location_img@3x.png">
+                            </a>
+                        </div>
+                    </div>
+                    <!--<label class="weui-form-preview__label wx-overtext" @click="goOrderdetail(item)">{{item.goodsName}}</label>
+                    <span class="weui-form-preview__value" @click="goOrderdetail(item)">{{item.quantityOfGoods}}</span>
+                    <a class="open-popup" data-target="#carLocation" @click="showLoaction(item)" style="float:right" v-show="!(item.statusStr == '派车中' || item.statusStr == '订单终结')">
+                        <img src="../../img/location_img@3x.png">
+                    </a>-->
+                </div>
+                <div class="weui-form-preview__item" id="orderManage_carLength" name="orderManage_carLength"  @click="goOrderdetail(item)" style="margin-top:8px;">
+                    <label class="weui-form-preview__label weui-badge-wx bg-info">{{item.carLength}}</label>
+                    <span v-show="(item.statusStr == '派车中' || item.statusStr == '订单终结')" class="weui-form-preview__value weui-badge-wx bg-warning wx-right-a">{{item.statusStr}}</span>
+                    <span v-show="(item.statusStr == '已派车' || item.statusStr == '待发货' || item.statusStr == '已发货' || item.statusStr == '货已送达')" class="weui-form-preview__value weui-badge-wx bg-success wx-right-a">{{item.statusStr}}</span>
+                </div>
+            </div>
+        </div>
+        <!--加载-->
+        <div class="weui-loadmore" v-show="IsLoad">
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips">正在加载...</span>
+        </div>
+        <div class="weui-loadmore" v-show="IsData">
+            <p>暂无数据...</p>
+        </div>
+    </div>
+    
+
+    <!--定位模块-->
+    <div id="carLocation" class="weui-popup__container">
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal" style="background:#fff">
+            <div id="mapContent"></div>
+            <div class="weui-cells weui-cells_form close-popup" @click="showHead()">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">车牌号</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input"  id="orderManage_locationCarCode" name="orderManage_locationCarCode" v-model="locationCarCode" style="margin-bottom: 5px;" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">发货地址</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" id="orderManage_locationOriginAddress" name="orderManage_locationOriginAddress" v-model="locationOriginAddress" style="margin-bottom: 5px;" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">送货地址</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input"  id="orderManage_locationDestinationAddress" name="orderManage_locationDestinationAddress" v-model="locationDestinationAddress" style="margin-bottom: 5px;" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">定位情况</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input"   id="orderManage_locationStatus" name="orderManage_locationStatus" v-model="locationStatus" style="margin-bottom: 5px;" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">定位日期</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" id="orderManage_locationTime" name="orderManage_locationTime" v-model="locationTime" style="margin-bottom: 5px;" disabled>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">位置信息</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input"  id="orderManage_locationArea" name="orderManage_locationArea"  v-model="locationArea" style="margin-bottom: 5px;" disabled>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="weui-btn_default weui-btn weui-btn-a weui-btn-location"  id="orderManage_locationText" name="orderManage_locationText"  @click="location()">{{locationText}}</button>
+        </div>
+    </div>
+</div>

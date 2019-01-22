@@ -1,0 +1,35 @@
+<div id="wxContent">
+  <router-view></router-view>
+</div>
+<div id="wxfooter">
+  <div class="weui-tab">
+    <div class="weui-tabbar">
+      <a href="#!/wechat/onroad" class="weui-tabbar__item  ZT" @click="clear()" id="ZT" onclick="_czc.push(['_trackEvent', '在途', '点击在途', '进入在途页面','','ZT']);">
+        <div class="weui-tabbar__icon zaitu">
+        </div>
+        <p class="weui-tabbar__label">在途</p>
+      </a>
+      <a href="#!/wechat/WxdataAnalysis" class="weui-tabbar__item SJ"  @click="clear()" id="SJ" onclick="_czc.push(['_trackEvent', '数据', '点击数据', '进入数据分析页面','','SJ']);">
+        <div class="weui-tabbar__icon shuju">
+        </div>
+        <p class="weui-tabbar__label">数据</p>
+      </a>
+      <a href="#!/wechat/WxInquiryReleaseManage" class="weui-tabbar__item XJ"   @click="clear()"id="XJ" onclick="_czc.push(['_trackEvent', '询价', '点击询价', '进入询价页','','XJ']);">
+        <div class="weui-tabbar__icon xunjia">
+        </div>
+        <p class="weui-tabbar__label">询价</p>
+      </a>
+      <a href="#!/wechat/Wxorder" class="weui-tabbar__item  DD" id="DD"  @click="clear()" onclick="_czc.push(['_trackEvent', '订单', '点击订单', '进入订单页','','']);">
+        <div class="weui-tabbar__icon dingdan">
+        </div>
+        <p class="weui-tabbar__label">订单</p>
+      </a>
+      <a href="#!/wechat/WxSetting" class="weui-tabbar__item WO" id="WO"  @click="clear()" onclick="_czc.push(['_trackEvent', '我', '点击我', '进入我页面','','WO']);">
+        <div class="weui-tabbar__icon wo">
+        </div>
+        <p class="weui-tabbar__label">我</p>
+      </a>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,99 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">权限管理</h1>
+</div>
+<div class="wrapper-md" id="authorityManage">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            子账户及权限列表
+        </div>
+        <div class="line line-xs pull-in"></div>
+        <div class="table-responsive">
+            <table id="authorityManage_table" class="table table-hover" data-events="actionEvents" style="min-width:1000px;"></table>
+            <pagination-Com :total="Records" v-on:pageIndexChange="onPageIndexChange($event)"></pagination-Com>
+        </div>
+        <div  class="panel-body">   
+            <div class="form-group">
+				<button id="authorityManage_add" name="authorityManage_add" @click="add()" class="btn btn-sm btn-primary btn-addon pull-right-xs">
+                    <i class="glyphicon glyphicon-plus"></i>新增子账户
+                </button>
+			</div>
+        </div>
+    </div>
+    <div id="authorityDetail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-center" id="myModalLabel">查看子账户</h4>
+                </div>
+                <form class="form-horizontal form-validation" name="detailForm" novalidate>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="panel-heading font-bold m-t-n m-b-sm">
+                                基本信息
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">创建时间：</label>
+                                <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0">
+                                    <input name="authorityDetail_createTime" id="authorityDetail_createTime" type="text" class="form-control input-sm" v-model="createTime" :disabled="{disabled:true}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">所属用户组：</label>
+                                <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0">
+                                    <input name="authorityDetail_group" id="authorityDetail_group" type="text" class="form-control input-sm" v-model="group" :disabled="{disabled:true}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">用户名：</label>
+                                <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0">
+                                    <input name="authorityDetail_userName" id="authorityDetail_userName" type="text" class="form-control input-sm" v-model="userName" :disabled="{disabled:true}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">密码：</label>
+                                <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0">
+                                    <input name="authorityDetail_password" id="authorityDetail_password" type="text" class="form-control input-sm" v-model="passWord" :disabled="{disabled:true}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">备注说明：</label>
+                                <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0">
+                                    <textarea name="authorityDetail_remarks" id="authorityDetail_remarks" type="text" class="form-control input-sm" v-model="remarks" :disabled="{disabled:true}" style="resize: none"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="panel-heading font-bold m-t-n m-b-sm">
+                                权限信息
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">web：</label>
+                                <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0">
+                                    <ul style="padding-top: 7px;">
+                                        <li v-if="webList.indexOf('1')!=-1" style="list-style-type: none"><i class="fa fa-check"></i>&nbsp;&nbsp;询价</li>
+                                        <li v-if="webList.indexOf('2')!=-1" style="list-style-type: none"><i class="fa fa-check"></i>&nbsp;&nbsp;发货</li>
+                                        <li v-if="webList.indexOf('3')!=-1" style="list-style-type: none"><i class="fa fa-check"></i>&nbsp;&nbsp;财务对账</li>
+                                        <li v-if="webList.indexOf('4')!=-1" style="list-style-type: none"><i class="fa fa-check"></i>&nbsp;&nbsp;数据分析</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">微信：</label>
+                                <div class="pull-left  form-group form-inline  col-lg-8 col-md-8 col-sm-8 p-r-0 p-r-0">
+                                    <ul style="padding-top: 7px;">
+                                        <li v-if="wxList.indexOf('1')!=-1" style="list-style-type: none"><i class="fa fa-check"></i>&nbsp;&nbsp;在途</li>
+                                        <li v-if="wxList.indexOf('2')!=-1" style="list-style-type: none"><i class="fa fa-check"></i>&nbsp;&nbsp;数据</li>
+                                        <li v-if="wxList.indexOf('3')!=-1" style="list-style-type: none"><i class="fa fa-check"></i>&nbsp;&nbsp;询价</li>
+                                        <li v-if="wxList.indexOf('4')!=-1" style="list-style-type: none"><i class="fa fa-check"></i>&nbsp;&nbsp;订单</li>
+                                        <li v-if="wxList.indexOf('5')!=-1" style="list-style-type: none"><i class="fa fa-check"></i>&nbsp;&nbsp;我</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,119 @@
+ <div id="onroad" v-show="showTemp">
+    <div class="weui-flex " >
+        <div class="weui-flex__item link getid" @click="allStatus()">
+            <a href="javascript:;" onclick="_czc.push(['_trackEvent', '在途-全部', '点击在途-全部', '','','']);">全部</a>
+        </div>
+        <div class="weui-flex__item link " @click="waitDelive()">
+            <a href="javascript:;" onclick="_czc.push(['_trackEvent', '在途-待发货', '点击在途-待发货', '','','']);">待发货</a>
+        </div>
+        <div class="weui-flex__item link " @click="hasDelive()">
+            <a href="javascript:;" onclick="_czc.push(['_trackEvent', '在途-已发货', '点击在途-已发货', '','','']);">已发货</a>
+        </div>
+        <div class="weui-flex__item link " @click="hasResive()">
+            <a href="javascript:;" onclick="_czc.push(['_trackEvent', '在途-已送达', '点击在途-已送达', '','','']);">已送达</a>
+        </div>
+        <div class="search" onclick="_czc.push(['_trackEvent', '在途-搜索', '点击在途-搜索', '','','']);">
+            <img src="../../img/search.png" alt="">
+        </div>
+        <div class="bottomline"></div>
+    </div>
+    <div class="bd_content tab-pane fade in active " v-show="notnull">
+        <div class="weui-pull-to-refresh__layer">
+            <div class="circle-wrap">
+                <div class="circle"></div>
+            </div>
+            <div class="status">
+                <div class="down">下拉刷新</div>
+                <div class="up">释放刷新</div>
+                <div class="refresh">正在刷新</div>
+            </div>
+        </div>
+        <div class="orderList" v-for="order in orderlist">
+            <a :href="'#!/WxonroadDetail?orderid='+order.orderId+'&id='+order.id"  onclick="_czc.push(['_trackEvent', '在途-在途列表', '点击在途订单列表', '','','']);">
+                <div class="orderStatus clearfloat">
+                    <div class="statusimg lf daifa" v-if="order.status=='待发货'"></div>
+                    <div class="statusimg lf yifa" v-if="order.status=='已发货'"></div>
+                    <div class="statusimg lf yisong" v-if="order.status=='货已送达'"></div>
+                    <div class="orderid lf  ">
+                        <p style="margin:10px 0;">订单：{{order.orderId}}</p>
+                        <div style="padding:0 3px">
+                            <div class="progress">
+                                <div class="circle1"></div>
+                                <div class="circle2"></div>
+                                <div class="progress-bar" :style="'width:0%; background-color:#2DA1F4;'" v-if="order.status=='待发货'">
+                                    <div class="point"></div>
+                                </div>
+                                <div class="progress-bar" :style="'width:50%;;background-color:#2DA1F4;'" v-if="order.status=='已发货'">
+                                    <div class="point"></div>
+                                </div>
+                                <div class="progress-bar" :style="'width:100%; background-color:#2DA1F4;'"v-if="order.status=='货已送达'">
+                                    <div class="point"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="part2">
+                    <div class="orderaddress clearfloat">
+                        <div class="lf maxWidth">
+                            <h4>{{order.originAddress}}</h4>
+                        </div>
+                        <div class="rightarrow lf ">
+                            <img src="../../img/route_img@3x.png" alt="">
+                        </div>
+                        <div class="lf maxWidth">
+                            <h4>{{order.destinationAddress}}</h4>
+                        </div>
+                    </div>
+                    <p style="margin:0">{{order.creationTime}}</p>
+                    <div class="market clearfloat">
+                        <div class="goods lf bg_blue">{{order.goodsName}}</div>
+                        <div class="count lf bg_red">{{order.quantityOfGoods }}</div>
+                        <div class="count rt bg_blue">{{order.status}}</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="weui-loadmore">
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips">正在加载...</span>
+        </div>
+    </div>
+    <div class="noOrder" v-show="!notnull">
+        <div class="pic"></div>
+        <div class="msg" style="color:#999">
+            <h5>暂无在途订单</h5>
+        </div>
+    </div>
+</div> 
+<div  class="noAuth" v-show="!showTemp">
+    <div class="authImg"></div>
+    <div class="message" >
+        <h4>您没有当前页面的查看权限</h4>
+        <h4>如需查看，请向管理员申请相应权限</h4>
+    </div>
+</div>
+<!-- 搜索模态框  -->
+
+<div class="searchModal ">
+    <div class="searchPop">
+        <div class="orderID border">
+            <label for="orderID">订单编号</label>
+            <input type="text" id="orderID" placeholder="请输入订单编号" v-model="orderID">
+        </div>
+        <div class="deliveAddress border">
+            <label for="deliveAddress">发货地址</label>
+            <input type="text" id="deliveAddress" placeholder="请输入发货地址" v-model="startAddress">
+        </div>
+        <div class="accpetAddress border">
+            <label for="accpetAddress">收货地址</label>
+            <input type="text" id="accpetAddress" placeholder="请输入收货地址" v-model="endAddress">
+        </div>
+        <div class="btnGroup">
+            <button class="btn btn-lg btn-default btnStyle" @click="reset()">重置</button>
+            <button class="btn btn-lg btn-info btnStyle" @click="searchOrder()">搜索</button>
+        </div>
+    </div>
+</div>
+</div>

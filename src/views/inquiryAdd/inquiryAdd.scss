@@ -1,0 +1,24 @@
+
+
+
+@media(min-width:1200px){
+   
+}
+
+#inquiryAdd_popupProvince,#inquiryAdd_popupCity,#inquiryAdd_receiveProvince,#inquiryAdd_receiveCity{
+    width: 100%
+}
+.p-r-0{
+    padding-right: 0px;
+}
+
+#inquiryAdd_popupCounty,#inquiryAdd_receiveCounty{
+    width: 128%;
+}
+
+@media(max-width:992px){
+    #inquiryAdd_popupCounty,#inquiryAdd_receiveCounty{
+        width: 140%;
+    }
+ 
+}

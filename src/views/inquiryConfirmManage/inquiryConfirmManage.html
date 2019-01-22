@@ -1,0 +1,80 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">询价已确认管理</h1>
+</div>
+<div class="wrapper-md" id="inquiryConfirmManage">
+    <div class="panel panel-default">
+        <div class="panel-heading font-bold">查询</div>
+        <div class="form-horizontal panel-body">
+            <label class="control-label pull-left ls-p-r-15 ls-p-r-15 col-lg-1 col-ls-2 col-md-2 col-sm-3">询价起始时间</label>
+            <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group date has-feedback">
+                <input id="inquiryConfirmManage_startTime" name="startTime" v-model="queryParam.startTime" placeholder="询价起始时间" class="form-control" type="text" />
+                <span id="openStartTime" class="form-control-feedback curpoint">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="control-label pull-left ls-p-r-15 col-lg-1 col-ls-2 col-md-2 col-sm-3">询价结束时间</label>
+            <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group date has-feedback">
+                <input id="inquiryConfirmManage_endTime" name="endTime" v-model="queryParam.endTime" placeholder="询价结束时间" class="form-control" type="text" />
+                <span id="openEndTime" class="form-control-feedback curpoint">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <div class="line  pull-in show-ls"></div>
+            <label class="control-label pull-left ls-p-r-15 col-lg-1 col-ls-2 col-md-2 col-sm-3">发货地址</label>
+            <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                <input id="inquiryConfirmManage_startAddress" name="startAddress" type="text" class="form-control" v-model="queryParam.startAddress" placeholder="发货地址">
+            </div>
+            <label class="control-label pull-left ls-p-r-15 col-lg-1 col-ls-2 col-md-2 col-sm-3">送货地址</label>
+            <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                <input id="inquiryConfirmManage_endAddress" name="endAddress" type="text" class="form-control" v-model="queryParam.endAddress" placeholder="送货地址">
+            </div>
+            <div class="line line-xs pull-in"></div>
+            <label class="control-label pull-left ls-p-r-15 col-lg-1 col-ls-2 col-md-2 col-sm-3">总询价编号</label>
+            <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                <input type="text" class="form-control" id="inquiryConfirmManage_inquiryId" name="inquiryId" v-model="queryParam.inquiryId" placeholder="总询价编号">
+            </div>
+            <label class="control-label pull-left ls-p-r-15 col-lg-1 col-ls-2 col-md-2 col-sm-3">子询价编号</label>
+            <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                <input type="text" class="form-control" id="inquiryConfirmManage_inquiryChildId" name="inquiryChildId" v-model="queryParam.inquiryChildId" placeholder="子询价编号">
+            </div>
+            <div class="line  pull-in show-ls"></div>
+            <label class="control-label pull-left  ls-p-r-15 col-lg-1 col-ls-2 col-md-2 col-sm-3">询价状态</label>
+            <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                <select id="inquiryConfirmManage_inquiryState" name="inquiryState" v-model="queryParam.inquiryState" class="form-control input-sm">
+                    <option v-for="option in statusList" v-bind:value="option.value">
+                        {{ option.text }}
+                    </option>
+                </select>
+            </div>
+            <label class="control-label pull-left  ls-p-r-15 col-lg-1 col-ls-2 col-md-2 col-sm-3"></label>
+            <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                <button id="inquiryConfirmManage_query" name="inquiryConfirmManage_query" @click="query()" class="btn btn-sm btn-default btn-addon">
+                        <i class="glyphicon glyphicon-search" v-show="!seeks"></i>
+                        <i v-show="seeks">
+                            <b class="fa fa-spinner no-bordr"  v-bind:class="{'fa-spin':seeks}"></b>
+                        </i>
+                        <span v-show="!seeks">查询</span>
+                        <span v-show="seeks">查询中...</span>
+                    </button>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            已确认询价单管理列表
+        </div>
+        <div class="line line-xs pull-in"></div>
+        <div class="table-responsive">
+            <table id="inquiryConfirmManage_table" class="table table-hover" data-events="actionEvents" style="min-width:1000px;"></table>
+            <pagination-Com :total="Records" v-on:pageIndexChange="onPageIndexChange($event)"></pagination-Com>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <button id="inquiryConfirmManage_toInquiryAdd" type="button" @click="LinckToInquiryAdd()" class="pull-right-xs btn btn-sm btn-primary btn-addon"><i class="glyphicon glyphicon-list-alt"></i>询价单新增</button>
+            </div>
+        </div>
+    </div>
+
+</div>

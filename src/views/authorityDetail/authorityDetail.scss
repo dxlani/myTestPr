@@ -1,0 +1,11 @@
+.authorityDetail_webCheck, 
+.authorityDetail_webCheck li,
+.authorityDetail_wxCheck,
+.authorityDetail_wxCheck li{
+    float: left;
+}
+.authorityDetail_webCheck li,
+.authorityDetail_wxCheck li{
+    margin-right: 50px;
+    list-style-type:none;
+}

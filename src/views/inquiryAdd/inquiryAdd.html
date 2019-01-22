@@ -1,0 +1,388 @@
+<div id="inquiryAdd">
+    <div class="bg-light lter b-b wrapper-sm">
+        <h1 class="lg-m-n font-thin h4">{{titleInquiry}}</h1>
+    </div>
+    <div class="wrapper-sm">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <validator name="validation">
+                    <form id="inquiryAddForm" class="form-validation form-horizontal novalidate">
+                        <fieldset id="fieldsetDisabled">
+                            <div class="form-group row">
+                                <div class="panel-heading font-bold m-t-n m-b-sm">
+                                    基本信息
+                                </div>
+                                <div class="blockInfo">
+                                    <label class=" col-ls-150 col-lg-081  col-md-140  col-sm-3 pull-left lg-pull-right ">子询价单编号:</label>
+                                    <label class="col-lg-2 col-md-8  col-sm-8 ">{{inquiryChildCode}}</label>
+                                    <div class="line  pull-in hidden-lg"></div>
+                                    <label class=" col-ls-150 col-lg-081 col-md-140  col-sm-2 pull-left lg-pull-right ">询价时间
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <label class="col-lg-2 col-ls-4 col-md-9 col-sm-9 text-left ">{{inquiryTime}}</label>
+                                    <div class="line  pull-in hidden-lg"></div>
+                                    <div class="line  pull-in show-ls"></div>
+                                    <label class=" col-ls-150 col-lg-081 col-md-140  col-sm-2 pull-left lg-pull-right ">紧急程度
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-1 col-ls-2 col-md-3 col-sm-3 pull-left lg-pull-right  ">
+                                        <input id="inquiryAdd_urgency" name="urgency" class="form-control input-sm " v-model="urgency" placeholder="请填写紧急程度" type="number"
+                                            v-validate:urgency="{required: true, pattern:'/^[0-9]*[1-9][0-9]*$/'}">
+                                    </div>
+                                    <div class="col-ls-2 col-lg-1   col-md-3 col-sm-3 p-l-0">
+                                        <select id="inquiryAdd_urgencyUnit" name="urgencyUnit" v-model="urgencyUnit" class="form-control input-sm" v-validate:urgencyUnit="['required']">
+                                            <option value="" selected>请选择</option>
+                                            <option v-for="option in urgencyUnitDropDown" v-bind:value="option.value">
+                                                {{ option.text }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <label class="col-lg-081 col-md-3 col-sm-3 text-left m-l-xs">内回复</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="blockInfo">
+                                    <label class=" col-ls-150 col-lg-081 col-md-140 col-sm-2 pull-left lg-pull-right ">客户单位
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <label class="col-lg-2 col-ls-4 col-md-9 col-sm-9 text-left">{{customerUnit}}</label>
+                                    <div class="line  pull-in hidden-lg"></div>
+                                    <div class="line pull-in show-ls"></div>
+                                    <label class="col-ls-150 col-lg-081 col-md-140 col-sm-2  pull-left lg-pull-right ">发货计划人
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-2 col-md-10 col-sm-10">
+                                        <!--<input type="text" class="form-control input-sm" v-model="consignor" placeholder="请填写发货计划人" v-validate:consignor="['required']" name="consignorPhone">-->
+                                        <select id="inquiryAdd_consignor" name="consignor" class="form-control input-sm" v-model="consignor" v-validate:consignor="['required']"
+                                            @change="changeConsignor()">
+                                            <option value="" selected>请选择</option>
+                                            <option v-for="option in consignorDropDown" v-bind:value="option.realName">
+                                                {{ option.realName }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="line  pull-in hidden-lg"></div>
+                                    <label class="col-ls-150 col-lg-081 col-md-140 col-sm-2  pull-left lg-pull-right ">发货人电话
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-2 col-md-10 col-sm-10">
+                                        <input id="inquiryAdd_consignorPhone" name="consignorPhone" type="text" class="form-control input-sm" v-model="consignorPhone"
+                                            placeholder="请填写发货人电话" required name="consignorPhone" disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="blockInfo">
+
+                                    <label class=" col-ls-150 col-lg-081 col-md-140 col-sm-2 pull-left lg-pull-right ">总询价内容 :</label>
+                                    <div class="col-lg-10 col-md-10 col-sm-10 pull-left lg-pull-right ">
+                                        <textarea id="inquiryAdd_content" class="form-control " v-model="content" placeholder="请填写总询价内容" name="content"></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="panel-heading font-bold m-b-sm">
+                                    线路信息
+                                </div>
+                                <div class="blockInfo">
+                                    <label class="col-ls-150 col-lg-081 col-md-140 col-sm-2 pull-left lg-pull-right ">发货地址
+                                        <span class="text-danger">*</span>
+                                    </label>
+
+                                    <div class="pull-left lg-pull-right form-group form-inline col-ls-6 col-lg-4 col-md-10 col-sm-10" required="true">
+                                        <div class="form-group m-n  col-md-4 col-sm-4 col-lg-4 col-md-4 ">
+                                            <select id="inquiryAdd_popupProvince" class="form-control required input-sm" name="popupProvince" @change="changeStarProvince()"
+                                                v-model="starProvince" v-validate:starProvince="['required']">
+                                                <option value="" selected>请选择</option>
+                                                <option v-for="option in starProvinceList" v-bind:value="option.value">{{ option.text }}</option>
+                                            </select>
+                                        </div>
+                                        <div class=" form-group col-md-4 col-sm-4 col-lg-4 m-l-n-sm">
+                                            <select id="inquiryAdd_popupCity" class="form-control required input-sm" name="popupCity" v-model="starCity" @change="changeCity()"
+                                                v-validate:starCity="{ required:true }">
+                                                <option value="" selected>请选择</option>
+                                                <option v-for="option in starCityList" v-bind:value="option.value">{{ option.text }}</option>
+                                                
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group m-n col-md-4 col-sm-4 col-lg-4 ">
+                                            <select id="inquiryAdd_popupCounty" class="form-control required input-sm" name="popupCounty" v-model="starAreaCity" v-validate:starAreaCity="['required']" @change="getDistance()">
+                                                <option value="" selected>请选择</option>
+                                                <option v-for="option in starAreaList" v-bind:value="option.value">{{ option.text }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <label class="col-md-140 col-sm-2 pull-left lg-pull-right hidden-lg ">
+                                        <span class="text-danger"></span>
+                                    </label>
+                                    <div class="col-lg-4  col-md-10 col-sm-10 ">
+                                        <input id="inquiryAdd_startAddress" name="startAddress" type="text" class="form-control input-sm" v-model="startAddress"
+                                            placeholder="请填写详细地址" v-validate:startAddress="['required']">
+                                    </div>
+                                    <div class="line  pull-in lg-m-tb-0"></div>
+                                    <label class="col-ls-150 col-lg-081 col-md-140 col-sm-2 pull-left lg-pull-right">送货地址
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="pull-left lg-pull-right form-group form-inline col-ls-6 col-lg-4 col-md-10 col-sm-10" required="true">
+                                        <div class="form-group  m-n col-md-4 col-sm-4 col-lg-4">
+                                            <select id="inquiryAdd_receiveProvince" class="form-control required input-sm" name="receiveProvince" @change="changeEndProvince()"
+                                                v-model="endProvince" v-validate:endProvince="['required']">
+                                                <option value="" selected>请选择</option>
+                                                <option v-for="option in endProvinceList" v-bind:value="option.value">{{ option.text }}</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group  col-md-4 col-sm-4 col-lg-4 m-l-n-sm">
+                                            <select id="inquiryAdd_receiveCity" class="form-control required input-sm" name="receiveCity" v-model="endCity" @change="changeEndCity()"
+                                                v-validate:endCity="['required']">
+                                                <option value="" selected>请选择</option>
+                                                <option v-for="option in endCityList" v-bind:value="option.value">{{ option.text }}</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group m-n col-md-4 col-sm-4 col-lg-4">
+                                            <select id="inquiryAdd_receiveCounty" class="form-control required input-sm" name="receiveCounty" v-model="endArea" v-validate:endArea="['required']" @change="getDistance()">
+                                                <option value="" selected>请选择</option>
+                                                <option v-for="option in endAreaList" v-bind:value="option.value">{{ option.text }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <label class="col-md-140 col-sm-2 pull-left lg-pull-right hidden-lg ">
+                                        <span class="text-danger"></span>
+                                    </label>
+                                    <div class="col-lg-4  col-md-10 col-sm-10">
+                                        <input id="inquiryAdd_endAddress" name="endAddress" type="text" class="form-control input-sm" v-model="endAddress" placeholder="请填写详细地址"
+                                            v-validate:endAddress="['required']">
+                                    </div>
+                                    <div class="line  pull-in lg-m-tb-0"></div>
+                                    <div class="form-group col-lg-12">
+                                        <label class="col-ls-150 ls-p-r-0 col-lg-081 col-md-140 col-sm-200 pull-left lg-pull-right ">预计发货时间
+                                            <span class="text-danger">*</span>
+                                        </label>
+
+                                        <div class="pull-left lg-pull-right form-group  m-n  col-lg-3 col-md-10 col-sm-10 date has-feedback input-group-sm">
+                                            <input id="inquiryAdd_plannedArrivalTime" name="plannedArrivalTime" datetimepicker plugintype="datetime" v-model="plannedArrivalTime"
+                                                placeholder="预计发货时间" class="form-control required" type="text" v-validate:plannedArrivalTime="['required']"
+                                            />
+                                            <span id="opendataTime" class="form-control-feedback curpoint">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        <div class="line  pull-in hidden-lg"></div>
+                                        <label class="col-ls-150 ls-p-r-0 col-lg-081 col-md-140 col-sm-200 pull-left lg-pull-right lg-m-l-n-sm">预计到货时间
+                                            <span class="text-danger">*</span>
+                                        </label>
+
+                                        <div class="pull-left lg-pull-right form-group  col-lg-3 col-md-10 col-sm-10 m-n date has-feedback input-group-sm">
+                                            <input id="inquiryAdd_plannedDeliveryTime" name="plannedDeliveryTime" datetimepicker plugintype="datetime" v-model="plannedDeliveryTime"
+                                                placeholder="预计到货时间" class="form-control required" type="text" v-validate:plannedDeliveryTime="['required']"
+                                            />
+                                            <span id="opendataTimeEnd" class="form-control-feedback curpoint">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-12">
+                                        <label class="col-ls-150 ls-p-r-0 col-lg-081 col-md-140 col-sm-200 pull-left lg-pull-right ">里程数
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-2 col-md-8 col-sm-8 lg-m-n">
+                                            <input type="text" id="releaseAdd_mileage" name="releaseAdd_mileage" class="form-control input-sm" v-model="mileage" placeholder="请填写里程数"
+                                                v-validate:mileage="{ required: true ,pattern:'/^[1-9]*[1-9][0-9]*$/'}" >
+                                        </div>
+                                        <label class="">公里</label>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                            <!--货物信息-->
+                            <div class="form-group">
+                                <div class="panel-heading font-bold m-b-sm">
+                                    货物信息
+                                </div>
+                                <div class="blockInfo">
+                                    <label class="col-ls-150 col-lg-081 pull-left lg-pull-right lg-pull-right col-md-140 col-sm-2">货物类别
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-2 col-md-10 col-sm-10 lg-m-n">
+                                        <select id="inquiryAdd_goodsTypeName" class="form-control input-sm" v-model="goodsTypeId" name="goodsTypeName" @change="goodsTypeSelect()"
+                                            v-validate:goodsTypeId="['required']">
+                                            <option value="" selected>请选择</option>
+                                            <option v-for="option in goodsTypeDropDown" v-bind:value="option.id">
+                                                {{ option.name }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="line  pull-in hidden-lg"></div>
+                                    <div class="line pull-in show-ls"></div>
+                                    <label class="w-s pull-left lg-pull-right lg-pull-right col-ls-150 col-lg-081 col-md-140 col-sm-2">货物名称
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <autocomplete-Com v-ref:goodsName :name="goodsName" :list="goodsNameDropDown" eventname="eventName1"></autocomplete-Com>
+                                    <!-- <div class="col-lg-2 col-md-10 col-sm-10">
+                                        <input id="inquiryAdd_goodsName" name="goodsName" type="search" class="form-control input-sm" v-model="goodsName" placeholder="请输入货物名称" v-on:click="searchGoodsName()" v-validate:goodsName="['required']">
+                                    </div> -->
+
+                                    <div class="line  pull-in hidden-lg"></div>
+                                    <div class="line pull-in show-ls"></div>
+                                    <label class="w-s col-ls-150 col-lg-081 pull-left lg-pull-right col-md-140 col-sm-2">货物数量
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="form-group  m-n col-md-3 col-sm-3 col-lg-2">
+                                        <!--ng-pattern="/^[0-9]+(\.[0-9]{1,4})?$/"-->
+                                        <input id="inquiryAdd_goodsQuantity" name="goodsQuantity" type="text" class="form-control input-sm" v-model="goodsQuantity"
+                                            placeholder="请填写货物数量" v-validate:goodsQuantity="{required: true, pattern:'/^[0-9]+(\.[0-9]{1,4})?$/'}">
+                                    </div>
+                                    <div class="form-group   col-md-3 col-sm-3 col-lg-2 m-l-n-sm ">
+                                        <select class="form-control input-sm" id="inquiryAdd_goodsQuantityUnit" v-model="goodsQuantityUnit" name="goodsQuantityUnit"
+                                            v-validate:goodsQuantityUnit="['required']">
+                                            <option value="" selected>请选择</option>
+                                            <option v-for="option in goodsQuantityUnitDropDown" v-bind:value="option.value">
+                                                {{ option.text }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--车辆信息-->
+                            <div class="form-group">
+                                <div class="panel-heading font-bold m-b-sm">
+                                    所需车辆信息
+                                </div>
+                                <div class="blockInfo">
+                                    <label class="col-ls-150 col-lg-081 col-md-140 col-sm-2 pull-left lg-pull-right ">所需车型
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <select id="inquiryAdd_carType" class="form-control input-sm" v-model="carType" name="carType" v-validate:carType="['required']">
+                                            <option value="" selected>请选择</option>
+                                            <option v-for="option in carTypeDropDown" v-bind:value="option.value">
+                                                {{ option.text }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="line  pull-in hidden-lg"></div>
+                                    <label class="col-ls-150 col-lg-081 col-md-140 col-sm-2 w-s pull-left lg-pull-right ">所需车长
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <select id="inquiryAdd_carLength" class="form-control input-sm" v-model="carLength" name="carLength" v-validate:carLength="['required']">
+                                            <option value="" selected>请选择</option>
+                                            <option v-for="option in carLengthDropDown" v-bind:value="option.value">
+                                                {{ option.text }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="line  pull-in "></div>
+                                    <label class="col-ls-150 col-lg-081 col-md-140 col-sm-2 w-s pull-left lg-pull-right ">承运方式
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <select id="inquiryAdd_carrierCategory" class="form-control input-sm" v-model="carrierCategory" name="carrierCategory" v-validate:carrierCategory="['required']">
+                                            <option value="" selected>请选择</option>
+                                            <option v-for="option in carrierCategoryDropDown" v-bind:value="option.value">
+                                                {{ option.text }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="line  pull-in hidden-lg"></div>
+                                    <label class="col-ls-150 col-lg-081 col-md-140 col-sm-2 w-s pull-left lg-pull-right ">装车效果</label>
+                                    <div class="col-lg-2 col-md-10 col-sm-10">
+                                        <input id="inquiryAdd_loadingEffect" name="loadingEffect" type="text" class="form-control input-sm" v-model="loadingEffect"
+                                            placeholder="请填写装车效果">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                        <!--附件信息-->
+                        <div class="form-group">
+                            <div class="panel-heading font-bold m-b-sm" id="testr">
+                                附件信息
+                            </div>
+                            <div class="col-md-4 m-l-xs" v-if="!(titleInquiry=='询价单详情')">
+                                <label class="pull-left lg-pull-right m-l m-r">附件上传</label>
+                                <div class=" form-group">
+                                    <input type="file" id="upLoader" name="upLoader" class="file_hidden" @change="onFileChange" accept="image/gif,image/jpeg,image/jpg,image/png,image/bmp"
+                                        multiple style="visibility: hidden;">
+                                    <button id="inquiryAdd_loaderSelect" name="loaderSelect" type="button" onclick="upLoader.click()" class="btn m-b-xs btn-sm btn-default btn-addon ">
+                                        <i class="glyphicon glyphicon-folder-open"></i>
+                                        <span>选择图片</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="wrapper-sm">
+                                <div class="line  pull-in"></div>
+                                <div class="wrapper-sm bg-light dk b-b m-b-xs hidden">
+                                    <span class="">上传文件数:
+                                        <b class="badge bg-info">{{}}</b>
+                                    </span>
+                                </div>
+                                <div class="table-responsive table-cel-k">
+                                    <v-client-table class="editTables" :data="imageLists" :columns="imageColumns" :options="imageOptions" style="overflow:hidden; min-width:1000px;"></v-client-table>
+                                </div>
+
+                            </div>
+                        </div>
+                        <fieldset id="fieldsetDisabledTwo">
+                            <div class="form-group">
+                                <div class="blockInfo">
+                                    <label class="col-ls-150 col-lg-081 col-md-140 col-sm-2 w-s pull-left lg-pull-right">备注</label>
+                                    <div class="col-lg-11 col-ls-10  col-md-10 col-sm-10 ">
+                                        <textarea id="inquiryAdd_attachmentDetails" class="form-control" v-model="attachmentDetails" placeholder="请填写备注" name="attachmentDetails"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" v-if="!(titleInquiry=='询价单详情'||titleInquiry=='编辑询价单')">
+                                <label class="col-ls-150 col-lg-081 pull-left lg-pull-right control-label"></label>
+                                <div class="col-lg-2">
+                                    <!--ng-disabled="!inquiryForms.$valid"-->
+                                    <button id="inquiryAdd_addChild" type="button" class="btn btn-sm btn-info btn-addon" v-bind:class="{'disabled' : !$validation.valid}"
+                                        @click="addInquiryChild($validation.valid)">
+                                        <i class="glyphicon glyphicon-plus"></i>新增
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-group" v-if="!(titleInquiry=='询价单详情'||titleInquiry=='编辑询价单')">
+                                <div class="panel-heading font-bold m-b-sm">
+                                    子询价单列表
+                                </div>
+                                <div class="wrapper-sm">
+                                    <div class="table-responsive table-cel-k">
+                                        <v-client-table class="editTables" :data="tableData" :columns="columns" :options="options" style=" overflow:scroll;min-width:1000px;"></v-client-table>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="form-group">
+                            <div class="col-lg-5" v-if="titleInquiry=='询价单详情'&&inquiryStatus=='待接单'">
+                                <button id="inquiryAdd_inquiryEdit" name="inquiryEdit" type="button" class="pull-right-xs btn btn-sm btn-success btn-addon" @click="editInquiry()">
+                                    <i class='glyphicon glyphicon-edit'></i>编辑
+                                </button>
+                                <button id="inquiryAdd_inquiryEdit" name="inquiryEdit" type="button" class="pull-right-xs btn btn-sm btn-primary btn-addon" @click="endInquiry()">
+                                    <i class='glyphicon glyphicon-minus-sign'></i>终结
+                                </button>
+                                <button id="inquiryAdd_inquiryEdit" name="inquiryEdit" type="button" class="pull-right-xs btn btn-sm btn-danger btn-addon" @click="deleteInquiry()">
+                                    <i class='glyphicon glyphicon-trash'></i>删除
+                                </button>
+                                <a id="inquiryAdd_cancel" name="cancel" type="button" href='#!/app/inquiry/inquiryReleaseManage' class="pull-right-xs btn btn-sm btn-info btn-addon ">
+                                    <i class="glyphicon glyphicon-arrow-left"></i>返回
+                                </a>
+                            </div>
+                            <div class="col-lg-5">
+                                <button id="inquiryAdd_inquirySave" name="inquirySave" type="button" class="pull-right-xs btn btn-sm btn-primary btn-addon"
+                                v-if="titleInquiry=='询价单新增'" v-bind:class="{'disabled' : tableData.length<=0}" @click="inquirySave(tableData.length>0)" style="margin-right:10px;">
+                                    <i class="glyphicon glyphicon-ok"></i>询价发布
+                                </button>
+                                <button  v-if="titleInquiry=='询价单新增'||(titleInquiry=='询价单详情'&& inquiryStatus!='待接单')" id="inquiryAdd_cancel" name="cancel" type="button" class="pull-right-xs btn btn-sm btn-info btn-addon" @click="cancel()">
+                                    <i class="glyphicon glyphicon-arrow-left"></i>返回
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </validator>
+            </div>
+        </div>
+    </div>
+</div>

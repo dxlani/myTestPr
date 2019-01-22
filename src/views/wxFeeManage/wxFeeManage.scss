@@ -1,0 +1,125 @@
+#wxfeeManage .blue_bc{
+    background-color: #2da1f4;
+    color: #fff;
+    height: 155px;
+    z-index: 500;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+#wxfeeManage .feeDetail{
+    text-align: center;
+    position: fixed;
+    height: 60px;
+    top: 155px;
+    z-index: 500;
+    width: 100%;
+    background-color: #fff;
+}
+
+#wxfeeManage .weui-flex .weui-select{
+    height: 35px;
+    line-height: 35px;
+}
+
+#wxfeeManage .selectDown{
+    color: #fff;
+    position: absolute;
+    left: 90%;
+    line-height: 30px;
+    font-size: 12px;
+}
+
+#wxfeeManage .accountBalance{
+    text-align: center;
+}
+
+#wxfeeManage .accountBalance_text{
+    font-size: 15px;
+}
+
+#wxfeeManage .accountBalance_number{
+    font-size: 50px;
+}
+#wxfeeManage .feeDetail .feeSum{
+    color: #2DA1F4 ;
+    font-size: 20px;
+    line-height: 20px;
+    margin: 10px 0 5px;
+}
+#wxfeeManage .feeDetail .feeSum_text{
+    font-size: 12px;
+}
+#wxfeeManage .feeListTitle{
+    font-size: 14px;
+    background-color: #f0f0f0;
+    padding: 5px 13px;
+    position: fixed;
+    top: 210px;
+    z-index: 500;
+    width: 100%;
+}
+#wxfeeManage .feeList{
+    top: 195px;
+    width: 100%;
+}
+#wxfeeManage .noFeeList{
+    top: 280px;
+    width: 100%;
+    position: relative;
+}
+#wxfeeManage #wxFeeList{
+    padding-top: 50px;
+    // height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    position: relative
+}
+#wxfeeManage .feeManageList{
+    background-color: #fff;
+    margin-top: 5px;
+    padding: 8px 13px;
+}
+#wxfeeManage .listLeft{
+    width: 60%;
+    float: left;
+}
+#wxfeeManage .listLeft .bg_red{
+    background:#EB595A;
+    font-size: 11px;
+    margin-left:0;
+    margin-top: 2px;
+}
+#wxfeeManage .listLeft .bg_blue{
+    background:#2da1f4;
+    font-size: 11px;
+    margin-top: 2px;
+}
+#wxfeeManage .listRight{
+    width: 40%;
+    float: right;
+    text-align: right;
+}
+
+#wxfeeManage .feeManage_feeType{
+    font-size: 16px;
+    color: #333;
+    line-height: 24px;
+    font-weight: 700;
+    margin-left: 5px;
+}
+#wxfeeManage .feeManage_remark{
+    float: left;
+    line-height: 20px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+#wxfeeManage .feeTime{
+    float: left;
+    font-size: 14px;
+    color: #999;
+    margin: 0;
+}
+
+

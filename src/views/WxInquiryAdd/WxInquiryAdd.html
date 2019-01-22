@@ -1,0 +1,257 @@
+<validator name="validation">
+    <form id="wxInquiryAdd" class="form-validation form-horizontal novalidate wx-fonts">
+        <!-- <div class="WxInquiryAddTitle">
+            <h3 class=""><strong>询价发布</strong></h3>
+        </div> -->
+        <div class="weui-cells weui-cells_form wx-notop">
+            <div class="weui-cell weui-cells_form">
+                <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">紧急程度<span class="weui-cell_warn">*</span></label></div>
+                <div class="weui-cell__bd">
+                    <input id="wxInquiryAdd_urgency" name="urgency" v-model="urgency" class="weui-input required" type="number" v-validate:urgency="{required: true, pattern:'/^[0-9]*[1-9][0-9]*$/'}" placeholder="请填写紧急程度">
+                </div>
+                <div class="weui-cell__ft">
+                    <select id="wxInquiryAdd_urgencyUnit" name="urgencyUnit" v-model="urgencyUnit" class="weui-select weui-left-a required" v-validate:urgencyUnit="['required']">
+						<option value="" selected>请选择</option>
+			            <option v-for="option in urgencyUnitDropDown" v-bind:value="option.value">
+						    {{ option.text }}
+						</option>
+					</select>
+                </div>
+                <!-- <div class="weui-cell__ft">
+                    <span class="weui-left-a">内回复</span>
+                </div> -->
+            </div>
+            <div class="weui-cell weui-cells_form">
+                <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">发货计划人<span class="weui-cell_warn">*</span></label></div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select weui-left-a required" id="wxInquiryAdd_consignor" name="consignor" v-model="consignor" v-validate:consignor="['required']" @change="changeConsignor()">
+                        <option value="" selected>请选择</option>
+						<option v-for="option in consignorDropDown" v-bind:value="option.realName">
+						    {{ option.realName }}
+						</option>
+                    </select>
+                </div>
+                <div>
+                    <div>|</div>
+                </div>
+                <div class="weui-cell__ft" style="width:90px;">
+                    <input class="weui-input" type="number" disabled id="wxInquiryAdd_consignorPhone" name="consignorPhone" v-model="consignorPhone" placeholder="">
+                </div>
+            </div>
+            <div class="weui-cell weui-cells_form">
+                <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">总询价内容</label></div>
+                <div class="weui-cell__bd">
+                    <textarea id="wxInquiryAdd_content" name="content" class="weui-textarea Wx-resize" placeholder="请填写总询价内容（选填）" v-model="content" rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="weui-cells__title wx-fb"><label class="weui-label wx-fonts Wx-width">发货地址<span class="weui-cell_warn">*</span></label></div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__bd Wxscroll">
+                    <select id="wxInquiryAdd_starProvince" class="weui-select weui-left-a required" name="starProvince" v-model="starProvince" @change="changeStarProvince()" v-validate:starProvince="{ required:true }">
+                        <option value="" selected>请选择省</option>
+                        <option v-for="option in starProvinceList" v-bind:value="option.value">{{option.text}}</option>
+					</select>
+                </div>
+                <div class="weui-cell__bd Wxscroll">
+                    <select id="wxInquiryAdd_starCity" class="weui-select weui-left-a required" name="starCity" v-model="starCity" @change="changeCity()" v-validate:starCity="{ required:true }">
+                        <option value="" selected>请选择市</option>
+                        <option v-for="option in starCityList" v-bind:value="option.value">{{option.text}}</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd Wxscroll">
+                    <select id="wxInquiryAdd_starAreaCity" class="weui-select weui-left-a required" name="starAreaCity" v-model="starAreaCity" v-validate:starAreaCity="['required']" @change="getDistance()">
+                        <option value=""  selected>请选择区</option>
+                        <option v-for="option in starAreaList" v-bind:value="option.value">{{option.text}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <input class="weui-input" id="wxInquiryAdd_startAddress" name="startAddress" type="text" v-model="startAddress" placeholder="请填写详细地址" v-validate:startAddress="['required']">
+                </div>
+            </div>
+        </div>
+        <div class="weui-cells__title wx-fb"><label class="weui-label wx-fonts Wx-width">送货地址<span class="weui-cell_warn">*</span></label></div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__bd Wxscroll">
+                    <select id="wxInquiryAdd_endProvince" class="weui-select weui-left-a required" name="endProvince" v-model="endProvince" @change="changeEndProvince()" v-validate:endProvince="{ required:true }">
+                        <option value="" selected>请选择省</option>
+                        <option v-for="option in endProvinceList" v-bind:value="option.value">{{option.text}}</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd Wxscroll">
+                    <select id="wxInquiryAdd_endCity" class="weui-select weui-left-a required" name="endCity" v-model="endCity" @change="changeEndCity()" v-validate:endCity="{ required:true }">
+                        <option value="" selected>请选择市</option>
+                        <option v-for="option in endCityList" v-bind:value="option.value">{{option.text}}</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd Wxscroll">
+                    <select id="wxInquiryAdd_endArea" class="weui-select weui-left-a required" name="endArea" v-model="endArea" v-validate:endArea="['required']" @change="getDistance()">
+                        <option value=""  selected>请选择区</option>
+                        <option v-for="option in endAreaList" v-bind:value="option.value">{{option.text}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <input class="weui-input" id="wxInquiryAdd_endAddress" name="endAddress" v-model="endAddress" type="text" placeholder="请填写详细地址" v-validate:endAddress="['required']">
+                </div>
+            </div>
+        </div>
+        <div class="weui-cells__title wx-fb">时间信息<span class="weui-cell_warn">*</span></div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">预计发货时间<span class="weui-cell_warn">*</span></label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input required" id="wxInquiryAdd_plannedArrivalTime" name="plannedArrivalTime" v-model="plannedArrivalTime" type="text" placeholder="请填写预计发货时间" v-validate:plannedArrivalTime="['required']">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">预计到货时间<span class="weui-cell_warn">*</span></label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input required" id="wxInquiryAdd_plannedDeliveryTime" name="plannedDeliveryTime" v-model="plannedDeliveryTime" type="text" placeholder="请填写预计到货时间" v-validate:plannedDeliveryTime="['required']">
+                </div>
+            </div>
+        </div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell f5">
+                <div class="weui-cell__hd">
+                    <label class="weui-label" style="width:118px;margin-bottom:0;">里程数<span class="text-danger">*</span></label>
+                </div>
+            </div>    
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <input class="weui-input addressInput" v-model="mileage" id="orderAdd_mileage" name="orderAdd_mileage"
+                        placeholder="请输入里程数" type="text" v-validate:mileage="{required: true ,pattern:'/^[1-9]*[1-9][0-9]*$/'}" />
+                </div>
+                <div class="weui-cell__ft totalPrice">
+                    <p>公里</p>
+                </div>
+                <div class="weui-cell__bd" v-if="!mileage">
+                    <span style='color:red;font-size:14px;'>请输入里程数</span>   
+                </div>
+            </div> 
+        </div>
+        <div class="weui-cells__title wx-fb">货物信息<span class="weui-cell_warn">*</span></div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell weui-cells_form">
+                <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">货物类别<span class="weui-cell_warn">*</span></label></div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select weui-left-a required" id="wxInquiryAdd_goodsTypeId" name="goodsTypeId" v-model="goodsTypeId" @change="goodsTypeSelect()" v-validate:goodsTypeId="['required']">
+                        <option value="" selected>请选择</option>
+                        <option v-for="option in goodsTypeDropDown" v-bind:value="option.id">
+                            {{ option.name }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui-cell weui-cells_form">
+                <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">货物名称<span class="weui-cell_warn">*</span></label></div>
+                <div class="weui-cell__bd">
+                    <a href="javascript:;" class="open-popup" data-target="#wxInquiryAdd_searchGoods" @click="inquiryOpenGoodsSearch()">
+                        <input id="wxInquiryAdd_goodsName" name="goodsName" class="weui-input" v-model="goodsName" placeholder="请输入货物名称" type="text" v-validate:goodsName="['required']" disabled/>
+                    </a>
+                </div>
+            </div>
+
+            <div class="weui-cell weui-cells_form">
+                <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">货物数量<span class="weui-cell_warn">*</span></label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input required" id="wxInquiryAdd_goodsQuantity" name="goodsQuantity" v-model="goodsQuantity" type="number" v-validate:goodsQuantity="{required: true, pattern:'/^[0-9]+(\.[0-9]{1,4})?$/'}" placeholder="请填写货物数量">
+                </div>
+                <div class="weui-cell__ft">
+                    <select id="wxInquiryAdd_goodsQuantityUnit" name="goodsQuantityUnit" v-model="goodsQuantityUnit" class="weui-select weui-left-a" v-validate:goodsQuantityUnit="['required']">
+                        <option value="" selected>请选择</option>
+                        <option v-for="option in goodsQuantityUnitDropDown" v-bind:value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="weui-cell weui-cells_form">
+                <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">车型<span class="weui-cell_warn">*</span></label></div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select weui-left-a required" id="wxInquiryAdd_carType" name="carType" v-model="carType" v-validate:carType="['required']">
+                        <option value="" selected>请选择</option>
+                        <option v-for="option in carTypeDropDown" v-bind:value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="weui-cell weui-cells_form">
+                <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">车长<span class="weui-cell_warn">*</span></label></div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select weui-left-a required" id="wxInquiryAdd_carLength" name="carLength" v-model="carLength" v-validate:carLength="['required']">
+                        <option value="" selected>请选择</option>
+                        <option v-for="option in carLengthDropDown" v-bind:value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="weui-cell weui-cells_form">
+                <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">承运方式<span class="weui-cell_warn">*</span></label></div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select weui-left-a required" id="wxInquiryAdd_carrierCategory" name="carrierCategory" v-model="carrierCategory" v-validate:carrierCategory="['required']">
+                        <option value="" selected>请选择</option>
+                        <option v-for="option in carrierCategoryDropDown" v-bind:value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <!-- <div class="weui-cell weui-cells_form">
+                <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">装车效果</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" id="wxInquiryAdd_loadingEffect" name="loadingEffect" v-model="loadingEffect" type="text" placeholder="请填写装车效果">
+                </div>
+            </div> -->
+        </div>
+        <div class="weui-cell" style="padding-left: 4.3%;padding-right: 4.3%; background: #fff;" v-if="!isEdit">
+            <button type="button" class="weui-btn wx-btnq" @click="addInquiryChild($validation.valid)" v-bind:class="{'weui-btn_disabled disabled' : !$validation.valid}" id="wxInquiryAdd_addInquiry" name="addInquiry" style="font-size: 14px">
+                <i class="fa fa-copy"></i> 发 布
+            </button>
+        </div>
+        <div class="weui-flex" style="background: #fff;" id="btnGroupStyle" v-if="isEdit">
+            <div class="weui-flex__item placeholder">
+                <button type="button" class="weui-btn wx-btnq" @click="editInquiry($validation.valid)" v-bind:class="{'weui-btn_disabled disabled' : !$validation.valid}" id="wxInquiryAdd_editInquiry" name="editInquiry" style="font-size: 14px">
+                    <i class="fa fa-pencil-square-o"></i> 保 存
+                </button>
+            </div>
+            <div class="weui-flex__item placeholder">
+                <button type="button" class="weui-btn cancel_btn" @click="editCancel()" id="wxInquiryAdd_editCancel" name="editCancel">
+                    <i class="fa fa-arrow-left"></i> 取 消
+                </button>
+            </div>
+        </div>
+    </form>
+    <!--货物名称模糊查询-->
+    <div id="wxInquiryAdd_searchGoods" class="weui-popup__container">
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal">
+            <div class="weui-search-bar" id="searchBar">
+                <form class="weui-search-bar__form" action="">
+                    <div class="weui-search-bar__box ui-widget">
+                        <i class="weui-icon-search"></i>
+                        <input type="search" class="weui-search-bar__input" id="wxInquiryAdd_searchGoodsInput" placeholder="搜索" required="">
+                        <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+                    </div>
+                    <label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+                        <i class="weui-icon-search"></i>
+                        <span>请输入货物名称</span>
+                    </label>
+                </form>
+                <a href="javascript:" class="weui-search-bar__cancel-btn" id="wxInquiryAdd_searchCancel">取消</a>
+            </div>
+            <a class="close-popup" href="javascript:;" style="display:block;height:100%;width:100%"></a>
+        </div>
+    </div>
+</validator>

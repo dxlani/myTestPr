@@ -1,0 +1,7 @@
+<div class="app"  v-bind:class="{'app-aside-folded':isFolded}">
+    <navbar v-on:changeNavLeft="changeLeft($event)"></navbar>
+    <div class="app-content" style="margin-top:55px">
+        <router-view></router-view>
+    </div>
+    <feedback></feedback>
+</div>

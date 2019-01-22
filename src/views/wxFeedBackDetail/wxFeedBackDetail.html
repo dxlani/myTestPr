@@ -1,0 +1,40 @@
+<div id="wxFeedBackDetail">
+    <div id="question">
+        <div class="questionTitle clearfloat">
+            <div class="questionImg lf">
+                <img src="../../img/fankui.png" alt="">
+            </div>
+            <div class="lf" style="width:88%;">
+                <p class="questiontitle">{{title}}</p>
+                <p class="feedbackTips">{{creationTime}}</p>
+            </div>
+        </div>
+        <div class="titleContent">
+            {{content}}
+        </div>
+        <div class="imgGroup">
+            <div v-for="item in attachments" class="imggroup">
+                <img :src="item.path" alt="">
+            </div>
+        </div>
+    </div>
+    <div id="answer">
+        <div class="answerTitle clearfloat">
+            <div class="answerImg lf">
+                <img src="../../img/huifu.png" alt="">
+            </div>
+            <div class="lf">
+                <p class="answertitle">回复</p>
+                <p class="feedbackTips">{{replyTime}}</p>
+            </div>
+        </div>
+        <div class="titleContent">
+            {{replyContent}}
+        </div>
+    </div>
+</div>
+<!-- 图片预览模态框 -->
+<div id="ImgModal">
+    <span class="closeImg" @click="closeImg()">×</span>
+    <img class="modal-content" id="img01">
+</div>

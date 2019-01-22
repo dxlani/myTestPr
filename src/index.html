@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="shortcuticon" href="./favicon.ico" />
+    <title>
+        <%= webpackConfig.metadata.title %>
+    </title>
+    <!-- <script src="https://api.map.baidu.com/api?v=2.0&ak=7eGHQWZhEnRt28NiHnkgloKVb6n3A3MK&s=1"></script> -->
+    <script src="https://api.map.baidu.com/api?v=2.0&ak=3G1hN4GAeTzRDP2QAitvmzX5oGiLQkLf&s=1"></script>
+    <script src="https://cdn.wilddog.com/sdk/js/2.5.17/wilddog.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <!-- 前端日志 -->
+    <!-- <script src="http://frontlog.sowl.cn/build.js"></script> -->
+    <meta name="description" content="<%= webpackConfig.metadata.title %>">
+    <!-- base url -->
+    <base href="<%= webpackConfig.metadata.baseUrl %>">
+    <style>
+        /*加载2*/
+        
+        .loadinga {
+            font-family: "Microsoft yahei";
+            font-size: 16px;
+            font-weight: 500;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            text-align: center;
+            transform: translate(-50%, -50%);
+        }
+        
+        #preloader {
+            position: fixed;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+        }
+        
+        #loader {
+            display: block;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            width: 150px;
+            height: 150px;
+            margin: -75px 0 0 -75px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #ff7d55;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+        
+        #loader:before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #ffb265;
+            -webkit-animation: spin 3s linear infinite;
+            animation: spin 3s linear infinite;
+        }
+        
+        #loader:after {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #ff5955;
+            -webkit-animation: spin 1.5s linear infinite;
+            animation: spin 1.5s linear infinite;
+        }
+        
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <script>
+        var _czc = _czc || [];
+        _czc.push(["_setAccount", "1274051613"]);
+    </script>
+</head>
+
+<body>
+    <div id="app-main" class="app app-header-fixed">
+        <router-view>
+            <div id="preloader">
+                <div id="loader"></div>
+            </div>
+            <div class="loadinga">加载中...</div>
+        </router-view>
+    </div>
+    <% if (webpackConfig.metadata.isDevServer) { %>
+        <!-- Webpack Dev Server reload -->
+        <script src="/webpack-dev-server.js"></script>
+        <% } %>
+            <!-- 阿里云上传服务 -->
+            <script src="./static/aliyun-oss-sdk.min.js"></script>
+            <script type="text/javascript">
+                var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                document.write(unescape("%3Cspan  style='display:none;'  id='cnzz_stat_icon_1274051613'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1274051613' type='text/javascript'%3E%3C/script%3E"));
+            </script>    
+</body>
+
+</html>

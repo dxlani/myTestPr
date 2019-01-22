@@ -1,0 +1,117 @@
+#wxInquiryReleaseDetail {
+    height: 100%;
+    background: #f5f5f5;
+    width: 100%;
+    display: block;
+}
+
+#wxInquiryReleaseDetail .weui-cells{
+    margin-top:0.625em;
+}
+
+#wxInquiryReleaseDetail label {
+    font-size: 14px!important;
+    color: #000;
+    min-width: 2em;
+    margin-bottom: 0px;
+    width: 95px;
+}
+#wxInquiryReleaseDetail .tc{
+    color: #58666e;
+}
+#wxInquiryReleaseDetail  {
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling:touch;
+}
+
+#wxInquiryReleaseDetail textarea {
+    min-width: 2em;
+    margin-bottom: 0px;
+    font-size: 14px;
+    padding: 5px;
+}
+
+#wxInquiryReleaseDetail .wx-btnq {
+    width: 100%;
+    font-size: 13px;
+}
+
+.Wx-width {
+    width: 112px;
+}
+
+.Wx-marB {
+    margin-bottom: 53px;
+}
+
+.placeholder {
+    margin: 2px;
+}
+
+.Wx-fixed-a {
+    position: fixed;
+}
+
+.Wx-resize {
+    resize: both;
+}
+#wxInquiryReleaseDetail .bg_green,
+#wxInquiryReleaseDetail .bg_blue,
+#wxInquiryReleaseDetail .bg_red,
+#wxInquiryReleaseDetail .bg_grey{
+    font-size: 13px;
+    color: #fff;
+}
+#wxInquiryReleaseDetail .bg_green{
+    background-color:#31C27C;
+    margin-left: 0px;
+}
+
+#wxInquiryReleaseDetail .bg_red{
+    background-color:#EB595A;
+    margin-left: 0px;
+}
+
+#wxInquiryReleaseDetail .bg_grey{
+    background-color:#666;
+    margin-left: 0px;
+}
+
+@media screen and (max-width:320px){
+    .addreClass{
+        width: 200px;
+        white-space: nowrap;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling:touch;
+        color: #666;
+    }
+}
+@media screen and (min-width:321px) and (max-width:374px){
+    .addreClass{
+        width: 210px;
+        white-space: nowrap;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling:touch;
+        color: #666;
+    }
+}
+
+@media screen and (min-width:375px) and (max-width:413px){
+    .addreClass{
+        width: 220px;
+        white-space: nowrap;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling:touch;
+        color: #666;
+    }
+}
+@media screen and (min-width:414px){
+    .addreClass{
+        width:265px;
+        white-space: nowrap;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling:touch;
+        color: #666;
+    }
+}

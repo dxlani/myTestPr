@@ -1,0 +1,8 @@
+<div class="upLoad">
+    <!-- <a href="javascript:;" class="file">上传图片
+        <input type="file" :accept="typeArr" @change="upload($event)">
+    </a> -->
+    <input type="file" :accept="typeArr" id="upLoader" name="upLoader" accept="image/gif,image/jpeg,image/jpg,image/png,image/bmp" multiple>
+    <button type="button" id="upload_click" name="upload_click" onclick="upLoader.click()" class="btn m-b-xs btn-sm btn-default btn-addon">
+    <i class="glyphicon glyphicon-folder-open"></i><span>选择图片</span></button>
+</div>

@@ -1,0 +1,222 @@
+.imgX {
+    width: 100%;
+    height: 263px;
+    background: url(../../img/bj-img@3x.jpg) no-repeat top center;
+    background-size: contain;
+}
+
+.Wx-title {
+    font-family: "Microsoft YaHei"!important;
+    text-align: center;
+    line-height: 1.4em;
+    font-size: 1.6em;
+    color: #ffffff;
+    font-weight: 400;
+    margin: 0% 15% 0 15%;
+    height: 0px;
+    display: block;
+}
+
+#WxConfirmLogin {
+    background: #1c6bb6;
+}
+
+.Wxcontent-padded {
+    padding: 0 8%;
+    background: #1c6bb6 url(../../img/yun_img@3x.png) no-repeat 82% 2%;
+    background-size: 12%;
+    height: 100%;
+}
+
+.WxlgInput {
+    font-size: 20px;
+    color: #a0a4ab!important;
+    margin: 0% 0px 10% 0px;
+    height: 56px;
+}
+
+.Wxlico {
+    position: relative;
+    display: block;
+    width: 56px;
+    height: 56px;
+    z-index: 10;
+    top: 56px;
+    left: 0px;
+    background: #eaf0fa;
+    border-top-left-radius: 0.3em;
+    border-bottom-left-radius: 0.3em;
+}
+
+.WxlgInput img {
+    width: 26px;
+    height: 26px;
+    margin: 15px 15px;
+}
+
+.WxlgInput input {
+    border-radius: 0.3em;
+    height: 56px;
+    padding: 0px 0px 0px 22%;
+    font-size: 18px;
+    color: #a0a4ab!important;
+}
+
+.WxlgInput input[name="color"]::-webkit-input-placeholder {
+    /* WebKit browsers */
+    font-size: 18px;
+    color: #a0a4ab!important;
+}
+
+//firefox火狐浏览器
+.WxlgInput input[name="color"]:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    font-size: 18px;
+    color: #a0a4ab!important;
+}
+
+.WxlgInput input[name="color"]::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    font-size: 18px;
+    color: #a0a4ab!important;
+}
+
+//IE浏览器
+.WxlgInput input[name="color"]:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    font-size: 18px;
+    color: #a0a4ab!important;
+}
+.weui-cell_vcode{
+    background-color: #fff;
+    border-radius:0.3em;
+}
+.weui-vcode-btn{
+    font-size: 14px;
+}
+#wxlogin_wxloginBtn {
+    font-family: "Microsoft YaHei"!important;
+    font-weight: bold;
+    background-color: #85c226;
+    opacity: 1;
+    width: 100%;
+    border: 0px;
+    font-size: 1.4em;
+    line-height: 55px;
+    color: #fff;
+    margin: 90px 0px 111px 0px;
+}
+
+#wxlogin_wxloginBtn:active {
+    font-family: "Microsoft YaHei"!important;
+    font-weight: bold;
+    background-color: #6cc226;
+    opacity: 1;
+    width: 100%;
+    border: 0px;
+    font-size: 1.4em;
+    line-height: 55px;
+    color: #ecfbd6;
+    margin: 90px 0px 111px 0px;
+}
+
+#wxlogin_wxloginBtn i {
+    font-family: "Microsoft YaHei"!important;
+    font-style: normal;
+    -webkit-text-shadow: 1px 1px 7px #6ca119;
+    -moz-text-shadow: 1px 1px 7px #6ca119;
+    text-shadow: 1px 1px 7px #6ca119;
+}
+
+@media screen and (max-height: 667px) {
+    .imgX {
+        width: 100%;
+        height: 243px;
+        background: url(../../img/bj-img@3x.jpg) no-repeat top center;
+        background-size: contain;
+    }
+}
+
+@media screen and (max-height: 568px) {
+    .imgX {
+        width: 100%;
+        height: 212px;
+        background: url(../../img/bj-img@3x.jpg) no-repeat top center;
+        background-size: contain;
+    }
+    #wxlogin_wxloginBtn {
+        font-family: "Microsoft YaHei" !important;
+        font-weight: bold;
+        background-color: #85c226;
+        opacity: 1;
+        width: 100%;
+        border: 0px;
+        font-size: 1.4em;
+        line-height: 55px;
+        color: #fff;
+        margin: 87px 0px 72px 0px;
+    }
+}
+
+@media screen and (max-height: 480px) {
+    .imgX {
+        width: 100%;
+        height: 200px;
+        background: url(../../img/bj-img@3x.jpg) no-repeat top center;
+        background-size: cover;
+    }
+    #wxlogin_wxloginBtn {
+        font-family: "Microsoft YaHei" !important;
+        font-weight: bold;
+        background-color: #85c226;
+        opacity: 1;
+        width: 100%;
+        border: 0px;
+        font-size: 1.4em;
+        line-height: 55px;
+        color: #fff;
+        margin: 90px 0px 78px 0px;
+    }
+}
+
+@media screen and (min-height: 600px) {
+    .imgX {
+        width: 100%;
+        height: 260px;
+        background: url(../../img/bj-img@3x.jpg) no-repeat top center;
+        background-size: contain;
+    }
+    #wxlogin_wxloginBtn {
+        font-family: "Microsoft YaHei" !important;
+        font-weight: bold;
+        background-color: #85c226;
+        opacity: 1;
+        width: 100%;
+        border: 0px;
+        font-size: 1.4em;
+        line-height: 55px;
+        color: #fff;
+        margin: 85px 0px 72px 0px;
+    }
+}
+
+@media screen and (min-height: 640px) {
+    .imgX {
+        width: 100%;
+        height: 266px;
+        background: url(../../img/bj-img@3x.jpg) no-repeat top center;
+        background-size: contain;
+    }
+    #wxlogin_wxloginBtn {
+        font-family: "Microsoft YaHei" !important;
+        font-weight: bold;
+        background-color: #85c226;
+        opacity: 1;
+        width: 100%;
+        border: 0px;
+        font-size: 1.4em;
+        line-height: 55px;
+        color: #fff;
+        margin: 85px 0px 72px 0px;
+    }
+}

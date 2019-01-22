@@ -1,0 +1,178 @@
+<div id="wxInquiryReleaseDetail">
+    <!-- <div class="weui-cells__title wx-fb"></div> -->
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width tc">基本信息</label></div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">子询价单编号</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryDetail_inquiryChildCode" name="inquiryChildCode" class="weui-input" type="number" v-model="inquiryChildCode" disabled placeholder="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">询价时间</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryDetail_inquiryTime" name="inquiryTime" class="weui-input" type="text" v-model="inquiryTime" disabled value="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">紧急程度</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryDetail_urgency" name="urgency" class="weui-input" type="text" v-model="urgency" disabled placeholder="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">客户单位</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryDetail_customerUnit" name="customerUnit" class="weui-input" type="text" v-model="customerUnit" disabled placeholder="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">发货计划人</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryDetail_consignor" name="consignor" class="weui-input" type="text" v-model="consignor" disabled placeholder="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">发货人电话</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryDetail_consignorPhone" name="consignorPhone" class="weui-input" type="text" v-model="consignorPhone" disabled placeholder="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">总询价内容</label></div>
+            <div class="weui-cell__bd">
+                <textarea id="wxInquiryDetail_content" name="content" class="weui-textarea" placeholder="" v-model="content" rows="3" disabled></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width tc">线路信息</label></div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label wx-fonts Wx-width">发货地址</label>
+            </div>
+            <div class="weui-cell__bd">
+                <div class="weui-input addreClass">{{allStartArea}}</div>
+                <!-- <input id="wxInquiryDetail_allStartArea" name="allStartArea" class="weui-input" type="text" v-model="allStartArea" disabled placeholder=""> -->
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">送货地址</label></div>
+            <div class="weui-cell__bd">
+                <div class="weui-input addreClass">{{allEndArea}}</div>
+                <!-- <input id="wxInquiryDetail_allEndArea" name="allEndArea" class="weui-input" type="text" v-model="allEndArea" disabled value=""> -->
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">预计发货时间</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryDetail_plannedArrivalTime" name="plannedArrivalTime" class="weui-input" type="text" v-model="plannedArrivalTime" disabled placeholder="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">预计到货时间</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryDetail_plannedDeliveryTime" name="plannedDeliveryTime" class="weui-input" type="text" v-model="plannedDeliveryTime" disabled placeholder="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">里程数</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryDetail_plannedDeliveryTime" name="plannedDeliveryTime" class="weui-input" type="text" v-model="mileage" disabled placeholder="">
+            </div>
+            <div class="weui-cell__bd">
+               <span style="font-size:14px">公里</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width tc">货物信息</label></div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">货物类别</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryDetail_goodsTypeName" name="goodsTypeName" class="weui-input" type="text" v-model="goodsTypeName" disabled placeholder="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">货物名称</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryDetail_goodsName" name="goodsName" class="weui-input" type="text" v-model="goodsName" disabled value="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">货物数量</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryDetail_goodsQuantity" name="goodsQuantity" class="weui-input" type="text" v-model="goodsQuantity" disabled placeholder="">
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="weui-cells__title wx-fb"></div> -->
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width tc">所需车辆信息</label></div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">所需车型</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryDetail_carType" name="carType" class="weui-input" type="text" v-model="carType" disabled placeholder="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">所需车长</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryDetail_carLength" name="carLength" class="weui-input" type="text" v-model="carLengthStr" disabled value="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">承运方式</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryDetail_carrierCategory" name="carrierCategory" class="weui-input" type="text" v-model="carrierCategory" disabled placeholder="">
+            </div>
+        </div>
+        <!-- <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">装车效果</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryDetail_loadingEffect" name="loadingEffect" class="weui-input" type="text" v-model="loadingEffect" disabled placeholder="">
+            </div>
+        </div> -->
+        <div class="weui-cell Wx-marB">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">备注</label></div>
+            <div class="weui-cell__bd">
+                <textarea id="wxInquiryDetail_attachmentDetails" name="attachmentDetails" v-model="attachmentDetails" class="weui-textarea" rows="3" disabled></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="weui-flex weui-tabbar Wx-fixed-a" style="padding: 1%;"  v-if="!showEnable">
+        <div class="weui-flex__item placeholder">
+            <button @click="copyInquiry()" class="weui-btn wx-btnq" onclick="_czc.push(['_trackEvent', '询价单详情-复制询价单', '点击复制询价单', '','','']);">
+                <i class="fa fa-clone"></i> 复制询价
+            </button>
+        </div>
+    </div>
+    <div class="weui-flex weui-tabbar Wx-fixed-a" v-if="showEnable">
+        <div class="weui-flex__item placeholder">
+            <button type="button" @click="copyInquiry()" class="weui-btn wx-btnq" onclick="_czc.push(['_trackEvent', '询价单详情-复制询价单', '点击复制询价单', '','','']);">
+                <i class="fa fa-clone"></i> 复 制
+            </button>
+        </div>
+        <div class="weui-flex__item placeholder">
+            <button type="button" @click="editInquiry()" class="weui-btn bg_green wx-btnq" onclick="_czc.push(['_trackEvent', '询价单详情-编辑询价单', '点击编辑询价单', '','','']);">
+                <i class="fa fa-edit"></i> 编 辑</button>
+        </div>
+        <div class="weui-flex__item placeholder">
+            <button type="button" @click="overInquiry()" class="weui-btn bg_red wx-btnq" onclick="_czc.push(['_trackEvent', '询价单详情-终结询价单', '点击终结询价单', '','','']);">
+                <i class="fa fa-minus-circle"></i> 终 结</button>
+        </div>
+        <div class="weui-flex__item placeholder">
+            <button type="button" @click="delInquiry()" class="weui-btn bg_red wx-btnq" onclick="_czc.push(['_trackEvent', '询价单详情-删除询价单', '点击删除询价单', '','','']);">
+                <i class="fa fa-trash-o"></i> 删 除</button>
+        </div>
+    </div>

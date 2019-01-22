@@ -1,0 +1,88 @@
+<div id="WxonroadDetail">
+    <div class="nowLocation hiddenBlock">
+        <p style="margin-left: 4.2%;margin-top: 2.5%;height: 14px;line-height: 18px;">
+            <span>当前位置：</span>{{nowLocation}}</p>
+    </div>
+    <div class="hiddenBlock">
+        <div id="tag0" class="tag" v-if="((roadPercent>0) && (roadPercent<=0.5))">  
+            <div class="arrow0">
+                <em></em>
+            </div>
+            <div class="onroadMessage">
+                <div class="onroadBox">
+                    <img src="../../../img/onroadbox@2x.png" style="width: 30px;height: 30px;">
+                </div>
+                <div class="prompt">
+                    <p style="color: #333">距离终点
+                        <span>{{distance}}</span>
+                    </p>
+                    <p style="color: #2DA1F4;">预计{{exceptDeliveryTime}}到达</p>
+                </div>
+                <div class="onroadAddress">
+                    <!-- <p style="margin: 0">{{onroadAddress}}</p> -->
+                    <p style="margin: 0">{{onroadTime}}</p>
+                </div>
+            </div>
+        </div>
+        <div id="tag" class="tag" v-if="((roadPercent>0.5) && (roadPercent<1))">  
+            <div class="arrow">
+                <em></em>
+            </div>
+            <div class="onroadMessage">
+                <div class="onroadBox">
+                    <img src="../../../img/onroadbox@2x.png" style="width: 30px;height: 30px;">
+                </div>
+                <div class="prompt">
+                    <p style="color: #333">距离终点
+                        <span>{{distance}}</span>
+                    </p>
+                    <p style="color: #2DA1F4;">预计{{exceptDeliveryTime}}到达</p>
+                </div>
+                <div class="onroadAddress">
+                    <!-- <p style="margin: 0">{{onroadAddress}}</p> -->
+                    <p style="margin: 0">{{onroadTime}}</p>
+                </div>
+            </div>
+        </div>
+        <div id="tag1" class="tag " v-if="roadPercent == 1">
+            <div class="arrow">
+                <em></em>
+            </div>
+            <div class="onroadMessage">
+                <div class="onroadBox">
+                    <img src="../../../img/onroadbox@2x.png" style="width: 30px;height: 30px;">
+                </div>
+                <div class="prompt">
+                    <p style="color: #333">距离终点
+                        <span>0公里</span>
+                    </p>
+                    <p style="color: #2DA1F4;">货已送达</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="onroadDetail hiddenBlock">
+        <div class="dItem1 dItem">
+            <div class="car_code">{{carCode}}</div>
+            <div class="carDetail">
+                <div class="carDetail1">{{carType}}</div>
+                <div class="carDetail2">{{carLength}}</div>
+            </div>
+
+        </div>
+        <div class="dItem2 dItem">
+            <div class="itemLine"></div>
+        </div>
+        <div class="dItem3 dItem" onclick="_czc.push(['_trackEvent', '在途-查看详情', '点击查看订单详情', '','','']);">
+            <p style="font-size: 12px; margin: 0;">订单：
+                <span>{{orderId}}</span>
+            </p>
+            <p style="font-size: 10px;margin: 0;" @click="goOrderDetail()">查看详情
+                <span class="triangle_right"></span>
+            </p>
+        </div>
+    </div>
+    <canvas></canvas>
+</div>
+<show-Home-Button></show-Home-Button>

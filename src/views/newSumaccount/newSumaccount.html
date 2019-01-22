@@ -1,0 +1,166 @@
+<div class="bg-light lter b-b wrapper-md">
+    <div id="iTitle1" class="row statistics">
+        <div class="col-xs-2 col-md-3 col-lg-2">
+            <div class="inquiryImg">
+                <img class="round" src="./img/pic2.png">
+            </div>
+            <h3 class="inquiryTitle">财务对账</h3>
+        </div>
+        <div id="finance" class="col-xs-7 col-md-7 col-lg-8">
+            <div class="col-xs-4 col-md-3 col-lg-2 fsize">
+                <span class="SurveyName">费用合计</span>
+                <P class="InquiryNums">{{totalFee}}</P>
+            </div>
+            <div class="col-xs-4 col-md-3 col-lg-2 fsize">
+                <span class="SurveyName">运费总价</span>
+                <P class="InquiryNums">{{freight}}</P>
+            </div>
+            <div class="col-xs-4 col-md-3 col-lg-2 fsize">
+                <span class="SurveyName">进仓费</span>
+                <P class="InquiryNums">{{intoWarehouseCost}}</P>
+            </div>
+            <div class="col-xs-4 col-md-3 col-lg-2 fsize">
+                <span class="SurveyName">卸车费</span>
+                <P class="InquiryNums">{{unloadingCharge}}</P>
+            </div>
+            <div class="col-xs-4 col-md-3 col-lg-2 fsize">
+                <span class="SurveyName">短驳费</span>
+                <P class="InquiryNums">{{shortBargeCost}}</P>
+            </div>
+            <div class="col-xs-4 col-md-3 col-lg-2 fsize">
+                <span class="SurveyName">额外费用</span>
+                <P class="InquiryNums">{{extraCharge}}</P>
+            </div>
+            <div class="col-xs-4 col-md-3 col-lg-2 fsize">
+                <span class="SurveyName">其他费用</span>
+                <P class="InquiryNums">{{other}}</P>
+            </div>
+        </div> 
+        <div class="col-xs-2 col-md-2 col-lg-2">
+            <button id="inquiryAdd"  @click="downExport()" class="pull-right-xs btn btn-sm btn-primary btn-addon" style="font-size:14px;margin-top:12px;float: right;">
+                <i class="glyphicon glyphicon-download-alt"></i>导出报表
+            </button>
+        </div>
+    </div>
+</div>
+<div class="wrapper-md" id="newSumaccount">
+    <div class="panel panel-default">
+            <div class="panel-heading">
+                    <form class="form-inline" style="text-align: right; padding-right: 4%;">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="sumaccount_orderNumber" placeholder="输入发货单号" v-model="checkQuery.orderNumber">
+                                <div type="button" class="input-group-addon" @click="queryUsers()" style="cursor: pointer;">
+                                    <i class="glyphicon glyphicon-search" v-show="!seeks"></i>
+                                    <i v-show="seeks">
+                                        <b class="fa fa-spinner no-bordr"  v-bind:class="{'fa-spin':seeks}"></b>
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-left: 10px;">
+                            <div class="select-group">
+                                <div id="selectButton" type="button" @click="selectButton()">
+                                    高级搜索
+                                    <i class="glyphicon glyphicon-chevron-down ist" v-show="!down"></i>
+                                    <i class="glyphicon glyphicon-chevron-up ist" v-show="down"></i>
+                                </div>
+                                <div id="selectList">  
+                                    <ul >  
+                                        <li><input type="checkbox" v-model="startTime" id="startTime"><label for="startTime" >发货起始时间</label></li>
+                                        <li><input type="checkbox" v-model="endTime" id="endTime"><label for="endTime" >发货结束时间</label></li>  
+                                        <li><input type="checkbox" v-model="goodsType" id="goodsType"><label for="goodsType" >货物类别</label></li>  
+                                        <li><input type="checkbox" v-model="goodsName" id="goodsName"><label for="goodsName">货物名称</label></li>  
+                                        <li><input type="checkbox" v-model="originAddress" id="originAddress"><label for="originAddress">发货地址</label></li>  
+                                        <li><input type="checkbox" v-model="destinationAddress" id="destinationAddress"><label for="destinationAddress">送货地址</label></li>
+                                        <li><input type="checkbox" v-model="receiptStatus" id="receiptStatus"><label for="receiptStatus" >回单状态</label></li>  
+                                    </ul> 
+                                </div>  
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="inquiryReleaseManage_queryTerm" class="form-horizontal panel-body" v-show="(startTime || endTime || goodsType || goodsName || originAddress || destinationAddress || receiptStatus)">
+                    <div class="form-group col-lg-10 col-md-9 col-sm-8 col-xs-8">
+                        <div v-show="startTime">
+                            <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">发货起始时间</label>
+                            <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group date has-feedback">
+                                <input id="sumaccount_startTime" name="startTime" datetimepicker plugintype="datetime" v-model="checkQuery.startTime"  placeholder="发货起始时间" class="form-control" type="text" />
+                                <span id="sumaccount_openStartTime" class="form-control-feedback curpoint">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div v-show="endTime">
+                            <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">发货结束时间</label>
+                            <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group date has-feedback">
+                                <input id="sumaccount_endTime" name="endTime"  datetimepicker plugintype="datetime" v-model="checkQuery.endTime" placeholder="发货结束时间" class="form-control" type="text" />
+                                <span id="openEndTime" class="form-control-feedback curpoint">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                       <div v-show="goodsType">
+                            <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">货物类别</label>
+                            <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                                <input class="form-control" id="sumaccount_goodsType" name="goodsType" v-model="checkQuery.goodsType" placeholder="请输入货物类别" type="text">
+                            </div>
+                       </div>
+                       <div v-show="goodsName">
+                            <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">货物名称</label>
+                            <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                                <input  class="form-control" id="sumaccount_goodsName" name="goodsName" v-model="checkQuery.goodsName" placeholder="请输入货物名称" type="text">
+                            </div>
+                       </div>
+                       <div v-show="originAddress">
+                            <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">发货地址</label>
+                            <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                                <input class="form-control" id="sumaccount_originAddress" name="originAddress" v-model="checkQuery.originAddress" placeholder="请输入发货地址" type="text">
+                            </div>
+                       </div>
+                       <div v-show="destinationAddress">
+                            <label class="control-label pull-left ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">送货地址</label>
+                            <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                                <input class="form-control" id="sumaccount_destinationAddress" name="destinationAddress" v-model="checkQuery.destinationAddress" placeholder="请输入送货地址" type="text">
+                            </div>
+                       </div>
+                       <div v-show="receiptStatus">
+                            <label class="control-label pull-left  ls-p-r-15 col-lg-010 col-ls-2 col-md-2 col-sm-3">回单状态</label>
+                            <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                                <select id="sumaccount_receiptStatus" name="receiptStatus" class="form-control" v-model="checkQuery.receiptStatus" >
+                                    <option v-for="option in receiptStatusList" v-bind:value="option.value">
+                                        {{ option.text }}
+                                    </option>
+                                </select>
+                            </div>
+                       </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4 form-group" v-show="(startTime || endTime || goodsType || goodsName || originAddress || destinationAddress || receiptStatus)">
+                        <button id="sumReleaseManage_query" name="inquiryReleaseManage_query" @click="QueryUsers()" class="btn btn-default btn-addon ">
+                            <span v-show="!bseeks">查  询</span>
+                            <span v-show="bseeks">查询中...</span>
+                        </button>
+                        <button id="inquiryReleaseManage_reset" name="reset" @click="resetQuery()" class="btn btn-default btn-addon">重  置</button>
+                    </div>
+                </div>
+    </div>
+    
+    <div class="panel panel-default">
+        <div class="panel-heading font-bold">
+            对账列表
+        </div>
+        <div class="line line-xs pull-in">
+        </div>
+        <div class="table-responsive" >
+            <table id="sumaccount_table" class="table table-hover" data-events="actionEvents"  data-height="667"></table>
+            <pagination-Com :total="records" v-on:pageIndexChange="onPageIndexChange($event)"></pagination-Com>    
+        </div>
+        <!-- <div class="panel-body">
+            <label class="form-group" id="sumaccount_priceTotal">
+                <p>费用合计：{{priceTotal}} 元</p>
+            </label>
+            
+        </div> -->
+    </div>
+</div>
+

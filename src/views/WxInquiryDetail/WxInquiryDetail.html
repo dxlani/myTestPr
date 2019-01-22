@@ -1,0 +1,183 @@
+<div id="wxInquiryDetail">
+    <div id="quotation" v-if='quotation'>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width tc">报价信息</label></div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">报价金额</label></div>
+                <div class="weui-cell__bd">
+                    <input id="wxInquiryReleaseDetail_receivablePriceAll" name="receivablePriceAll" class="weui-input" type="text" v-model="receivablePriceAll" disabled placeholder="">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">报价说明</label></div>
+                <div class="weui-cell__bd">
+                    <input id="wxInquiryReleaseDetail_receivableSummary" name="receivableSummary" class="weui-input" type="text" v-model="receivableSummary" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width tc">基本信息</label></div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">子询价单编号</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryReleaseDetail_inquiryChildId" name="inquiryChildId" class="weui-input" type="number" v-model="inquiryChildId" disabled placeholder="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">下单时间</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryReleaseDetail_creationTime" name="creationTime" class="weui-input" type="text" v-model="creationTime" disabled value="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">紧急程度</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryReleaseDetail_responseTime" name="responseTime" class="weui-input" type="text" v-model="responseTime" disabled placeholder="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">客户单位</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryReleaseDetail_clientName" name="clientName" class="weui-input" type="text" v-model="clientName" disabled placeholder="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">发货计划人<label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryReleaseDetail_customerName" name="customerName" class="weui-input" type="text" v-model="customerName" disabled placeholder="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">发货人电话</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryReleaseDetail_customerPhone" name="customerPhone" class="weui-input" type="text" v-model="customerPhone" disabled placeholder="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">总询价内容</label></div>
+            <div class="weui-cell__bd">
+                <textarea id="wxInquiryReleaseDetail_content" name="content" class="weui-textarea Wx-resize" placeholder="" v-model="content" readonly="readonly" rows="4"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width tc">线路信息</label></div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">发货地址</label></div>
+            <div class="weui-cell__bd">
+                <div class="weui-input addreClass">{{allStartArea}}</div>
+                <!-- <input id="wxInquiryReleaseDetail_allStartArea" name="allStartArea" class="weui-input" type="text" v-model="allStartArea" disabled placeholder=""> -->
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">送货地址</label></div>
+            <div class="weui-cell__bd">
+                <div class="weui-input addreClass">{{allEndArea}}</div>
+                <!-- <input id="wxInquiryReleaseDetail_allEndArea" name="allEndArea" class="weui-input" type="text" v-model="allEndArea" disabled value=""> -->
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">预计发货时间</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryReleaseDetail_foreArrivalTime" name="foreArrivalTime" class="weui-input" type="text" v-model="foreArrivalTime" disabled placeholder="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">预计到货时间</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryReleaseDetail_foreDeliveryTime" name="foreDeliveryTime" class="weui-input" type="text" v-model="foreDeliveryTime" disabled placeholder="">
+            </div>
+        </div>
+    </div>
+
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label tc">货物信息</label></div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">货物类别</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryReleaseDetail_goodsTypeName" name="goodsTypeName" class="weui-input" type="text" v-model="goodsTypeName" disabled placeholder="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">货物名称</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryReleaseDetail_goodsName" name="goodsName" class="weui-input" type="text" v-model="goodsName" disabled value="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">货物数量</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryReleaseDetail_goodsQuantity" name="goodsQuantity" class="weui-input" type="text" v-model="goodsQuantity" disabled placeholder="">
+            </div>
+        </div>
+    </div>
+
+    <div class="weui-cells weui-cells_form Wx-marB">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width tc">所需车辆信息</label></div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">所需车型</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryReleaseDetail_vehicleType" name="vehicleType" class="weui-input" type="text" v-model="vehicleTypeStr" disabled placeholder="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">所需车长</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryReleaseDetail_carLength" name="carLength" class="weui-input" type="text" v-model="carLengthStr" disabled value="">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">承运方式</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryReleaseDetail_carriageWay" name="carriageWay" class="weui-input" type="text" v-model="carriageWayStr" disabled placeholder="">
+            </div>
+        </div>
+        <!-- <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">装车效果</label></div>
+            <div class="weui-cell__bd">
+                <input id="wxInquiryReleaseDetail_loadingEffect" name="loadingEffect" class="weui-input" type="text" v-model="loadingEffect" disabled placeholder="">
+            </div>
+        </div> -->
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label wx-fonts Wx-width">备注</label></div>
+            <div class="weui-cell__bd">
+                <textarea id="wxInquiryReleaseDetail_remarks" name="remarks" v-model="remarks" class="weui-textarea" rows="3" autosize style="font-size:14px" disabled></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="weui-flex weui-tabbar Wx-fixed-a" style="padding-left: 2.3%;padding-right: 2.3%;padding-bottom: 3px;margin-top: 10px">
+        <div class="weui-flex__item placeholder" v-if="winBid">
+            <button type="button" id="wxInquiryReleaseDetail_win" @click="winTheBid()" class="weui-btn wx-btnq">
+                <i class="fa fa-check"></i> 接受报价</button>
+        </div>
+        <div class="weui-flex__item placeholder" v-if="loseBid">
+            <button type="button" id="wxInquiryReleaseDetail_lose" @click="loseTheBid()" class="weui-btn bg_red wx-btnq">
+                <i class="fa fa-close"></i> 拒绝报价</button>
+        </div>
+        <div class="weui-flex__item placeholder" v-if="uk">
+            <button type="button" @click="unKnow()" class="weui-btn weui-btn_warn" style="font-size:13px">
+                <i class="fa fa-phone"></i>  终 结</button>
+        </div>
+        <div class="weui-flex__item placeholder" v-if="(weChatAuthorize.indexOf('4')>-1 || isAdmin=='true')&&addOrder">
+            <button type="button" @click="copyOrder()" class="weui-btn wx-btnq">
+                <i class="fa fa-plus"></i> 一键下单
+            </button>
+        </div>
+        <div class="weui-flex__item placeholder">
+            <button type="button" @click="copyInquiry()" class="weui-btn wx-btnq">
+                <i class="fa fa-clone"></i> 复制询价
+            </button>
+        </div>
+    </div>
+</div>

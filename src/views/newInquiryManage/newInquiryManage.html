@@ -1,0 +1,135 @@
+<div class="bg-light lter b-b wrapper-md">
+    <div id="iTitle" class="row statistics">
+        <div class="col-xs-4 col-md-3 col-lg-3">
+            <div class="inquiryImg">
+                <img class="round" src="./img/pic2.png">
+            </div>
+            <h3 class="inquiryTitle">询价单管理</h3>
+        </div>
+        <div id="survey" class="col-xs-6 col-md-9 col-lg-9">
+            <div class="col-xs-4 col-md-2 col-lg-2 fsize">
+                <span class="surveyName">报价中</span>
+                <P class="inquiryNums">{{quote}}</P>
+            </div>
+            <div class="col-xs-4 col-md-2 col-lg-2 fsize">
+                <span class="surveyName">已报价</span>
+                <P class="inquiryNums">{{successfulQuote}}</P>
+            </div>
+            <div class="col-xs-4 col-md-2 col-lg-2 fsize">
+                <span class="surveyName">已接受</span>
+                <P class="inquiryNums">{{successfulBidder}}</P>
+            </div>
+            <div class="col-xs-4 col-md-2 col-lg-2 fsize">
+                <span class="surveyName">已拒绝</span>
+                <P class="inquiryNums">{{unsuccessfulBidders}}</P>
+            </div>
+            <div class="col-xs-4 col-md-2 col-lg-2 fsize">
+                <span class="surveyName">待确认</span>
+                <P class="inquiryNums">{{pending}}</P>
+            </div>
+            <div class="col-xs-4 col-md-2 col-lg-2 fsize">
+                <span class="surveyName">询价终结</span>
+                <P class="inquiryNums">{{end}}</P>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper-md" id="inquiryManage">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <form class="form-inline" style="text-align: right; padding-right: 4%;">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="inquiryIdinput" placeholder="输入询价单编号" v-model="inquiryParameter.inquiryId">
+                        <input type="text" class="form-control" id="inquiryChildId" placeholder="输入子询价单编号" v-model="inquiryParameter.inquiryChildId">
+                        <div type="button" class="input-group-addon" @click="queryCode()" style="cursor: pointer;">
+                            <i class="glyphicon glyphicon-search" v-show="!seeks"></i>
+                            <i v-show="seeks">
+                                <b class="fa fa-spinner no-bordr"  v-bind:class="{'fa-spin':seeks}"></b>
+                            </i>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-left: 10px;">
+                    <div class="select-group">
+                        <div id="selectButton" type="button" @click="selectButton()">
+                            高级搜索
+                            <i class="glyphicon glyphicon-chevron-down ist" v-show="!down"></i>
+                            <i class="glyphicon glyphicon-chevron-up ist" v-show="down"></i>
+                        </div>
+                        <div id="selectList">  
+                            <ul>  
+                                <li><input type="checkbox" v-model="startT" id="startT"><label for="startT" style="margin-bottom:0;">下单起始时间</label></li>  
+                                <li><input type="checkbox" v-model="endT" id="endT"><label for="endT" style="margin-bottom:0;">下单结束时间</label></li>  
+                                <li><input type="checkbox" v-model="startA" id="startA"><label for="startA" style="margin-bottom:0;">发货地址</label></li>
+                                <li><input type="checkbox" v-model="endA" id="endA"><label for="endA" style="margin-bottom:0;">送货地址</label></li>
+                                <li><input type="checkbox" v-model="inquiryS" id="inquiryS"><label for="inquiryS" style="margin-bottom:0;">询价状态</label></li>  
+                            </ul> 
+                        </div>  
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="inquiryManage_queryTerm" class="form-horizontal panel-body" v-show="(startT || endT || startA || endA || inquiryS)">
+            <div class="form-group col-lg-10 col-md-9 col-sm-8 col-xs-8">
+                <div v-show="startT">
+                    <label class="control-label pull-left ls-p-r-15 col-lg-1 col-ls-2 col-md-2 col-sm-3">下单起始时间</label>
+                    <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group date has-feedback">
+                        <input id="inquiryManage_inquiryStartTime" name="inquiryStartTime" plugintype="datetime" v-model="inquiryParameter.startTime" placeholder="下单起始时间" class="form-control" type="text" />
+                        <span class="form-control-feedback curpoint ">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div v-show="endT">
+                    <label class="control-label pull-left ls-p-r-15 col-lg-1 col-ls-2 col-md-2 col-sm-3">下单结束时间</label>
+                    <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group date has-feedback">
+                        <input id="inquiryManage_inquiryEndTime" name="inquiryEndTime" plugintype="datetime" v-model="inquiryParameter.endTime" placeholder="下单结束时间" class="form-control" type="text" />
+                        <span class="form-control-feedback curpoint ">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div v-show="startA">
+                    <label class="control-label pull-left ls-p-r-15 col-lg-1 col-ls-2 col-md-2 col-sm-3">发货地址</label>
+                    <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                        <input type="text" class="form-control" id="inquiryManage_sendAddress" v-model="inquiryParameter.sendAddress" placeholder="发货地址" name="sendAddress">
+                    </div>
+                </div>
+                <div v-show="endA">
+                    <label class="control-label pull-left ls-p-r-15 col-lg-1 col-ls-2 col-md-2 col-sm-3">送货地址</label>
+                    <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                        <input type="text" class="form-control" id="inquiryManage_receiveAddress" v-model="inquiryParameter.receiveAddress" placeholder="送货地址" name="receiveAddress">
+                    </div>
+                </div>
+                <div v-show="inquiryS">
+                    <label class="control-label pull-left ls-p-r-15 col-lg-1 col-ls-2 col-md-2 col-sm-3">询价状态</label>
+                    <div class="col-lg-2 col-ls-4 col-md-9 col-sm-8 form-group">
+                        <select class="form-control input-sm" id="inquiryManage_inquiryStatus" name="inquiryStatus" v-model="inquiryParameter.status">
+                            <option v-for="option in statusList " v-bind:value="option.value">
+                                {{ option.text }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4 form-group" v-show="(startT || endT || startA || endA || inquiryS)">
+                <button id="newInquiryManage_query" name="inquiryManageQuery" @click="query()" class="btn btn-default btn-addon">
+                    <span v-show="!bseeks">查询</span>
+                    <span v-show="bseeks">查询中...</span>
+                </button>
+                <button id="inquiryManage_reset" name="reset" @click="resetQuery()" class="btn btn-default btn-addon">重  置</button>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            询价单管理列表
+        </div>
+        <div class="line line-xs pull-in"></div>
+        <div class="table-responsive">
+            <table id="inquiryManage_table" class="table table-hover" data-events="actionEvents" style="min-width:1000px;" data-height="467"></table>
+            <pagination-Com :total="Records" v-on:pageIndexChange="onPageIndexChange($event)"></pagination-Com>
+        </div>
+    </div>
+</div>

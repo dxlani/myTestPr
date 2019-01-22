@@ -1,0 +1,74 @@
+<form name="form" class="form-validation" id="WxIndexPanel" autocomplete="false">
+    <div class="indeximgX">
+        <div class="indexT">
+            <img src="./img/bj_title.png" srcset="./img/bj_title@3x.png 3x" style="margin-top: 55px">
+        </div>
+        <h1>{{userName}}<a @click="logOut()">[注销]</a></h1>
+    </div>
+    <div class="weui-navbar">
+        <div class="weui-navbar__item">
+            <div class="n-b">
+                <span>{{inquiryTotal}}</span>
+                <p>本月总询价单</p>
+            </div>
+        </div>
+        <div class="weui-navbar__item">
+            <div class="n-b">
+                <span>{{inquiryReleaseTotal}}</span>
+                <p>累计发布询价</p>
+            </div>
+        </div>
+        <div class="weui-navbar__item">
+            <div class="n-b">
+                <span>{{orderTotal}}</span>
+                <p>本月总订单</p>
+            </div>
+        </div>
+        <div class="weui-navbar__item">
+            <div class="n-b">
+                <span>{{orderReleaseTotal}}</span>
+                <p>累计发布订单</p>
+            </div>
+        </div>
+    </div>
+    <div class="Wxcontent-index" style="margin:0;">
+        <div class="weui-grids">
+            <div class="weui-left">
+                <a v-link="{path:links[0].path}" class="weui-grid js_grid" style="background:#4EB6E6;height:145px">
+                    <p class="weui-grid__label wx-notop wx-p">发布询价单</p>
+                    <div class="weui-grid__icon weui-grid__iconL">
+                        <img src="./img/01_icon@3x.png" srcset="./img/01_icon@3x.png 3x" alt="">
+                    </div>
+                </a>
+                <a v-link="{path:links[2].path}" class="weui-grid js_grid" style="background:#40BDB4;height:145px">
+                    <p class="weui-grid__label wx-notop wx-p">发布订单</p>
+                    <div class="weui-grid__icon weui-grid__iconL">
+                        <img src="./img/03_icon@3x.png" srcset="./img/03_icon@3x.png 3x" alt="">
+                    </div>
+                </a>
+            </div>
+            <div class="weui-right">
+                <a v-link="{path:links[1].path}" class="weui-grid js_grid weui-grid_a" style="background:#E85C49;height:93px">
+                    <div class="weui-grid__icon weui-gird_iconM">
+                        <img src="./img/02_icon@3x.png" srcset="./img/02_icon@3x.png 3x" alt="">
+                    </div>
+                    <p class="weui-grid__label wx-notop wx-p weui-grid__labelR">询价单管理</p>
+                </a>
+                
+                <a v-link="{path:links[3].path}" class="weui-grid js_grid weui-grid_a" style="background:#F59038;height:93px">
+                    <div class="weui-grid__icon weui-gird_iconM">
+                        <img src="./img/04_icon@3x.png" srcset="./img/04_icon@3x.png 3x" alt="">
+                    </div>
+                    <p class="weui-grid__label wx-notop wx-p weui-grid__labelR">订单管理</p>
+                </a>
+                <a v-link="{path:links[4].path}" class="weui-grid js_grid weui-grid_a" style="background:#A995DD;height:93px">
+                    <div class="weui-grid__icon weui-gird_iconM">
+                        <img src="./img/05_icon@3x.png" srcset="./img/05_icon@3x.png 3x" alt="">
+                    </div>
+                    <p class="weui-grid__label wx-notop wx-p weui-grid__labelR">数据分析</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- <Wx-Foot-Com></Wx-Foot-Com> -->
+</form>

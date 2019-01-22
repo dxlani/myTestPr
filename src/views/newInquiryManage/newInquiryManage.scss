@@ -1,0 +1,28 @@
+#inquiryManage_queryTerm label{
+    font-size: 12px;
+    padding-right: 10px;
+    padding-left: 8px;
+}
+
+#inquiryManage_queryTerm{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+}
+
+#newInquiryManage_query{
+    background-color: #1890FF;
+    color: #fff!important;
+    margin-right: 20px;
+}
+
+#newInquiryManage_query,
+#inquiryManage_reset{
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#inquiryManage_queryTerm.form-horizontal .form-group{
+    margin-right: -10px;
+    margin-left: -10px
+}

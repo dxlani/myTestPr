@@ -1,0 +1,51 @@
+
+<div id="WxqualityWave">
+        <div class="weui-flex">
+                <div class="weui-flex__item nav"><a href="#!/wechat/WxdataAnalysis" class="datalink" onclick="_czc.push(['_trackEvent', '数据-需求分析', '点击需求分析tab', '','','']);">需求分析</a><div class="whiteline"></div></div>
+                <div class="weui-flex__item nav"><a href="#!/wechat/WxdataAnalysisCost" class="datalink" onclick="_czc.push(['_trackEvent', '数据-成本分析', '点击成本分析tab', '','','']);">成本分析</a><div class="whiteline"></div></div>
+                <div class="weui-flex__item nav active"><a href="#!/wechat/WxqualityWave" class="datalink" onclick="_czc.push(['_trackEvent', '数据-质量分析', '点击质量分析tab', '','','']);">质量分析</a><div class="whiteline"></div></div>
+          </div>
+          <div class="boldline"></div>
+          <div class="weui-flex titleP">
+            <span class="titleName">运输时效分析</span>
+            <span class="unit">&nbsp;&nbsp;(单位：%)</span>
+          </div>
+          <div id="Wxqualitywave"></div>
+          <div class="list_2">
+                <table class="analysistable" >
+                        <tr>
+                            <td class="colorful1"></td>
+                            <td class="colorful1"></td>
+                            <td class="colorful1"></td>
+                        </tr>
+                      <tr v-for ="(index,item) in totaldata" class="trdata" :id="'wave'+(11-index)">
+                          <td width="33.3%">{{item.month}}</td>
+                          <td width="33.3%">{{item.b}}</td>
+                          <td width="33.3%">{{item.a}}</td>
+                        </tr>
+                    </table>
+                <div class="boldline" style="margin-top:15px;"></div>
+          </div>    
+          <div class="weui-flex titleP">
+            <span class="titleName">响应时效分析</span>
+            <span class="unit">&nbsp;&nbsp;(单位：%)</span>
+          </div>
+          <div id="Wxqualitywave1"></div>
+          <div class="list_2">
+                <table class="analysistable1" >
+                        <tr>
+                            <td class="colorful1"></td>
+                            <td class="colorful1"></td>
+                            <td class="colorful1"></td>
+                        </tr>
+                      <tr v-for ="(index,item) in totaldata1" class="trdata" v-bind:id="'rate'+(11-index)">
+                          <td width="33.3%">{{item.month}}</td>
+                          <td width="33.3%">{{item.b}}</td>
+                          <td width="33.3%">{{item.a}}</td>
+                        </tr>
+                    </table>
+                <div class="boldline" style="margin-top:15px;"></div>
+          </div>    
+         
+         
+    </div>

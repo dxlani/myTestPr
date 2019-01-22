@@ -1,0 +1,14 @@
+#authorityManage .weui-switch, .weui-switch-cp__box {
+    width: 38px;
+    height: 20px;
+}
+#authorityManage .weui-switch-cp__box:after, .weui-switch::after{
+    width: 18px;
+    height: 18px;
+    left: -2px;
+}
+
+#authorityManage .weui-switch-cp__box:before, .weui-switch::before{
+    width: 10px;
+    height: 18px;
+}

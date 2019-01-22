@@ -1,0 +1,94 @@
+.tip{
+    width: 300px;
+    height: 250px;
+    right:18px;
+    position: fixed;
+    border: 1px solid #e6e6e6;
+    margin: 0;
+    overflow: hidden;
+    display: block;
+    background-color:whitesmoke;
+    border-radius: 3px;
+    bottom:-170px;
+}
+.tip1{
+    width: 300px;
+    height: 250px;
+    right:18px;
+    position: fixed;
+    border: 1px solid #e6e6e6;
+    margin: 0;
+    overflow: hidden;
+    display: block;
+    background-color:whitesmoke;
+    border-radius: 3px;
+    animation:appear 1.5s ;
+    animation-fill-mode: forwards;
+}
+.tip2{
+    width: 300px;
+    height: 250px;
+    right:18px;
+    position: fixed;
+    border: 1px solid #e6e6e6;
+    margin: 0;
+    overflow: hidden;
+    display: block;
+    background-color:whitesmoke;
+    border-radius: 3px;
+    animation:disappear 1.5s ;
+    animation-fill-mode: forwards;
+}
+#updatetip_title{
+    width: 100%;
+    height: 26px;
+    line-height: 26px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    background-color: rgb(38, 52, 65)
+}
+#updatetip_close{
+    position: absolute;
+    width: 16px;
+    height: 14px;
+    top: 6px;
+    right: 8px;
+    cursor: pointer;
+    // font-size: 16px;
+    // color:white;
+    // font-family:"Comic Sans MS";
+    // transition: all 0.6s;
+}
+.upShow{
+    background: url('../../img/upArrow.png') no-repeat center;
+}
+.downShow{
+    background: url('../../img/downArrow.png') no-repeat center;
+}
+// #updatetip_close:hover{
+//     transition:all 0.6s;
+//     transform:rotate(180deg); 
+// }
+#updatetip_content{
+    margin-top: 20px;
+    margin-left:20px;
+    margin-right: 17px;
+    text-align: left;
+    overflow: auto;
+    height: 200px;
+}
+#updatetip_list li{
+    font-size: 13px;
+    margin:10px 0;
+    list-style-type:none
+}
+@keyframes appear {
+    0%   { right:18px; height:250px;bottom:-170px;}
+    100% { right:18px; height:250px;bottom:50px;}
+}
+@keyframes disappear {
+    0%   { right:18px; height:250px;bottom:50px;}
+    100% { right:18px; height:250px;bottom:-170px;}
+}

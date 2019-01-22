@@ -1,0 +1,68 @@
+.WxOrderManageDetailTitle{
+    text-align: center;
+}
+
+.weui-label-a{
+    width: 98px!important;
+}
+
+#WxOrderReleaseManageDetail .weui-cells{
+    margin-top:0.625em;
+}
+ .weui-cells:after{
+    border:none;
+}
+
+#WxOrderReleaseManageDetail .tc{
+    color: #58666e;
+}
+
+#WxOrderReleaseManageDetail .weui-input{
+    margin-left: 15px;
+    margin-bottom:5px;
+}
+
+.order-btn-small{
+    width: 82%!important;
+}
+
+#WxOrderReleaseManageDetail label{
+    font-size: 14px!important;
+    color: #000;
+    width: 98px;
+}
+#WxOrderReleaseManageDetail  {
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling:touch;
+    background:#f0f0f0;
+}
+
+#releaseDetail_totalLine h4, #releaseDetail_childLine h4{
+    text-align: center;
+}
+
+.icon-a{
+    font-size: 14px!important;
+    display: block;
+    padding: 5px 10px 10px 0px;
+}
+
+#WxOrderReleaseDetailBtn .bg_blue, #WxOrderReleaseDetailBtn .bg_red, #WxOrderReleaseDetailBtn .bg_primary  {
+    font-size: 13px;
+    color: #fff;
+}
+#WxOrderReleaseDetailBtn .bg_red {
+    background-color: #eb595a;
+    margin-left: 0;
+}
+#WxOrderReleaseDetailBtn .bg_primary {
+    background-color: #7266ba;
+    padding: 0 4px; 
+}
+#WxOrderReleaseDetailBtn .bg_green{
+    background-color: #31C27C;
+    padding: 0 4px; 
+    font-size: 13px;
+    color: #fff;
+}

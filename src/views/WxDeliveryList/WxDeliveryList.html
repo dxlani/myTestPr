@@ -1,0 +1,32 @@
+<div id="WxDeliveryList">
+        <div class="weui-flex ">
+            <div class="weui-flex__item  link "><a href="#!/wechatConfirm/wxAcceptanceList" >收货列表</a></div>
+            <div class="weui-flex__item link "><a href="#!/wechatConfirm/wxDeliveryList"class="active" >发货列表</a></div>
+          </div>
+          <div class="wx-top-k">
+              <div class="weui-pull-to-refresh__layer">
+                  <div class='weui-pull-to-refresh__arrow'></div>
+                  <div class='weui-pull-to-refresh__preloader'></div>
+                  <div class="down">下拉刷新</div>
+                  <div class="up">释放刷新</div>
+                  <div class="refresh">正在刷新</div>
+              </div>
+              <div style="margin-top:1px;">
+                  <div class="weui-cells" style='background:#fff;margin:0;'  v-if="liststatus">
+                      <a class="weui-cell weui-cell_access" @click="getDetail(data.carrierOrderId,data.status)" v-for="data in consignorList">
+                        <div class="weui-cell__bd">
+                          <h4><b>收货单位：<span>{{data.consigneeCompany}}</span></b></h4>
+                          <h5>{{data.goodsName}} <span>{{data.realQuantityOfGoods}}{{data.goodsUnit}}</span> <span v-if="data.status==0 || data.status==1">发货时间：{{data.deliveryTime}}</span><span v-if="data.status== 2">到货时间：{{data.arrivalTime}}</span></h5>
+                        </div>
+                        <div class="weui-cell__ft">
+                        </div>
+                      </a>
+                    
+                  </div>
+          
+                    <!-- 没有通知-->
+                    <div class="msg" v-if="!liststatus">
+                      <h4>没有找到历史发货通知</h4>
+                    </div>
+                </div>
+</div>

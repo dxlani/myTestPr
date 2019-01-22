@@ -1,0 +1,142 @@
+
+.weui-flex .nav{
+    height:44px;
+    padding:12px 0;
+    margin:15px 0;
+}
+.weui-flex .datalink{
+    display: inline-block;
+    width:100%;
+    height:100%;
+    line-height: 20px;
+    text-align: center;
+    font-size:14px;
+}
+.weui-flex .navborder{
+    border-left:1px solid #ddd;
+    border-right:1px solid #ddd;
+}
+.weui-flex .active{
+    border-bottom: 3px solid #2D87D2 ;
+}
+.weui-flex .active>a{
+    color:#2D87D2;
+}
+.weui-flex span.titleName{
+    color:#fff;
+    font-size:14px;
+    line-height: 40px;
+}
+.weui-flex span.unit{
+    color:#fff;
+    font-size:12px;
+    line-height: 40px;
+}
+.titleP{
+ padding-left:4.3%;
+ background:#00A0E9;
+ height:40px;
+}
+#WxDataAnalysisRequirement #totalRequire{
+    height:280px;
+    margin:0px auto;
+    padding:2%;
+}
+#WxDataAnalysisRequirement #lineRequire,
+#WxDataAnalysisRequirement #startRequire,
+#WxDataAnalysisRequirement #arriveRequire,
+#WxDataAnalysisRequirement #carRequire,
+{
+    height:320px;
+    margin:0px auto;
+    padding:3%;
+}
+
+#WxDataAnalysisRequirement .list_c{
+    background: #045F9F!important;
+    color:#fbfbfb;
+}
+
+#WxDataAnalysisRequirement .colorful:nth-child(1){
+    background: #045F9F;
+    height: 6px;
+}
+#WxDataAnalysisRequirement .colorful:nth-child(2){
+    background: #FF2A3A;
+    height: 6px;
+}
+#WxDataAnalysisRequirement .colorful:nth-child(3){
+    background: #FFBB2E;
+    height: 6px;
+}
+#WxDataAnalysisRequirement .colorful:nth-child(4){
+    background: #3BD7F9;
+    height: 6px;
+}
+
+
+#WxDataAnalysisRequirement table, #WxDataAnalysisRequirement table tr th,#WxDataAnalysisRequirement table tr td { border:1px solid #000;width: 25%;font-size: 12px;};
+#WxDataAnalysisRequirement table tr{ background: #0A1C43};
+#WxDataAnalysisRequirement table { width: 98%;margin: 0 auto;min-height: 25px; line-height: 25px; text-align: center; border-collapse: collapse; padding:2px;}
+
+/* 修改的内容  黑色主题 */
+#WxDataAnalysisRequirement  .weui-flex .nav{
+    margin:0;
+}
+#WxDataAnalysisRequirement .weui-flex{
+    background: #0A122B;
+}
+#WxDataAnalysisRequirement.weui-flex .navborder{
+    border:none;
+}
+#WxDataAnalysisRequirement .weui-flex .active>a {
+    color: #fff;
+}
+#WxDataAnalysisRequirement .weui-flex__item a{
+    color:#999;
+}
+#WxDataAnalysisRequirement .weui-flex .active{
+    border-bottom: none ;
+}
+#WxDataAnalysisRequirement .weui-flex__item{
+    position: relative;
+}
+.whiteline{
+    width:23px;
+    height:3px;
+    position: absolute;
+    background-color:#fff;
+    bottom:0;
+    left:40%;
+    display: none;
+}
+.weui-flex span.titleName{
+    border-left:2px solid #2DA1F4;
+    padding-left:10px;
+    margin-left:10px;
+    line-height: 14px;
+}
+.weui-flex.titleP{
+    margin-top:10px; 
+}
+.titleP {
+    padding: 13px 0;
+}
+.active .whiteline{
+    display: block;
+}
+
+#WxDataAnalysisRequirement{
+    background: #1D2B40;
+    margin-bottom: 50px;
+}
+.weui-flex span.unit{
+    line-height: 14px;
+}
+#totalRequire,#lineRequire,#startRequire,#arriveRequire,#carRequire{
+    background: #0a122b!important;
+}
+.list_2{
+    padding-bottom: 15px;
+    background: #0A122B;
+}

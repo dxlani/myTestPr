@@ -1,0 +1,178 @@
+//改写或者拓充一下bootstrap的样式
+.form-control-modal{
+    display: inline-block;
+    vertical-align: middle;
+    border:1px solid #ccc;
+    border-radius: 2px;
+    background-color: #eee;
+}
+.p-r-0{
+    padding-right: 0px;
+}
+@media(min-width:1400px){
+    .col-lg-233{
+        width: 10.333333%
+    }
+}
+
+
+@media(min-width:1200px){
+    .modalBlock{
+        width: 80%;
+        margin: 0 auto;
+        border:1px solid red;
+    }
+    .col-lg-075{
+        width: 6.25%;
+        padding-right: 0px;
+        // padding-left: 0px;
+    }
+    .col-lg-050{
+        width: 4.1667%;
+        padding-right: 0px;
+    }
+    .col-lg-060{
+        width: 5%;
+        padding-right: 0px;
+    }
+    .col-lg-080{
+        width:6.6667%;
+        padding-right: 0px;
+    }
+
+    .col-lg-150{
+        width: 14.5%
+    }
+    .col-lg-480{
+        width: 40%;
+    }
+    .lg-m-n{
+        margin: 0 !important
+    }
+    .lg-m-l-n-lg{
+        margin-left: -30px;
+    }
+    .lg-m-r-n-sm{
+        margin-left: -10px;
+    }
+    .lg-m-l-n-sm{
+        margin-left: -10px;
+    }
+     .col-lg-175{
+        width:14.5833%
+    }
+    .lg-pull-right{
+        text-align: right
+    }
+    .lg-m-tb-0{
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    
+}
+@media(max-width:992px){
+    .sm-m-l-xs{
+        margin-left:5px;
+    }
+    .sm-m-l-sm{
+        margin-left:10px;
+    }
+    .sm-m-l-md{
+        margin-left:20px;
+    }
+    .sm-m-l-lg{
+        margin-left:30px;
+    }
+    .sm-m-r-md{
+        margin-right:20px;
+    } 
+    .sm-m-r-sm{
+        margin-right:10px;
+    }
+    .sm-m-r-xs{
+        margin-right:5px;
+    }
+
+    .col-sm-480{
+        width: 40%
+    }
+    .col-sm-200{
+        width: 16.667%;
+        padding-right:  0px;
+        padding-left: 15px;
+    }
+    .col-sm-250{
+        width: 18.333%;
+        padding-left: 15px;
+    }
+    .p-r-0{
+        padding-right: 25px;
+    }
+}
+
+
+.p-l-0{
+    padding-left: 0px;
+}
+
+@media (min-width: 1200px){
+    .col-lg-010{
+        width: 9.333333%;
+    }
+
+    .col-lg-081{
+        width: 7.8888%;
+        padding-right: 0
+    }
+}
+
+@media (min-width:1200px) and (max-width: 1600px){
+    .col-lg-210 {
+        width: 60.66666667%;
+    }
+}
+
+@media (min-width:1600px){
+    .col-lg-210 {
+        width: 15.66666667%;
+    }
+}
+@media(max-width:1199px)and(min-width:993px){
+    .col-md-140{
+        width: 13.667%;
+        padding-right: 0px;
+        padding-left: 15px;
+        text-align: left;
+    }
+}
+
+
+@media(max-width:1650px)and(min-width:1494px){
+    #inquiryManage .pull-left{
+        width: 9.33333%
+    }
+    #inquiryReleaseManage .col-lg-1{
+        width: 9.33333%
+    }
+}
+
+@media(min-width:1200px){
+    #inquiryAdd .col-lg-081{
+        width: 7.6667%;
+        padding-right: 0px;
+    }
+}
+@media(max-width:1599px)and(min-width:1201px){
+    #inquiryAdd .col-lg-081{
+        width: 11.6667%;
+        padding-right: 0;
+    }
+}
+
+@media(max-width:1781px)and(min-width:1600px){
+    #inquiryCheck .col-lg-081{
+        width: 7.6667%;
+        padding-right: 0;
+    }
+}

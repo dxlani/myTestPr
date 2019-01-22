@@ -1,0 +1,55 @@
+#WxAcceptanceList .weui-flex a{
+    display: block;
+    margin:0 auto;
+    text-align: center;
+    height:100%;
+    line-height: 50px;
+}
+#WxAcceptanceList .weui-flex .active{
+    color: #FDBB29;
+    border-bottom:3px solid #FFAF00;
+  }
+  
+  #WxAcceptanceList .weui-flex {
+    border-bottom:1px solid #999; 
+    box-shadow:0 1px 1px #999;
+    background: #fafafa;
+    height:50px;
+    z-index: 500;
+    position: fixed;
+    top:0;
+    width:100%;
+  }
+  #WxAcceptanceList .link{
+    padding:0 13%;
+  }
+  #WxAcceptanceList .weui-cell_access .weui-cell__ft:after{
+    width:9px;
+    height:9px;
+  }
+  #WxAcceptanceList .msg{
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin:-50px 0 0 -100px;
+    text-align: center;
+    width:200px;
+    height:100px;
+}
+#WxAcceptanceList .msg h4{
+    line-height:100px;
+}
+
+/* 下拉刷新样式修改 */
+#WxAcceptanceList .weui-pull-to-refresh__layer{
+padding:0;
+height:50px;
+line-height: 50px;
+}
+#WxAcceptanceList .wx-top-k{
+  margin-top:0px;
+  height:100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+}

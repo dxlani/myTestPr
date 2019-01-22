@@ -1,0 +1,127 @@
+<div id="feedBack">
+    <a id="feedBack_w" data-toggle="modal" data-target="#feedbackModal" title="意见反馈" type="button" class="feedBack" @click="clearAddfeedback()" v-if="isAdmin=='true'"></a>
+    <a type="button" class="qRcode" title="二维码"></a>
+    <div class="erweima">
+        <img src="../../img/csp-erweima.jpg" alt="">
+        <span>扫码关注公众账号随时随地掌上办公</span>
+    </div>
+</div>
+<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button id="opinionFeed_model" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="myModalLabel">意见反馈</h4>     
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs" role="tablist">  
+                    <li id="goAddfeedback" role="presentation" class="active" @click="changeAddfeedback()"><a href="#addFeedback" aria-controls="addFeedback" role="tab" data-toggle="tab">新增反馈</a></li>  
+                    <li id="goMyfeedback" @click="changeMyfeedback()"><a href="#myFeedBack" data-toggle="tab">历史反馈</a></li>  
+                </ul>
+                <div class="tab-content" style="margin-top: 47px;height: 600px;overflow: auto;padding-top: 0px;">
+                    <div id="addFeedback" role="tabpanel" class="tab-pane active">
+                        <form id="addModalForm">
+                            <div class="form-group" style="position: relative;">
+                                <label class="control-label" style="font-size: 18px;"><strong>标题</strong><span class="text-danger">*</span></label>
+                                <input id="opinionFeed_nameBox" type="text" name="nameBox" class="form-control" v-model="modalTitle" maxlength="20" @keyup="checkTitleNum()" placeholder="请输入反馈问题的标题，不超过20个字" autocomplete="off">
+                                <div class="titleNum">
+                                    <span id="title-count">0</span>/20
+                                </div>
+                            </div>
+                            <div class="line  pull-in"></div>
+                            <div class="form-group">
+                                <label class="control-label" style="font-size: 18px;"><strong>内容</strong><span class="text-danger">*</span></label>
+                                <textarea id="feedBackTextarea" maxlength="300" class="form-control feedBackTextarea" placeholder="请输入详细的问题描述和建议，不超过300字" 
+                                    @keyup="checkMaxInput()" v-model="modalContent"></textarea>
+                                <div class="form-control textNum">
+                                    <span id="text-count">0</span>/300
+                                </div>
+                            </div>
+                            <div class="line pull-in"></div>
+                            <div class="form-group">
+                                <label class="control-label" style="font-size: 18px;"><strong>请添加问题相关的截图或图片</strong></label>
+                                <input type="file" id="upLoader" name="upLoader" class="file_hidden" @change="fileChange($event)" accept="image/gif,image/jpeg,image/jpg,image/png,image/bmp,image/svg" multiple>
+                                <button id="opinionFeed_loaderSelect" name="loaderSelect" type="button" onclick="upLoader.click()" class="btn m-b-xs btn-sm btn-default btn-addon ">
+                                    <span style="font-size: 14px;">添加照片(</span><span id="upLoader_num">0</span>/3)
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <div class="table-responsive table-cel-k">
+                                    <v-client-table class="editTables" :data="feedBackPicList" :columns="imageColumns" :options="imageOptions" style="overflow:hidden; min-width:800px;table-layout:fixed;"></v-client-table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="myFeedBack" role="tabpanel" class="tab-pane">
+                        <div class="container-fluid">
+                            <div class="accordion" id="feedbackList">
+                                <div :id="'group'+index" class="accordion-group" v-for="(index,item) in historyFeedbackList">
+                                    <div class="accordion-heading">
+                                        <div>
+                                            <span class="hsTitle">{{item.title}}</span>
+                                            <span class="hsBacktime">{{item.creationTime}}</span>
+                                        </div>
+                                        <div :id="'showspread'+index">
+                                            <span v-if="item.status=='已回复'"><i class="glyphicon glyphicon-ok text-success" style="margin-right: 6px;"></i>已回复</span>
+                                            <span v-if="item.status=='未回复'"><i class="fa fa-question fa-lg" style="color: red;margin-right: 6px;"></i>未回复</span>
+                                            <a :href="'#hsFeedback'+index" class="accordion-toggle spread" data-toggle="collapse" data-parent="#feedbackList" @click="showContent(index,)">
+                                                展开
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div :id="'hsFeedback'+index" class="accordion-body collapse">
+                                        <div class="accordion-inner">
+                                            <div>{{item.content}}</div>
+                                            <div class="feedbackPicList">
+                                                <div v-for="itemC in item.attachments">
+                                                    <img v-bind:id="itemC.id" v-bind:src="itemC.path" class="feedbackPic" data-toggle="modal" data-target="#feedbackPicModal" @click="bigPic(itemC)"/>
+                                                </div>
+                                            </div>
+                                            <div style="clear: left;">
+                                                <div>
+                                                    <span class="hsbackTitle" v-show="item.replyContent != null">回复</span>
+                                                    <span class="hsBacktime">{{item.replyTime}}</span>
+                                                </div>
+                                                <div class="backContent">{{item.replyContent}}</div>
+                                                <div style="text-align: right;">
+                                                    <a :href="'#hsFeedback'+index" class="accordion-toggle retract" data-toggle="collapse" data-parent="#feedbackList" @click="hideContent(index)">
+                                                        收起
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="feedbackModal_footer" class="modal-footer">
+                <div style="margin:0 auto;">
+                    <button type="button" class="btn btn-primary" @click="confirm()" style="margin-right: 40px;width: 85px;border-radius: 5px;">提交</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="width: 85px;border-radius: 5px;">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 反馈图片模态框 -->
+<div id="feedbackPicModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- <div class="modalClose" data-dismiss="modal" aria-label="Close">
+        <img id="feedBack_img" class="receiptPic" :src="picPath">
+    </div> -->
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button id="opinionFeed_model" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <img id="feedBack_img" class="receiptPic" :src="picPath" style="width: 550px;height: 550px;">
+                <!-- <img id="feedBack_img" class="receiptPic" :src="picPath" style="width: 550px;height: 550px;cursor: pointer;" @click="changePicdeg()"> -->
+            </div>
+        </div>
+    </div>
+    
+</div>

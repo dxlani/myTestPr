@@ -1,0 +1,86 @@
+{
+  "urgency": 0,
+  "urgencyUnit": "string",
+  "cspInquiryTime": "string",
+  "clientId": "string",
+  "clientName": "string",
+  "customerId": "string",
+  "attachmentRemarks": "string",
+  "items": [
+    {
+      "destination": {
+        "province": "string",
+        "city": "string",
+        "county": "string",
+        "details": "string"
+      },
+      "destinationAddress": "string",
+      "origin": {
+        "province": "string",
+        "city": "string",
+        "county": "string",
+        "details": "string"
+      },
+      "originAddress": "string",
+      "foreArrivalTime": "string",
+      "foreDeliveryTime": "string",
+      "goodsTypeId": "string",
+      "goodsTypeName": "string",
+      "goodsId": "string",
+      "goodsName": "string",
+      "quantityOfGoods": 0,
+      "goodsUnit": "string",
+      "vehicleType": "string",
+      "carLength": "string",
+      "carriageWay": "string",
+      "loadingEffect": "string"
+    }
+  ],
+  "content": "string",
+  "attachmentList": [
+    {
+      "id": "string",
+      "name": "string",
+      "path": "string",
+      "tag": "string"
+    }
+  ],
+  "operatorId": 0
+}
+
+{
+  "cspInquiryChildCode": "string",
+  "responseTime": 0,
+  "cspInquiryTime": "string",
+  "clientName": "string",
+  "customerName": "string",
+  "customerPhone": "string",
+  "content": "string",
+  "destinationProvince": "string",
+  "destinationCity": "string",
+  "destinationCounty": "string",
+  "destinationDetails": "string",
+  "originProvince": "string",
+  "originCity": "string",
+  "originCounty": "string",
+  "originDetails": "string",
+  "foreArrivalTime": "string",
+  "foreDeliveryTime": "string",
+  "goodsTypeName": "string",
+  "goodsName": "string",
+  "quantityOfGoods": 0,
+  "goodsUnit": "string",
+  "vehicleType": "string",
+  "carLength": "string",
+  "carriageWay": "string",
+  "loadingEffect": "string",
+  "attachmentRemarks": "string",
+  "attachmentList": [
+    {
+      "id": "string",
+      "name": "string",
+      "path": "string",
+      "tag": "string"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h2 class="m-n font-thin h3">订单批量导入</h2>
+</div>
+<div class="wrapper-md" id="batchImport">
+    <div v-show="!downloadExcel">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 v-show="uploadSuccess">已成功上传！</h3>
+                <h3 v-show="uploadError" style="color: #FF0000">以下信息填选有误，请修改后重新上传!</h3>
+                <h3 v-show="uploadRepeat" style="color: #00B6E8">友情提示：以下订单与已有订单重复!</h3>
+            </div>
+            <div class="line line-xs pull-in"></div>
+            <div class="panel-heading">订单预览列表</div>
+            <div class="table-responsive">
+                <table id="batchImport_table" class="table table-hover" data-events="actionEvents" style="min-width:1000px;max-height:467px"></table>
+            </div>
+        </div>
+        <div class="panel-body" style="text-align: center">
+            <div class="form-group">
+                <input type="file" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" id="fileReload" style="display: none;" v-on:change="fileChange($event)" />
+                <a id="batchImport_reUpload" onclick="fileReload.click()" class="pull-right-xs btn btn-sm btn-success btn-addon" v-show="!uploadSuccess"><i class="glyphicon glyphicon-import"></i>重新上传</a>
+                <a id="batchImport_confirm" @click="confirm()" class="pull-right-xs btn btn-sm btn-primary btn-addon" v-show="!uploadError"><i class="glyphicon glyphicon-ok"></i>确认发布</a>
+                <a id="batchImport_confirm" @click="cancel()" class="pull-right-xs btn btn-sm btn-info btn-addon"><i class="glyphicon glyphicon-arrow-left"></i>取消</a>
+            </div>
+        </div>
+    </div>
+    <div class="btnGroup" v-show="downloadExcel">
+        <a id="downloadBtn" name="downloadBtn"  class="pull-right-xs btn btn-bg btn-info btn-addon" @click="getTemplate()"><i class="glyphicon glyphicon-save bgimage"></i>下载模板表格</a>
+        <input type="file" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" id="fileInput" style="display: none;" v-on:change="fileChange($event)" />
+        <a id="uploadBtn" name="uploadBtn"  class="pull-right-xs btn btn-bg btn-success btn-addon"  onclick="fileInput.click()" style="margin-left:50px;"><i class="glyphicon glyphicon-open bgimage"></i>上传订单表格</a>
+    </div>
+    <!-- 模态框 -->
+    <div class="loadingModal1">
+         <div class="loadingtips clearfloat">
+            <i class="fa fa-circle-o-notch fa-spin fa-4x"></i><span>发布中，请稍后</span>
+         </div>
+    </div>
+    <div class="loadingModal">
+        <div class="loadingtips clearfloat">
+           <i class="fa fa-circle-o-notch fa-spin fa-4x"></i><span>上传中，请稍后</span>
+        </div>
+   </div>
+</div>
