@@ -38,10 +38,10 @@ module.exports = {
 
     // Config for our build files
     output: {
-        path: root('dist'),
-        filename: '[name].bundle.js',
-        sourceMapFilename: '[name].map',
-        chunkFilename: '[id].chunk.js'
+        path: path.resolve(__dirname, '../dist/static'),
+        publicPath: 'static/',
+        filename: '[name].[hash].js',
+        chunkFilename: '[id].[chunkhash].js'
     },
 
     resolve: {
