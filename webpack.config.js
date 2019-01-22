@@ -38,10 +38,10 @@ module.exports = {
 
     // Config for our build files
     output: {
-        path: path.resolve(__dirname, '../dist/static'),
-        publicPath: 'static/',
-        filename: '[name].[hash].js',
-        chunkFilename: '[id].[chunkhash].js'
+        path: root('dist'),
+        filename: '[name].bundle.js',
+        sourceMapFilename: '[name].map',
+        chunkFilename: '[id].chunk.js'
     },
 
     resolve: {
@@ -112,7 +112,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({ template: 'src/index.html' }),
         new CopyWebpackPlugin([{ from: './src/static/aliyun-oss-sdk.min.js', to: './static/aliyun-oss-sdk.min.js' }]),
-        // new webpack.optimize.UglifyJsPlugin({sourceMap:false}),
+        new webpack.optimize.UglifyJsPlugin({sourceMap:false}),
 
         // new DefinePlugin({
         //     'process.env': {
