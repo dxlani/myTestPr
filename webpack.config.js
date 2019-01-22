@@ -7,19 +7,16 @@ var webpack = require('webpack');
 var path = require('path');
 // Webpack Plugins
  var ProvidePlugin = require('webpack/lib/ProvidePlugin');
-// var DefinePlugin = require('webpack/lib/DefinePlugin');
-// var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
+var DefinePlugin = require('webpack/lib/DefinePlugin');
+var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
  var CopyWebpackPlugin = require('copy-webpack-plugin');
-// var ImageminPlugin = require('imagemin-webpack-plugin').default;
+var ImageminPlugin = require('imagemin-webpack-plugin').default;
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-/**开发环境 */
 var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
-/**生产环境 */
-var prodEnv = process.env.ENV = process.env.NODE_ENV = 'production';
 const autoprefixer = require('autoprefixer');
 
 var metadata = {
-    title: '诺得物流客户服务平台',
+    title: '飓风物流客户服务平台',
     // host: 'localhost',
     // port: 893,
     ENV: ENV
@@ -38,8 +35,8 @@ module.exports = {
 
     // Config for our build files
     output: {
-        path: path.resolve(__dirname,"dist/"),
-        filename:"bundle.js",
+        path: root('dist'),
+        filename: '[name].bundle.js',
         sourceMapFilename: '[name].map',
         chunkFilename: '[id].chunk.js'
     },
@@ -108,18 +105,23 @@ module.exports = {
     plugins: [
         new CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
 
-        // new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
+        new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({ template: 'src/index.html' }),
         new CopyWebpackPlugin([{ from: './src/static/aliyun-oss-sdk.min.js', to: './static/aliyun-oss-sdk.min.js' }]),
-        new webpack.optimize.UglifyJsPlugin({sourceMap:false}),
+        new webpack.optimize.UglifyJsPlugin({
+                 compress: {
+                       warnings: false
+                   },
+                    mangle: false
+              }),
 
-        // new DefinePlugin({
-        //     'process.env': {
-        //         'ENV': JSON.stringify(metadata.ENV),
-        //         'NODE_ENV': JSON.stringify(metadata.ENV)
-        //     }
-        // }),
+        new DefinePlugin({
+            'process.env': {
+                'ENV': JSON.stringify(metadata.ENV),
+                'NODE_ENV': JSON.stringify(metadata.ENV)
+            }
+        }),
 
         //Make jquery and Vue globally available without the need to import them
         new ProvidePlugin({
@@ -137,7 +139,7 @@ module.exports = {
         // watchOptions: { aggregateTimeout: 300, poll: 1000 },
         hot: true,
         inline: true,
-        port: 89,
+        port: 886,
         host: 'localhost',
         proxy: {
             '/csp/**': {
