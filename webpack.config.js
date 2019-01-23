@@ -104,8 +104,7 @@ module.exports = {
 
     plugins: [
         new CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
-
-        new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
+        // new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({ template: 'src/index.html' }),
         new CopyWebpackPlugin([{ from: './src/static/aliyun-oss-sdk.min.js', to: './static/aliyun-oss-sdk.min.js' }]),
@@ -116,12 +115,12 @@ module.exports = {
                     mangle: false
               }),
 
-        new DefinePlugin({
-            'process.env': {
-                'ENV': JSON.stringify(metadata.ENV),
-                'NODE_ENV': JSON.stringify(metadata.ENV)
-            }
-        }),
+        // new DefinePlugin({
+        //     'process.env': {
+        //         'ENV': JSON.stringify(metadata.ENV),
+        //         'NODE_ENV': JSON.stringify(metadata.ENV)
+        //     }
+        // }),
 
         //Make jquery and Vue globally available without the need to import them
         new ProvidePlugin({
