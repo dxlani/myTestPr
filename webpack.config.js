@@ -37,7 +37,7 @@ module.exports = {
     output: {
         path: root('dist'),
         filename: '[name].bundle.js',
-        publicPath: './',
+        publicPath: 'img/',
         sourceMapFilename: '[name].map',
         chunkFilename: '[id].chunk.js'
     },
