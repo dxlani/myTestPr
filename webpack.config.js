@@ -103,17 +103,17 @@ module.exports = {
     postcss: [autoprefixer], // <--- postcss
 
     plugins: [
-        new CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
-        new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
+        // new CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
+        // new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({ template: 'src/index.html' }),
         new CopyWebpackPlugin([{ from: './src/static/aliyun-oss-sdk.min.js', to: './static/aliyun-oss-sdk.min.js' }]),
-        new webpack.optimize.UglifyJsPlugin({
-                 compress: {
-                       warnings: false
-                   },
-                    mangle: false
-              }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //          compress: {
+        //                warnings: false
+        //            },
+        //             mangle: false
+        //       }),
 
         // new DefinePlugin({
         //     'process.env': {
