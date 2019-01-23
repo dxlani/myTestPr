@@ -1,12 +1,12 @@
 import { Prop,VueComponent } from 'vue-typescript'
 import {dataService} from '../../service/dataService'
-import '../../img/daquan.png'
-import '../../img/wode.png'
-import '../../img/noValide.png'
-import '../../img/daquanLocateIcon.png';
-import '../../img/sino-er.png'
-import '../../img/csp-er.png'
-import '../../img/ccp-er.png'
+//import '../../img/daquan.png'
+//import '../../img/wode.png'
+//import '../../img/noValide.png'
+//import '../../img/daquanLocateIcon.png';
+//import '../../img/sino-er.png'
+//import '../../img/csp-er.png'
+//import '../../img/ccp-er.png'
 
 @VueComponent({
     template: require('./daquanOrderLocation.html'),

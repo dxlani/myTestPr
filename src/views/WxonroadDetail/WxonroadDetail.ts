@@ -1,8 +1,8 @@
 import { VueComponent, Prop } from 'vue-typescript'
 import {dataService} from '../../service/dataService';
-import '../../img/onRoadDetail_bg@3x.png';
-import '../../img/onroadDetail.png';
-import '../../img/onroadbox@2x.png';
+//import '../../img/onRoadDetail_bg@3x.png';
+//import '../../img/onroadDetail.png';
+//import '../../img/onroadbox@2x.png';
 import * as VueRouter from 'vue-router';
 declare var $:any;
 Vue.use(VueRouter);

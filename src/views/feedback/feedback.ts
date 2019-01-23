@@ -1,11 +1,11 @@
 import { VueComponent, Prop, Watch } from 'vue-typescript'
 import { aliupload } from '../../service/OssUploadService';
-import '../../img/menu-erweima.png';
-import '../../img/menu-erweima2.png';
-import '../../img/menu-modalFeedBack.png';
-import '../../img/menu-modalFeedBack2.png';
-import '../../img/csp-erweima.jpg';
-import '../../img/menu-erweima2.png';
+//import '../../img/menu-erweima.png';
+//import '../../img/menu-erweima2.png';
+//import '../../img/menu-modalFeedBack.png';
+//import '../../img/menu-modalFeedBack2.png';
+//import '../../img/csp-erweima.jpg';
+//import '../../img/menu-erweima2.png';
 import { dataService } from '../../service/dataService';
 
 declare var $:any;

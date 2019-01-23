@@ -2,13 +2,13 @@ import { VueComponent } from 'vue-typescript'
 import { dataService } from '../../service/dataService'
 import * as VueRouter from 'vue-router'
 
-import '../../img/bj-img@3x.jpg';
-import '../../img/yun_img@3x.png';
-import '../../img/yonghu-icon@3x.png';
-import '../../img/mima-img@3x.png';
-import '../../img/login-user.png';
-import '../../img/login-pwd.png';
-import '../../img/wx-title.png';
+//import '../../img/bj-img@3x.jpg';
+//import '../../img/yun_img@3x.png';
+//import '../../img/yonghu-icon@3x.png';
+//import '../../img/mima-img@3x.png';
+//import '../../img/login-user.png';
+//import '../../img/login-pwd.png';
+//import '../../img/wx-title.png';
 
 declare var $: any;
 declare var document: any;

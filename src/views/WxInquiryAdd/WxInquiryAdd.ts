@@ -2,7 +2,7 @@ import { VueComponent, Prop, Watch } from 'vue-typescript'
 
 import { dataService } from '../../service/dataService';
 import * as VueRouter from 'vue-router';
-import '../../favicon.ico';
+//import '../../favicon.ico';
 declare var $: any;
 
 Vue.use(VueRouter);

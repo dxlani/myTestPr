@@ -1,7 +1,7 @@
 import { VueComponent, Prop } from 'vue-typescript'
 import {dataService} from '../../service/dataService';
 import * as VueRouter from 'vue-router';
-import '../../favicon.ico';
+//import '../../favicon.ico';
 import '../../components/WxFoot/WxFootCom'
 declare var $:any;
 

@@ -1,9 +1,9 @@
 import { VueComponent } from 'vue-typescript'
 import { dataService } from '../../service/dataService'
 import * as VueRouter from 'vue-router'
-import '../../img/plus.png';
-import '../../img/fankui.png';
-import '../../img/huifu.png';
+//import '../../img/plus.png';
+//import '../../img/fankui.png';
+//import '../../img/huifu.png';
 declare var $: any;
 Vue.use(VueRouter);
 

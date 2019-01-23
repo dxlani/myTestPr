@@ -2,9 +2,9 @@ import { VueComponent, Prop } from 'vue-typescript'
 import {dataService} from '../../service/dataService';
 import {LoginComponent} from '../login/login'
 import * as VueRouter from 'vue-router'
-import '../../img/location_start.png';
-import '../../img/location_end.png';
-import '../../img/car.png';
+//import '../../img/location_start.png';
+//import '../../img/location_end.png';
+//import '../../img/car.png';
 
 var router = new VueRouter();
 

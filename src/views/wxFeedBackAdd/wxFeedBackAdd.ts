@@ -2,10 +2,10 @@ import { VueComponent } from 'vue-typescript'
 import { dataService } from '../../service/dataService'
 import * as VueRouter from 'vue-router'
 import { aliupload } from '../../service/OssUploadService';
-import '../../img/plus.png';
-import '../../img/fankui.png';
-import '../../img/huifu.png';
-import '../../img/redclose.png';
+//import '../../img/plus.png';
+//import '../../img/fankui.png';
+//import '../../img/huifu.png';
+//import '../../img/redclose.png';
 declare var $: any;
 Vue.use(VueRouter);
 

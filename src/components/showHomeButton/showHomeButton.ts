@@ -4,7 +4,7 @@ declare var $: any;
 Vue.use(VueRouter);
 var router = new VueRouter();
 declare var event:any;
-import '../../img/homeBtn.png';
+//import '../../img/homeBtn.png';
 @VueComponent({
     template: require('./showHomeButton.html'),
     style: require('./showHomeButton.scss')

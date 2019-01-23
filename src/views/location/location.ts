@@ -1,9 +1,9 @@
 import { VueComponent, Prop } from 'vue-typescript'
 import {dataService} from '../../service/dataService';
 import * as VueRouter from 'vue-router';
-import '../../img/location_start.png';
-import '../../img/location_end.png';
-import '../../img/car.png';
+//import '../../img/location_start.png';
+//import '../../img/location_end.png';
+//import '../../img/car.png';
 
 // import 'https://api.map.baidu.com/api?v=2.0&ak=7eGHQWZhEnRt28NiHnkgloKVb6n3A3MK&s=1'
 

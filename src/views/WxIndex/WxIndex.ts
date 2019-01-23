@@ -3,14 +3,14 @@ import { VueComponent, Prop, Watch } from 'vue-typescript'
 import { dataService } from '../../service/dataService';
 import * as VueRouter from 'vue-router';
 
-import '../../img/bj_img@3x.png';
-import '../../img/bj_title@3x.png';
-import '../../img/01_icon@3x.png';
-import '../../img/02_icon@3x.png';
-import '../../img/03_icon@3x.png';
-import '../../img/04_icon@3x.png';
-import '../../img/05_icon@3x.png';
-import '../../favicon.ico';
+//import '../../img/bj_img@3x.png';
+//import '../../img/bj_title@3x.png';
+//import '../../img/01_icon@3x.png';
+//import '../../img/02_icon@3x.png';
+//import '../../img/03_icon@3x.png';
+//import '../../img/04_icon@3x.png';
+//import '../../img/05_icon@3x.png';
+//import '../../favicon.ico';
 
 
 Vue.use(VueRouter);

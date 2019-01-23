@@ -1,9 +1,9 @@
 import { VueComponent, Prop, Watch } from 'vue-typescript'
 import * as VueRouter from 'vue-router';
-import '../../img/a0.jpg';
-import '../../img/headerBg.png';
-import '../../img/toNewPage.png';
-import '../../img/toOrderPage.png';
+//import '../../img/a0.jpg';
+//import '../../img/headerBg.png';
+//import '../../img/toNewPage.png';
+//import '../../img/toOrderPage.png';
 
 Vue.use(VueRouter);
 var router = new VueRouter();

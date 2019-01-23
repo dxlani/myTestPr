@@ -37,7 +37,7 @@ module.exports = {
     output: {
         path: root('dist'),
         filename: '[name].bundle.js',
-        publicPath: 'img/',
+        publicPath: '/',
         sourceMapFilename: '[name].map',
         chunkFilename: '[id].chunk.js'
     },
@@ -109,6 +109,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({ template: 'src/index.html' }),
         new CopyWebpackPlugin([{ from: './src/static/aliyun-oss-sdk.min.js', to: './static/aliyun-oss-sdk.min.js' }]),
+        new CopyWebpackPlugin([{ from: './src/img', to: './img' }]),
         // new webpack.optimize.UglifyJsPlugin({
         //          compress: {
         //                warnings: false

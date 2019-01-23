@@ -1,10 +1,10 @@
 import { Prop,VueComponent } from 'vue-typescript'
 import {dataService} from '../../service/dataService';
-import '../../img/pic1.png';
-import '../../img/pic2.png';
-import '../../img/pic3.png';
-import '../../img/pic4.png';
-import '../../img/u124.png';
+//import '../../img/pic1.png';
+//import '../../img/pic2.png';
+//import '../../img/pic3.png';
+//import '../../img/pic4.png';
+//import '../../img/u124.png';
 
 var echarts = require('echarts');
 

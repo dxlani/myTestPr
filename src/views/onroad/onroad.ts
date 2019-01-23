@@ -1,8 +1,8 @@
 import { VueComponent } from 'vue-typescript'
 import { dataService } from '../../service/dataService'
 import * as VueRouter from 'vue-router'
-import '../../img/search.png';
-import '../../img/route_img@3x.png';
+//import '../../img/search.png';
+//import '../../img/route_img@3x.png';
 declare var $: any;
 declare var results: any;
 declare var getDuration: any;

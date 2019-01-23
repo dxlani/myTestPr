@@ -7,12 +7,12 @@ declare var wx: any;
 Vue.use(VueRouter);
 var router = new VueRouter();
 declare var event: any;
-import '../../img/maikefeng.png';
-import '../../img/keyboard.png';
-import '../../img/mai.png';
-import '../../img/microphoneBg.png';
-import '../../img/whitemai.png';
-import '../../img/bluecircle.png';
+//import '../../img/maikefeng.png';
+//import '../../img/keyboard.png';
+//import '../../img/mai.png';
+//import '../../img/microphoneBg.png';
+//import '../../img/whitemai.png';
+//import '../../img/bluecircle.png';
 @VueComponent({
     template: require('./ai.html'),
     style: require('./ai.scss')

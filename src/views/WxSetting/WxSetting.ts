@@ -1,11 +1,11 @@
 import { VueComponent, Prop } from 'vue-typescript'
 import {dataService} from '../../service/dataService';
-import '../../img/bj_img@3x.png';
-import '../../img/person.png';
-import '../../img/upArrow@2x.png';
-import '../../img/downArrow@2x.png';
-import '../../img/settingPerson.png';
-import '../../img/fankui.png';
+//import '../../img/bj_img@3x.png';
+//import '../../img/person.png';
+//import '../../img/upArrow@2x.png';
+//import '../../img/downArrow@2x.png';
+//import '../../img/settingPerson.png';
+//import '../../img/fankui.png';
 import * as VueRouter from 'vue-router';
 declare var $:any;
 
